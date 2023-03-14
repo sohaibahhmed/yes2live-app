@@ -10,6 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.fyp.yes2live.response.LoginUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class signup extends AppCompatActivity {
@@ -27,9 +36,9 @@ public class signup extends AppCompatActivity {
 
     EditText email;
     EditText password;
-EditText name;
-EditText repass;
-EditText phone;
+    EditText name;
+    EditText repass;
+    EditText phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,17 +56,57 @@ EditText phone;
             public void onClick(View v) {
                 String emailInput = email.getText().toString().trim();
                 String passwordInput = password.getText().toString().trim();
-                validateEmail();
-                validatePassword();
-                validateName();
-                isNumeric();
-                if(!validateEmail()||!validatePassword()||!validateName()||!isNumeric()){
-                    Toast.makeText(signup.this,"fill all fields  " , Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Intent intent1 = new Intent(signup.this, homepage.class);
-                    startActivity(intent1);
-                }
+//                validateEmail();
+//                validatePassword();
+//                validateName();
+//                isNumeric();
+//                if(!validateEmail()||!validatePassword()||!validateName()||!isNumeric()){
+//                    Toast.makeText(signup.this,"fill all fields  " , Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+
+                    JSONObject obj = new JSONObject();
+                    try {
+                        obj.put("firstname", name);
+                        obj.put("email", email);
+                        obj.put("password", password);
+                        String a=obj.toString();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    LoginUser login = new LoginUser();
+                    login.setEmail(emailInput);
+                    login.setPassword(passwordInput);
+                    login.setName(name.getText().toString());
+                    //AndroidNetworking.post("http://153.156.163.115:8070/api/signUp")
+                    AndroidNetworking.post("http://localhost:8080/api/v1/auth/signup")
+                            .addJSONObjectBody(obj)
+                            .build()
+                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    // Text will show success if Response is success
+//                                    try {
+//                                        if (response.getString("status").equals("SUCCESS")) {
+                                            Intent intent1 = new Intent(signup.this, homepage.class);
+                                            startActivity(intent1);
+//                                        } else {
+//                                            Toast.makeText(signup.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    } catch (JSONException e) {
+//                                        throw new RuntimeException(e);
+//                                    }
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+                                    System.out.println("testt");
+                                }
+                            });
+
+//                }
             };
         });
     }
