@@ -28,8 +28,6 @@
         android:layout_marginTop="110dp"
         android:text="Yes"
         android:textSize="30dp"
-        android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -44,7 +42,6 @@
         android:layout_marginTop="216dp"
         android:text="No"
         android:textSize="30dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"

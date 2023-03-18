@@ -28,7 +28,7 @@
         android:paddingLeft="20dp"
         android:text="Hypertension"
         android:textSize="30dp"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:paddingLeft="20dp"
         android:text="Cardiovascular"
         android:textSize="30dp"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +56,13 @@
         android:paddingLeft="20dp"
         android:text="None"
         android:textSize="30dp"
-        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardio" />
+        app:layout_constraintTop_toBottomOf="@+id/cardio"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/nextbtn"
