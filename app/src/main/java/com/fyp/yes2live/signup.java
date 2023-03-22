@@ -55,7 +55,7 @@ EditText phone;
                     Toast.makeText(signup.this,"fill all fields  " , Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent intent1 = new Intent(signup.this, homepage.class);
+                    Intent intent1 = new Intent(signup.this, question1.class);
                     startActivity(intent1);
                 }
             };

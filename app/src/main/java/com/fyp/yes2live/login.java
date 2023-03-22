@@ -1,7 +1,5 @@
 package com.fyp.yes2live;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -9,6 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
@@ -59,6 +65,24 @@ public class login extends AppCompatActivity {
                    Toast.makeText(login.this,"enter email password" , Toast.LENGTH_SHORT).show();
                }
                else {
+                   AndroidNetworking.get("http://153.156.163.115:8070/api/login")
+                           //.addBodyParameter(login) // posting java object
+                           .addQueryParameter("email",emailInput)
+                           .addQueryParameter("password",passwordInput)
+                           .build()
+                           .getAsJSONObject(new JSONObjectRequestListener() {
+                               @Override
+                               public void onResponse(JSONObject response) {
+                                   // Text will show success if Response is success
+                                   Intent intent1 = new Intent(login.this, homepage.class);
+                                   startActivity(intent1);
+                               }
+
+                               @Override
+                               public void onError(ANError anError) {
+                                   System.out.println("testt");
+                               }
+                           });
                    Intent intent1 = new Intent(login.this, homepage.class);
                    startActivity(intent1);
                }
