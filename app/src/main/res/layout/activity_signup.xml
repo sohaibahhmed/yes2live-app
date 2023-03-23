@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/blur"
     android:layout_height="match_parent"
-    tools:context=".signup">
+    tools:context=".auth.signup">
 
     <TextView
         android:id="@+id/register"

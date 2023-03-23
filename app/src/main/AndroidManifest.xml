@@ -39,10 +39,10 @@
             android:name=".homepage"
             android:exported="false" />
         <activity
-            android:name=".signup"
+            android:name=".auth.signup"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".auth.login"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

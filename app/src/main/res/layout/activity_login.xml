@@ -6,7 +6,7 @@
    android:background="@drawable/blur"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".auth.login">
 
     <TextView
         android:id="@+id/textView1"

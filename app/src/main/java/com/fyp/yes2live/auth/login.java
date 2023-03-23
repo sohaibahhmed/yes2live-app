@@ -1,4 +1,4 @@
-package com.fyp.yes2live;
+package com.fyp.yes2live.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,17 +10,24 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-
-import org.json.JSONObject;
+import com.fyp.yes2live.R;
+import com.fyp.yes2live.apiConfig.APIClient;
+import com.fyp.yes2live.apiConfig.APIInterface;
+import com.fyp.yes2live.homepage;
+import com.fyp.yes2live.response.BaseResponse;
 
 import java.util.regex.Pattern;
+
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class login extends AppCompatActivity {
     Button login_btn;
     Button signup_btn;
+    APIInterface apiInterface;
 
     // defining our own password pattern
     private static final Pattern PASSWORD_PATTERN =
@@ -65,26 +72,31 @@ public class login extends AppCompatActivity {
                    Toast.makeText(login.this,"enter email password" , Toast.LENGTH_SHORT).show();
                }
                else {
-                   AndroidNetworking.get("http://153.156.163.115:8070/api/login")
-                           //.addBodyParameter(login) // posting java object
-                           .addQueryParameter("email",emailInput)
-                           .addQueryParameter("password",passwordInput)
-                           .build()
-                           .getAsJSONObject(new JSONObjectRequestListener() {
-                               @Override
-                               public void onResponse(JSONObject response) {
-                                   // Text will show success if Response is success
-                                   Intent intent1 = new Intent(login.this, homepage.class);
-                                   startActivity(intent1);
-                               }
+                   /**
+                    login endpoint
+                    **/
+                   apiInterface = APIClient.getClient().create(APIInterface.class);
+                   Call<BaseResponse> call = apiInterface.login(emailInput,passwordInput);
+                   call.enqueue(new Callback<BaseResponse>() {
+                       @Override
+                       public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                           BaseResponse loginResponse = response.body();
+                           if (loginResponse.getStatus().equals("SUCCESS")) {
+                               Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                               Intent intent1 = new Intent(login.this, homepage.class);
+                               startActivity(intent1);
+                           }else{
+                               Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                           }
 
-                               @Override
-                               public void onError(ANError anError) {
-                                   System.out.println("testt");
-                               }
-                           });
-                   Intent intent1 = new Intent(login.this, homepage.class);
-                   startActivity(intent1);
+                       }
+
+                       @Override
+                       public void onFailure(Call<BaseResponse> call, Throwable t) {
+                           Toast.makeText(login.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                       }
+
+                   });
                }
            };
        });

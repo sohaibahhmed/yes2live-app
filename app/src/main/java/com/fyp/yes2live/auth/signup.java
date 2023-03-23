@@ -1,4 +1,4 @@
-package com.fyp.yes2live;
+package com.fyp.yes2live.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,11 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fyp.yes2live.R;
+import com.fyp.yes2live.apiConfig.APIClient;
+import com.fyp.yes2live.apiConfig.APIInterface;
+import com.fyp.yes2live.homepage;
+import com.fyp.yes2live.model.User;
+import com.fyp.yes2live.question1;
+import com.fyp.yes2live.response.BaseResponse;
+
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class signup extends AppCompatActivity {
 
     Button signup_button;
+    APIInterface apiInterface;
 
     // defining our own password pattern
     private static final Pattern PASSWORD_PATTERN =
@@ -55,8 +68,33 @@ EditText phone;
                     Toast.makeText(signup.this,"fill all fields  " , Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent intent1 = new Intent(signup.this, question1.class);
-                    startActivity(intent1);
+
+                    /**
+                     login endpoint
+                     **/
+                    apiInterface = APIClient.getClient().create(APIInterface.class);
+                    User user = new User(name.getText().toString(),emailInput,passwordInput);
+                    Call<BaseResponse> call = apiInterface.signUp(user);
+                    call.enqueue(new Callback<BaseResponse>() {
+                        @Override
+                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                            BaseResponse loginResponse = response.body();
+                            if (loginResponse.getStatus().equals("SUCCESS")) {
+                                Toast.makeText(signup.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                Intent intent1 = new Intent(signup.this, question1.class);
+                                startActivity(intent1);
+                            }else{
+                                Toast.makeText(signup.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<BaseResponse> call, Throwable t) {
+                            Toast.makeText(signup.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                        }
+
+                    });
                 }
             };
         });
