@@ -7,4 +7,28 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lightgrey">#E6E5E4E2</color>
+    <color name="light_orange">#B3DFAA9A</color>
+    <color name="whiteColor">#fff</color>
+    <color name="blackColor">#000</color>
+    <color name="editTextBack">#f2f2f2</color>
+    <color name="greenColor">#0f0</color>
+    <color name="colorPrimaryDark"></color>
+    <color name="colorAccent"></color>
+    <color name="blue">#3949AB</color>
+    <color name="light_gray">#0000ffff</color>
+    <color name="pink_300">#FFC0CB</color>
+
+    <color name="grey">#C4C4C4</color>
+    <color name="dark_grey">#5B6C7A</color>
+    <color name="NavBottomColor">#805B6C7A</color>
+    <color name="lightGray">#4DC5C5C5</color>
+    <color name="sugg1">#FFA281</color>
+    <color name="sugg2">#56B4CCF0</color>
+    <color name="sugg3">#D7ADAD</color>
+    <color name="colorPrimary">#3700BC</color>
+    <color name="hba1cColor">#1D697A</color>
+    <color name="weightColor">#859396</color>
+    <color name="ActionBarTitleeColor">#FF000000</color>
+    <color name="gray">#804D6C70</color>
 </resources>

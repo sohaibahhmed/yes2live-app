@@ -14,6 +14,7 @@ import com.fyp.yes2live.R;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.homepage;
+import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.response.BaseResponse;
 
 import java.util.regex.Pattern;
@@ -76,7 +77,8 @@ public class login extends AppCompatActivity {
                     login endpoint
                     **/
                    apiInterface = APIClient.getClient().create(APIInterface.class);
-                   Call<BaseResponse> call = apiInterface.login(emailInput,passwordInput);
+                   User user = new User(emailInput,passwordInput);
+                   Call<BaseResponse> call = apiInterface.login(user);
                    call.enqueue(new Callback<BaseResponse>() {
                        @Override
                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

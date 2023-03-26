@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fyp.yes2live.R;
+import com.fyp.yes2live.SharedPreferenceManager;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.homepage;
@@ -28,6 +29,7 @@ public class signup extends AppCompatActivity {
 
     Button signup_button;
     APIInterface apiInterface;
+    SharedPreferenceManager sharedPreferenceManager;
 
     // defining our own password pattern
     private static final Pattern PASSWORD_PATTERN =
@@ -40,13 +42,14 @@ public class signup extends AppCompatActivity {
 
     EditText email;
     EditText password;
-EditText name;
-EditText repass;
-EditText phone;
+    EditText name;
+    EditText repass;
+    EditText phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        sharedPreferenceManager=new SharedPreferenceManager(getApplicationContext());
 
         // Referencing email and password
         email = (EditText) findViewById(R.id.email);
@@ -80,6 +83,7 @@ EditText phone;
                         public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                             BaseResponse loginResponse = response.body();
                             if (loginResponse.getStatus().equals("SUCCESS")) {
+                                sharedPreferenceManager.saveUser(loginResponse.getPayload());
                                 Toast.makeText(signup.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 Intent intent1 = new Intent(signup.this, question1.class);
                                 startActivity(intent1);

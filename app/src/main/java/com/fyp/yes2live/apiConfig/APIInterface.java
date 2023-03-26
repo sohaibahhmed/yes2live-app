@@ -14,13 +14,17 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface APIInterface {
-    @GET("login")
+    @POST("user/login")
     Call<BaseResponse> login(
-            @Query("email") String email,
-            @Query("password") String password
+            @Body User user
     );
-    @POST("signUp") //APIs endpoint
+    @POST("user/signUp") //APIs endpoint
     Call<BaseResponse> signUp(
+            @Body User user
+    );
+
+    @POST("user/update") //APIs endpoint
+    Call<BaseResponse> update(
             @Body User user
     );
 
