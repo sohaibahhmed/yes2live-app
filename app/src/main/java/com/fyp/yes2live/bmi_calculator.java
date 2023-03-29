@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class BmiCalculator extends AppCompatActivity {
+public class bmi_calculator extends AppCompatActivity {
     private EditText weightIn;
     private EditText heightIn;
     public double w;
@@ -35,7 +35,7 @@ public class BmiCalculator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bmi_calculator);
 
         classification = (TextView) findViewById(R.id.classification);
 
