@@ -1,10 +1,12 @@
 package com.fyp.yes2live.auth;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +20,7 @@ import java.util.regex.Pattern;
 
 public class login extends AppCompatActivity {
     Button login_btn;
-    Button signup_btn;
+    TextView signup_btn;
     APIInterface apiInterface;
 
     // defining our own password pattern
@@ -32,6 +34,7 @@ public class login extends AppCompatActivity {
 //     EditText email;
 //     EditText password;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,16 +44,16 @@ public class login extends AppCompatActivity {
 //        email = (EditText) findViewById(R.id.email);
 //        password =(EditText) findViewById(R.id.password);
 
-//       signup_btn = (Button) findViewById(R.id.signupBtn);
-//
-//       //button1
-//        signup_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//          public void onClick(View v) {
-//               Intent intent = new Intent(login.this, signup.class);
-//               startActivity(intent);
-//          }
-//       });
+       signup_btn = (TextView) findViewById(R.id.signup);
+
+       //button1
+        signup_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+          public void onClick(View v) {
+               Intent intent = new Intent(login.this, signup.class);
+               startActivity(intent);
+          }
+       });
 
        login_btn = (Button) findViewById(R.id.loginBtn);
         login_btn.setOnClickListener(new View.OnClickListener() {

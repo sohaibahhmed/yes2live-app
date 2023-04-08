@@ -2,12 +2,14 @@ package com.fyp.yes2live.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fyp.yes2live.R;
@@ -45,61 +47,76 @@ public class signup extends AppCompatActivity {
     EditText name;
     EditText repass;
     EditText phone;
+
+    TextView signib_txt;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-        sharedPreferenceManager=new SharedPreferenceManager(getApplicationContext());
+        setContentView(R.layout.activity_signup_test);
 
-        // Referencing email and password
-        email = (EditText) findViewById(R.id.email);
-        password =(EditText) findViewById(R.id.pass);
-        name =(EditText) findViewById(R.id.name);
-        repass =(EditText) findViewById(R.id.repass);
-        phone =(EditText) findViewById(R.id.phone);
+        signib_txt = (TextView) findViewById(R.id.signin);
+
+        //button1
+        signib_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(signup.this, login.class);
+                startActivity(intent);
+            }
+        });
+
+//        sharedPreferenceManager=new SharedPreferenceManager(getApplicationContext());
+//
+//        // Referencing email and password
+//        email = (EditText) findViewById(R.id.email);
+//        password =(EditText) findViewById(R.id.pass);
+//        name =(EditText) findViewById(R.id.name);
+//        repass =(EditText) findViewById(R.id.repass);
+//        phone =(EditText) findViewById(R.id.phone);
         signup_button = (Button) findViewById(R.id.signup);
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailInput = email.getText().toString().trim();
-                String passwordInput = password.getText().toString().trim();
-                validateEmail();
-                validatePassword();
-                validateName();
-                isNumeric();
-                if(!validateEmail()||!validatePassword()||!validateName()||!isNumeric()){
-                    Toast.makeText(signup.this,"fill all fields  " , Toast.LENGTH_SHORT).show();
-                }
-                else {
-
-                    /**
-                     login endpoint
-                     **/
-                    apiInterface = APIClient.getClient().create(APIInterface.class);
-                    User user = new User(name.getText().toString(),emailInput,passwordInput);
-                    Call<BaseResponse> call = apiInterface.signUp(user);
-                    call.enqueue(new Callback<BaseResponse>() {
-                        @Override
-                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                            BaseResponse loginResponse = response.body();
-                            if (loginResponse.getStatus().equals("SUCCESS")) {
-                                sharedPreferenceManager.saveUser(loginResponse.getPayload());
-                                Toast.makeText(signup.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                String emailInput = email.getText().toString().trim();
+//                String passwordInput = password.getText().toString().trim();
+//                validateEmail();
+//                validatePassword();
+//                validateName();
+//                isNumeric();
+//                if(!validateEmail()||!validatePassword()||!validateName()||!isNumeric()){
+//                    Toast.makeText(signup.this,"fill all fields  " , Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//
+//                    /**
+//                     login endpoint
+//                     **/
+//                    apiInterface = APIClient.getClient().create(APIInterface.class);
+//                    User user = new User(name.getText().toString(),emailInput,passwordInput);
+//                    Call<BaseResponse> call = apiInterface.signUp(user);
+//                    call.enqueue(new Callback<BaseResponse>() {
+//                        @Override
+//                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+//                            BaseResponse loginResponse = response.body();
+//                            if (loginResponse.getStatus().equals("SUCCESS")) {
+//                                sharedPreferenceManager.saveUser(loginResponse.getPayload());
+//                                Toast.makeText(signup.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 Intent intent1 = new Intent(signup.this, question1.class);
                                 startActivity(intent1);
-                            }else{
-                                Toast.makeText(signup.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<BaseResponse> call, Throwable t) {
-                            Toast.makeText(signup.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
-                        }
-
-                    });
-                }
+//                            }else{
+//                                Toast.makeText(signup.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<BaseResponse> call, Throwable t) {
+//                            Toast.makeText(signup.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    });
+//                }
             };
         });
     }
