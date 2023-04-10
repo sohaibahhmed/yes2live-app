@@ -20,7 +20,19 @@
         android:theme="@style/Theme.Yes2live"
         tools:targetApi="31">
         <activity
-            android:name=".summary"
+            android:name=".target_home"
+            android:exported="false" />
+        <activity
+            android:name=".target_weight"
+            android:exported="false" />
+        <activity
+            android:name=".Bf_calculator"
+            android:exported="false" />
+        <activity
+            android:name=".Summary"
+            android:exported="false" />
+        <activity
+            android:name=".Hba1c"
             android:exported="false" />
         <activity
             android:name=".hypertension"

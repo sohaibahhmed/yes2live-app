@@ -32,6 +32,11 @@ public class homepage extends AppCompatActivity {
     private ImageSlider imageSlider;
     private RelativeLayout bmiModule;
 
+    private RelativeLayout bfModule;
+
+    private RelativeLayout weightlossModule;
+    private RelativeLayout dietryModule;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +84,34 @@ public class homepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(homepage.this, bmi_calculator.class);
+                startActivity(intent1);
+            };
+        });
+
+        dietryModule = (RelativeLayout) findViewById(R.id.dietryModule);
+
+        dietryModule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(homepage.this, married.class);
+                startActivity(intent1);
+            };
+        });
+        bfModule = (RelativeLayout) findViewById(R.id.bms);
+
+        bfModule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(homepage.this, Bf_calculator.class);
+                startActivity(intent1);
+            };
+        });
+        weightlossModule = (RelativeLayout) findViewById(R.id.mealLogModule);
+
+        weightlossModule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(homepage.this, target_weight.class);
                 startActivity(intent1);
             };
         });
