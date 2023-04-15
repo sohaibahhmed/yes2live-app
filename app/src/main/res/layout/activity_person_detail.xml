@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgrey"
+    tools:context=".ui.navbar.PersonalDetail">
+
+    <ImageButton
+        android:id="@+id/PreviousButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/lightgrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/roboto_medium"
+        android:letterSpacing=".07"
+        android:paddingStart="35dp"
+        android:text="Personal Details"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="85dp"
+        android:fontFamily="@font/roboto_bold"
+
+        android:hint="YOUR GOAL"
+        android:letterSpacing=".07"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/level1"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:outlineAmbientShadowColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
+        android:layout_marginTop="120dp"
+        app:cardCornerRadius="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingStart="25dp"
+
+                    android:letterSpacing=".05"
+                    android:text="Goal"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="145dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="Lose Weight"
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="25dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="7dp"
+                android:background="@color/lightgrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingStart="25dp"
+
+                    android:letterSpacing=".05"
+                    android:text="Goal Week"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="144dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=" "
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=" kg "
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonGoal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="265dp"
+        android:fontFamily="@font/roboto_bold"
+
+        android:hint="DETAILS"
+        android:letterSpacing=".07"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.card.MaterialCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="20dp"
+        android:outlineAmbientShadowColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing=".05"
+                    android:paddingStart="25dp"
+                    android:text="First name"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="143dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=""
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="7dp"
+                android:background="@color/lightgrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing=".05"
+                    android:paddingStart="25dp"
+                    android:text="Current weight"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="107dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=""
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=" kg "
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="7dp"
+                android:background="@color/lightgrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing=".05"
+
+                    android:paddingStart="25dp"
+                    android:text="Height"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="152dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=""
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=" cm "
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="7dp"
+                android:background="@color/lightgrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing=".05"
+
+                    android:paddingStart="25dp"
+                    android:text="Age"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="217dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="25"
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="7dp"
+                android:background="@color/lightgrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing=".05"
+
+                    android:paddingStart="25dp"
+                    android:text="Gender"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="163dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=""
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="7dp"
+                android:background="@color/lightgrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing=".05"
+
+                    android:paddingStart="25dp"
+                    android:text="Activtiy"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewActivityLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=""
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonActivityLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="7dp"
+                android:background="@color/lightgrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing=".05"
+
+                    android:paddingStart="25dp"
+                    android:text="Target Weight"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textTargetWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="125dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=" "
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint=" kg "
+                    android:letterSpacing=".05"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-18dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginRight="15dp">
+
+                <ImageButton
+                    android:id="@+id/buttonTargetWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

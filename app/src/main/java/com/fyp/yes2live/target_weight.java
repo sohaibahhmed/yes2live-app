@@ -10,14 +10,14 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 public class target_weight extends AppCompatActivity {
-Button button;
+    Button button;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_weight);
-        button = (Button) findViewById(R.id.next);
+        button = (Button) findViewById(R.id.NextButton);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

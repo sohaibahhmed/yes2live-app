@@ -62,6 +62,12 @@
             android:name=".auth.login"
             android:exported="false" />
         <activity
+            android:name=".ui.navbar.PersonalDetail"
+            android:exported="false" />
+        <activity
+            android:name=".ui.navbar.Settings"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
