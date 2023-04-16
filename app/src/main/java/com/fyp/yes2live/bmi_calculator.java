@@ -97,7 +97,7 @@ public class bmi_calculator extends AppCompatActivity {
         mgender.setText(intent.getStringExtra("gender"));
         mbmidisplay.setText(mbmi);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         mrecalculatebmi=findViewById(R.id.recalculatebmi);
         mrecalculatebmi.setOnClickListener(new View.OnClickListener() {
             @Override
