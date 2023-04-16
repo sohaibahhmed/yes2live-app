@@ -37,4 +37,6 @@
     <color name="darkIndigo">#171d4b</color>
     <color name="gooseBerry">#afe19f</color>
     <color name="skyBlue">#87CEEB</color>
+    <color name="green">#1DAB53</color>
+    <color name="red">#CD4240</color>
 </resources>

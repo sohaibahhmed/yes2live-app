@@ -12,13 +12,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.fyp.yes2live.auth.login;
 import com.fyp.yes2live.ui.navbar.PersonalDetail;
 import com.fyp.yes2live.ui.navbar.Settings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -101,7 +99,7 @@ public class homepage extends AppCompatActivity {
         bmiModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(homepage.this, bmi_calculator.class);
+                Intent intent1 = new Intent(homepage.this, BMI_Activity.class);
                 startActivity(intent1);
             };
         });

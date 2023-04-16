@@ -1,276 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#000"
     android:layout_height="match_parent"
-    tools:context=".bmi_calculator">
+    tools:context=".BMI_Calculator">
 
-    <ScrollView
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/contentlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"
+        android:src="@drawable/ok" />
+
+    <RelativeLayout
+        android:id="@+id/contentlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/cardbackground"
+        android:padding="20dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true">
+        <TextView
+            android:id="@+id/bmiresult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="55"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/title"
-                android:text="Body Mass Index\nCalculator"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:lineSpacingExtra="4dp"
-                android:letterSpacing="0.04"
-                android:textColor="#2626ef"
-                android:textSize="32sp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"
-                android:fontFamily="sans-serif"
-                android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/genderdisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bmiresult"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Gender"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weight:"
-                android:textSize="18sp"
-                android:textColor="#000"
-                android:id="@+id/weight"
-                android:layout_below="@+id/title"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="35dp"/>
+        <TextView
+            android:id="@+id/bmicategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/genderdisplay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Your BMI Category Is"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/weightin"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:hint="weight"
-                android:layout_toRightOf="@+id/weight"
-                android:layout_below="@+id/title"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:inputType="numberDecimal"/>
+    </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Height:"
-                android:textSize="18sp"
-                android:textColor="#000"
-                android:id="@+id/height"
-                android:layout_below="@+id/title"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="130dp"/>
+    <android.widget.Button
+        android:id="@+id/recalculatebmi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/contentlayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/buttonbg"
+        android:text="Recalculate Your BMI"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/heightin"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:hint="height"
-                android:layout_toRightOf="@+id/weight"
-                android:layout_below="@+id/title"
-                android:layout_marginTop="125dp"
-                android:layout_marginLeft="10dp"
-                android:inputType="numberDecimal"/>
-
-            <EditText
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:id="@+id/inches"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/heightin"
-                android:layout_below="@+id/title"
-                android:hint="inch"
-                android:visibility="invisible"
-                android:inputType="numberDecimal"
-                android:layout_marginTop="125dp"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:id="@+id/button_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/height">
-
-                <Button
-                    android:layout_width="135dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/calculate"
-                    android:text="Calculate"
-                    android:textColor="#fff"
-                    android:padding="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/reset"
-                    android:background="@drawable/main_button"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:textSize="20sp"/>
-
-                <Button
-                    android:layout_width="135dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/reset"
-                    android:text="Reset"
-                    android:textColor="#fff"
-                    android:padding="10dp"
-                    android:background="@drawable/main_button"
-                    android:layout_marginRight="10dp"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:textSize="20sp"/>
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/button_layout"
-                android:layout_marginTop="25dp"
-                android:layout_centerHorizontal="true"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="#000"
-                android:id="@+id/display"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/weightin"
-                android:textColor="#cc2222"
-                android:textSize="14sp"
-                android:id="@+id/errorweight"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="100dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/heightin"
-                android:textColor="#cc2222"
-                android:id="@+id/errorheight"
-                android:textSize="14sp"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="100dp"/>
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:id="@+id/weightlist"
-                android:layout_marginTop="22dp"
-                android:textSize="16dp"
-                android:text="kg"
-                android:textAllCaps="false"
-                android:layout_below="@+id/title"
-                android:layout_marginLeft="190dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:textAlignment="center"
-                android:background="@drawable/selector"/>
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:id="@+id/heightlist"
-                android:textSize="16dp"
-                android:layout_marginTop="115dp"
-                android:text="cm"
-                android:textAllCaps="false"
-                android:layout_below="@+id/title"
-                android:layout_marginLeft="190dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:textAlignment="center"
-                android:background="@drawable/selector"/>
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:id="@+id/heightlist2"
-                android:textSize="16dp"
-                android:layout_marginTop="115dp"
-                android:text="ft"
-                android:textAllCaps="false"
-                android:visibility="invisible"
-                android:layout_below="@+id/title"
-                android:layout_toRightOf="@+id/inches"
-                android:gravity="center_horizontal|center_vertical"
-                android:textAlignment="center"
-                android:background="@drawable/selector"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/display"
-                android:layout_marginTop="15dp"
-                android:id="@+id/bottom_layout">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Classification:"
-                    android:textColor="#000"
-                    android:textSize="16sp"
-                    android:visibility="invisible"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/classtext"
-                    android:layout_marginLeft="20dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/classification"
-                    android:layout_toRightOf="@+id/classtext"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="24sp"
-                    android:layout_marginRight="10dp"
-                    android:textStyle="bold"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/bottom_layout"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/comment"
-                    android:textSize="18sp"
-                    android:textAllCaps="true"
-                    android:fontFamily="monospace"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.05"
-                    android:textColor="#000"
-                    android:gravity="center_horizontal"
-                    android:layout_centerHorizontal="true"
-                    android:textAlignment="center"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/prescribed"
-                    android:layout_below="@+id/comment"
-                    android:layout_marginTop="10dp"
-                    android:lineSpacingExtra="4dp"
-                    android:padding="15dp"
-                    android:letterSpacing="0.05"
-                    android:textSize="18sp"
-                    android:textColor="#000"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
