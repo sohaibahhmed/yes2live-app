@@ -1,37 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Hba1c">
 
-    <TextView
-        android:id="@+id/textView2"
+    <ImageButton
+        android:id="@+id/PreviousButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hba1c report"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293" />
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
 
-    <Button
-        android:id="@+id/next"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="next"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.642" />
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/roboto_regular"
+            android:letterSpacing=".05"
+            android:paddingStart="24dp"
+            android:text="ADD HBA1C REPORT"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/datetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:letterSpacing=".05"
+            android:paddingStart="25dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/hba1creport"
+            android:layout_width="230dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="60dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="Hba1c (e.g 5.8)"
+            android:letterSpacing=".02"
+            android:textColorHint="#FDBDBCBC"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/addReport"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttoncorners"
+            android:backgroundTint="@color/dark_grey"
+            android:hint="Add"
+            android:fontFamily="@font/roboto_regular"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
+            android:letterSpacing=".02"/>
+
+        <Button
+            android:id="@+id/cancelReport"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/dark_grey"
+            android:background="@drawable/buttoncorners"
+            android:hint="Cancel"
+            android:textColorHint="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="18sp"
+            android:letterSpacing=".02"/>
+    </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

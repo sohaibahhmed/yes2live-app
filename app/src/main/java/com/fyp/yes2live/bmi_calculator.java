@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class BMI_Calculator extends AppCompatActivity {
+public class bmi_calculator extends AppCompatActivity {
 
     android.widget.Button mrecalculatebmi;
 
@@ -34,13 +34,13 @@ public class BMI_Calculator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bmiactivity);
+        setContentView(R.layout.activity_bmi_calculator);
 
-        getSupportActionBar().setElevation(0);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"white\"></font>"));
-        getSupportActionBar().setTitle("Result");
-        ColorDrawable colorDrawable=new ColorDrawable(Color.parseColor("#1E1D1D"));
-        getSupportActionBar().setBackgroundDrawable(colorDrawable);
+//        getSupportActionBar().setElevation(0);
+//        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"white\"></font>"));
+//        getSupportActionBar().setTitle("Result");
+//        ColorDrawable colorDrawable=new ColorDrawable(Color.parseColor("#1E1D1D"));
+//        getSupportActionBar().setBackgroundDrawable(colorDrawable);
 
 
         intent=getIntent();
@@ -102,7 +102,7 @@ public class BMI_Calculator extends AppCompatActivity {
         mrecalculatebmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(BMI_Calculator.this, BMI_Activity.class);
+                Intent intent=new Intent(bmi_calculator.this, bmiactivity.class);
                 startActivity(intent);
                 finish();
             }

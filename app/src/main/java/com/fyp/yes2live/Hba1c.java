@@ -1,6 +1,6 @@
 package com.fyp.yes2live;
 
-import static com.fyp.yes2live.R.id.next;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +18,7 @@ Button button;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hba1c);
-        button=(Button) findViewById(next);
+        button=(Button) findViewById(R.id.addReport);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

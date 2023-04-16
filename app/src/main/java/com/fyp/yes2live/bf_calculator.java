@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Bf_calculator extends AppCompatActivity {
+public class bf_calculator extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

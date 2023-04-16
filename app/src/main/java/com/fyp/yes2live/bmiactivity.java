@@ -12,7 +12,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BMI_Activity extends AppCompatActivity {
+public class bmiactivity extends AppCompatActivity {
 
     android.widget.Button mcalculatebmi;
 
@@ -152,7 +152,7 @@ public class BMI_Activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please Input Correct Weight", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Intent intent=new Intent(BMI_Activity.this, BMI_Calculator.class);
+                    Intent intent=new Intent(bmiactivity.this, bmi_calculator.class);
 
                     intent.putExtra("gender", typeofuser);
                     intent.putExtra("Height", mintprogress);

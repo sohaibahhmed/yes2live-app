@@ -99,7 +99,7 @@ public class homepage extends AppCompatActivity {
         bmiModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(homepage.this, BMI_Activity.class);
+                Intent intent1 = new Intent(homepage.this, bmiactivity.class);
                 startActivity(intent1);
             };
         });
@@ -118,7 +118,7 @@ public class homepage extends AppCompatActivity {
         bfModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(homepage.this, Bf_calculator.class);
+                Intent intent1 = new Intent(homepage.this, bf_calculator.class);
                 startActivity(intent1);
             };
         });
