@@ -118,7 +118,7 @@ public class homepage extends AppCompatActivity {
         bfModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(homepage.this, bf_calculator.class);
+                Intent intent1 = new Intent(homepage.this, bfactivity.class);
                 startActivity(intent1);
             };
         });

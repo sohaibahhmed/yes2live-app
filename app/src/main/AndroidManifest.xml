@@ -26,7 +26,7 @@
             android:name=".target_weight"
             android:exported="false" />
         <activity
-            android:name=".bf_calculator"
+            android:name=".bfactivity"
             android:exported="false" />
         <activity
             android:name=".Summary"
