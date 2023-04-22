@@ -61,7 +61,7 @@ public class bfactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mmale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.focusmf));
-                mfemale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.blurmf));
+                mfemale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.feature_bg));
                 typeofuser="Male";
             }
         });
@@ -69,7 +69,7 @@ public class bfactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mfemale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.focusmf));
-                mmale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.blurmf));
+                mmale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.feature_bg));
                 typeofuser="Female";
             }
         });

@@ -71,6 +71,9 @@
             android:name=".ui.navbar.Settings"
             android:exported="false" />
         <activity
+            android:name=".bf_calculator"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

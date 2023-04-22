@@ -76,33 +76,33 @@ public class bf_calculator extends AppCompatActivity {
 
 
 
-        if(BFP<16){
-            mbfcategory.setText("Severe Thinness");
+        if(BFP<10){
+            mbfcategory.setText("Less than Essential Fat");
             mbackground.setBackground(getDrawable(R.drawable.resultred));
             mimageview.setImageResource(R.drawable.cross);
         }
-        else if(intbf<16.9 && intbf>16){
-            mbfcategory.setText("Moderate Thinness");
+        else if(BFP>=10 && BFP<14){
+            mbfcategory.setText("Essential");
             mbackground.setBackground(getDrawable(R.drawable.resultred));
             mimageview.setImageResource(R.drawable.warning);
         }
-        else if(intbf<18.4 && intbf>17){
-            mbfcategory.setText("Mild Thinness");
+        else if(BFP>=14 && BFP<21){
+            mbfcategory.setText("Athletes");
             mbackground.setBackground(getDrawable(R.drawable.resultred));
             mimageview.setImageResource(R.drawable.warning);
         }
-        else if(intbf<25 && intbf>18.4){
-            mbfcategory.setText("Normal");
+        else if(BFP>=21 && BFP<25){
+            mbfcategory.setText("Fitness");
             mbackground.setBackground(getDrawable(R.drawable.resultgreen));
             mimageview.setImageResource(R.drawable.tick);
         }
-        else if(intbf<29.4 && intbf>25){
-            mbfcategory.setText("Over Weight");
+        else if(BFP>=25 && BFP<32){
+            mbfcategory.setText("Average");
             mbackground.setBackground(getDrawable(R.drawable.resultred));
             mimageview.setImageResource(R.drawable.warning);
         }
         else{
-            mbfcategory.setText("Obese Class 1");
+            mbfcategory.setText("obese");
             mbackground.setBackground(getDrawable(R.drawable.resultgreen));
             mimageview.setImageResource(R.drawable.tick);
         }
@@ -111,7 +111,7 @@ public class bf_calculator extends AppCompatActivity {
         mbfdisplay.setText(mbf);
 
         //getSupportActionBar().hide();
-        mrecalculatebf=findViewById(R.id.recalculatebmi);
+        mrecalculatebf=findViewById(R.id.recalculatebf);
         mrecalculatebf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
