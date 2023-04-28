@@ -21,39 +21,50 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.076" />
 
-    <RadioButton
-        android:id="@+id/yesbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:text="Yes"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+    <RadioGroup
+        android:id="@+id/gender_Grp"
+        android:layout_width="411dp"
+        android:layout_height="192dp"
+        android:orientation="horizontal"
+        android:paddingStart="34dp"
+        app:layout_constraintBottom_toTopOf="@+id/nextbtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pregnant"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.316"
+        tools:ignore="MissingConstraints">
 
-    <RadioButton
-        android:id="@+id/nobtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:text="No"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.179" />
+        <RadioButton
+            android:id="@+id/yesbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:text="Yes"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.544"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-84dp"
+            android:layout_marginTop="100dp"
+            android:text="No"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.544"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yesbtn" />
+
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/nextbtn"
         android:layout_width="138dp"
         android:layout_height="59dp"
-        android:backgroundTint="@color/cardview_dark_background"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Next"
         android:textSize="24dp"
         android:textStyle="bold"
@@ -63,6 +74,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.817" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

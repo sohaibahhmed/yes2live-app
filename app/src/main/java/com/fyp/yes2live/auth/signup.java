@@ -10,22 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fyp.yes2live.R;
 import com.fyp.yes2live.SharedPreferenceManager;
-import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
-import com.fyp.yes2live.homepage;
-import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.question1;
-import com.fyp.yes2live.response.BaseResponse;
 
 import java.util.regex.Pattern;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class signup extends AppCompatActivity {
 
@@ -53,7 +44,7 @@ public class signup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup_test);
+        setContentView(R.layout.activity_signup);
 
         signib_txt = (TextView) findViewById(R.id.signin);
 
