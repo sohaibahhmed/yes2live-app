@@ -4,6 +4,8 @@ import com.fyp.yes2live.model.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class BaseResponse {
     @SerializedName("code")
     @Expose
@@ -16,7 +18,7 @@ public class BaseResponse {
     private String message;
     @SerializedName("payload")
     @Expose
-    private User payload;
+    private Object payload;
 
     public Integer getCode() {
         return code;
@@ -42,11 +44,11 @@ public class BaseResponse {
         this.message = message;
     }
 
-    public User getPayload() {
+    public Object getPayload() {
         return payload;
     }
 
-    public void setPayload(User payload) {
+    public void setPayload(Object payload) {
         this.payload = payload;
     }
 }

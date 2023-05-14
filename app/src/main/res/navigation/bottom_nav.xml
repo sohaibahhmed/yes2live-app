@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/goal">
+
+    <fragment
+        android:id="@+id/recipes"
+        android:name="com.fyp.yes2live.Track"
+        android:label="fragment_recipes"
+        tools:layout="@layout/activity_track" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.fyp.yes2live.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/activity_profile" />
+    <fragment
+        android:id="@+id/goal"
+        android:name="com.fyp.yes2live.Track"
+        android:label="fragment_goal"
+        tools:layout="@layout/activity_goal" />
+
+</navigation>

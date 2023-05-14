@@ -34,4 +34,18 @@ public class SharedPreferenceManager {
                 sharedPreference.getString("email",null)
         );
     }
+
+    public String getDate(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        String dateHistory=sharedPreference.getString("date",null);
+        return dateHistory;
+    }
+
+    public Throwable saveDate(String date){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        editor=sharedPreference.edit();
+        editor.putString("date",date);
+        editor.apply();
+        return null;
+    }
 }
