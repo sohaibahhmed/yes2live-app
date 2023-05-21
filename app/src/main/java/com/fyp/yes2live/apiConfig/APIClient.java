@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
     private static Retrofit retrofit = null;
-    private static final String BASE_URL = "http://localhost:8080/api/";
+    private static final String BASE_URL = "http://localhost:8080/api/";//THE BASE URL OF ALL API
 
     public static Retrofit getClient() {
 
@@ -19,7 +19,7 @@ public class APIClient {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL)//CODE TO USE BASE URI
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

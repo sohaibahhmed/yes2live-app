@@ -34,7 +34,7 @@ import retrofit2.http.Query;
 
 public interface APIInterface {
     @POST("user/login")
-    Call<BaseResponse> login(
+    Call<BaseResponse> login(// login method
             @Body User user
     );
     @POST("user/signUp") //APIs endpoint

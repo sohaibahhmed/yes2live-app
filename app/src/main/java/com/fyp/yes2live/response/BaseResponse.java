@@ -18,7 +18,7 @@ public class BaseResponse {
     private String message;
     @SerializedName("payload")
     @Expose
-    private Object payload;
+    private User payload;
 
     public Integer getCode() {
         return code;
@@ -44,11 +44,11 @@ public class BaseResponse {
         this.message = message;
     }
 
-    public Object getPayload() {
+    public User getPayload() {
         return payload;
     }
 
-    public void setPayload(Object payload) {
+    public void  setPayload(User payload) {
         this.payload = payload;
     }
 }

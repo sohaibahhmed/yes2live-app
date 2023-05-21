@@ -48,6 +48,7 @@
             android:layout_marginBottom="27dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -65,6 +66,7 @@
             android:layout_marginBottom="27dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -88,6 +90,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:id="@+id/pass"
+                android:background="@color/white"
+                android:ems="15"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Re-password"
+            app:startIconDrawable="@drawable/baseline_lock_24"
+            android:background="@color/white"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/primaryColor"
+            android:layout_marginBottom="36dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/repass"
                 android:background="@color/white"
                 android:ems="15"/>
 

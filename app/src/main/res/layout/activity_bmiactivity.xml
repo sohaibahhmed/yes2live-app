@@ -59,11 +59,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="40dp"
             android:fontFamily="@font/emirate"
             android:text="170"
-            android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
