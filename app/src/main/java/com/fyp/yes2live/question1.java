@@ -2,6 +2,7 @@ package com.fyp.yes2live;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.response.BaseResponse;
+import com.google.android.material.card.MaterialCardView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +32,10 @@ public class question1 extends AppCompatActivity {
     ImageButton TableConversion;
     APIInterface apiInterface;
 
+    MaterialCardView materialCardView;
+
     SharedPreferenceManager sharedPreferenceManager;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,8 @@ public class question1 extends AppCompatActivity {
         rgGender = findViewById(R.id.gender_Grp);
         rbMale = findViewById(R.id.male);
         rbFemale = findViewById(R.id.female);
+        materialCardView = findViewById(R.id.bmiInfo);
+        materialCardView.setVisibility(0);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,38 +56,38 @@ public class question1 extends AppCompatActivity {
 
                 Intent intent = new Intent(question1.this, homepage.class);
                 startActivity(intent);
-//                int selectedId = rgGender.getCheckedRadioButtonId();
-//                RadioButton radioButton = (RadioButton) findViewById(selectedId);
-//                if(selectedId==R.id.male){
-//                    gender="male";
-//                }
-//                else {
-//                    gender="female";
-//                }
-//
-//                sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
-//                long userId = sharedPreferenceManager.getUser().id;
-//                apiInterface = APIClient.getClient().create(APIInterface.class);
-//                User user = new User(userId,Integer.valueOf(age.getText().toString()),gender,Double.valueOf(weight.getText().toString()),Double.valueOf(height.getText().toString()));
-//                Call<BaseResponse> call = apiInterface.update(user);
-//                call.enqueue(new Callback<BaseResponse>() {
-//                    @Override
-//                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-//                        BaseResponse loginResponse = response.body();
-//                        if (loginResponse.getStatus().equals("SUCCESS")) {
-//                            Toast.makeText(question1.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(question1.this, homepage.class);
-//                            startActivity(intent);
-//                        }else{
-//                            Toast.makeText(question1.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                    @Override
-//                    public void onFailure(Call<BaseResponse> call, Throwable t) {
-//                        Toast.makeText(question1.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                });
+                int selectedId = rgGender.getCheckedRadioButtonId();
+                RadioButton radioButton = (RadioButton) findViewById(selectedId);
+                if(selectedId==R.id.male){
+                    gender="male";
+                }
+                else {
+                    gender="female";
+                }
+
+                sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
+                long userId = sharedPreferenceManager.getUser().id;
+                apiInterface = APIClient.getClient().create(APIInterface.class);
+                User user = new User(userId,Integer.valueOf(age.getText().toString()),gender,Double.valueOf(weight.getText().toString()),Double.valueOf(height.getText().toString()));
+                Call<BaseResponse> call = apiInterface.update(user);
+                call.enqueue(new Callback<BaseResponse>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                        BaseResponse loginResponse = response.body();
+                        if (loginResponse.getStatus().equals("SUCCESS")) {
+                            Toast.makeText(question1.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(question1.this, homepage.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(question1.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+                        Toast.makeText(question1.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                    }
+
+                });
             }
         });
 

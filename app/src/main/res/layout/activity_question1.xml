@@ -185,6 +185,75 @@
 
     </RelativeLayout>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bmiInfo"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="135dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/layout"
+        android:background="@color/gray"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="15dp">
+
+                <TextView
+                    android:id="@+id/bmibeforetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your bmi is"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/bmi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_alignRight="@+id/bmibeforetext"
+                    android:text="26"
+                    android:textSize="15dp" />
+
+
+                <TextView
+                    android:id="@+id/bmiaftertext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_alignRight="@+id/bmi"
+                    android:text="according to the "
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="15dp"
+                android:text="personal added information"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

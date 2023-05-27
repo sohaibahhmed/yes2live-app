@@ -17,6 +17,7 @@ import com.fyp.yes2live.response.SearchItemBaseResponse;
 import com.fyp.yes2live.response.SearchItemResponse;
 import com.fyp.yes2live.response.UpdateExerciseResponse;
 import com.fyp.yes2live.response.UpdateFoodIntakeResponse;
+import com.fyp.yes2live.response.UserBaseResponse;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIInterface {
@@ -45,6 +47,11 @@ public interface APIInterface {
     @POST("user/update") //APIs endpoint
     Call<BaseResponse> update(
             @Body User user
+    );
+
+    @POST("user/getByID/{userID}") //APIs endpoint
+    Call<UserBaseResponse> userProfile(
+            @Path("userID") long userID
     );
 
     @GET("getList")
