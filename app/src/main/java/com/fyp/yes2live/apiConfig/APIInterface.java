@@ -49,7 +49,7 @@ public interface APIInterface {
             @Body User user
     );
 
-    @POST("user/getByID/{userID}") //APIs endpoint
+    @GET("user/getByID/{userID}") //APIs endpoint
     Call<UserBaseResponse> userProfile(
             @Path("userID") long userID
     );

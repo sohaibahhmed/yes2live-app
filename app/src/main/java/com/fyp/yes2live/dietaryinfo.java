@@ -1,5 +1,6 @@
 package com.fyp.yes2live;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -26,7 +27,6 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
     private RadioGroup rgGender;
     private RadioButton rbMale, rbFemale;
     private String gender;
-    public static int changeField;
     private long user_id;
     SharedPreferenceManager sharedPreferenceManager;
     private APIInterface apiInterface;
@@ -34,7 +34,7 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diabetic_info);
-        getSupportActionBar().hide();
+     //   getSupportActionBar().hide();
 
         nextbtn = findViewById(R.id.NextButton);
         user_bmi = findViewById(R.id.bmi);
@@ -45,14 +45,21 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
         rbMale = findViewById(R.id.updatemale);
         rbFemale = findViewById(R.id.updatefemale);
 
-        findViewById(R.id.updatefemale).setOnClickListener(this);
-        findViewById(R.id.updatemale).setOnClickListener(this);
-        findViewById(R.id.NextButton).setOnClickListener(this);
+//        findViewById(R.id.updatefemale).setOnClickListener(this);
+//        findViewById(R.id.updatemale).setOnClickListener(this);
+//        findViewById(R.id.NextButton).setOnClickListener(this);
 
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         user_id = sharedPreferenceManager.getUser().getId();
         //getUserData
         this.fetchUser();
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(dietaryinfo.this, married.class);
+                startActivity(intent1);
+            };
+        });
     }
 
     public void fetchUser() {
@@ -70,10 +77,9 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
                     height.setText(String.valueOf(user.getHeight()));
                     // user_gender.setHint(String.valueOf(getUserBioResponse.getUserBioPayload().isGender()));
                     double int_height=user.getHeight()/100;
-                    double int_bmi=user.getWeight()/(int_height*int_height);
+                    double int_bmi=user.getWeight()/(int_height*int_height);// bmi is calculated
                     user_bmi.setText(String.valueOf(int_bmi));
                     gender = user.getGender();
-                    int selectedId = rgGender.getCheckedRadioButtonId();
                     if (gender.equalsIgnoreCase("male")) {
                         rbMale.toggle();
                     } else {

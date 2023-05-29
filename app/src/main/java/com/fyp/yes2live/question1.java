@@ -24,16 +24,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class question1 extends AppCompatActivity {
-    Button next;
-    EditText age, height, weight;
-    RadioGroup rgGender;
-    RadioButton rbMale, rbFemale;
-    String gender;
-    ImageButton TableConversion;
-    APIInterface apiInterface;
-
-    MaterialCardView materialCardView;
-
+    private Button next;
+    private EditText age, height, weight;
+    private RadioGroup rgGender;
+    private RadioButton rbMale, rbFemale;
+    private String gender;
+    private APIInterface apiInterface;
     SharedPreferenceManager sharedPreferenceManager;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,15 +43,10 @@ public class question1 extends AppCompatActivity {
         rgGender = findViewById(R.id.gender_Grp);
         rbMale = findViewById(R.id.male);
         rbFemale = findViewById(R.id.female);
-        materialCardView = findViewById(R.id.bmiInfo);
-        materialCardView.setVisibility(0);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(question1.this, homepage.class);
-                startActivity(intent);
                 int selectedId = rgGender.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 if(selectedId==R.id.male){

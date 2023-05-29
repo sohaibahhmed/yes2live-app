@@ -99,6 +99,11 @@ public class signup extends AppCompatActivity {
                             if (signupResponse.getStatus().equals("SUCCESS")) {
                                 sharedPreferenceManager.saveUser(signupResponse.getPayload());
                                 Toast.makeText(signup.this, signupResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    Thread.sleep(5000);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
                                 Intent intent1 = new Intent(signup.this, question1.class);
                                 startActivity(intent1);
                             }else{

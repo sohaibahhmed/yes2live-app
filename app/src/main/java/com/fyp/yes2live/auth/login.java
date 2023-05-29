@@ -89,6 +89,12 @@ public class login extends AppCompatActivity {
                            if (loginResponse.getStatus().equals("SUCCESS")) {
                                Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                Intent intent1 = new Intent(login.this, homepage.class);
+                               Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                               try {
+                                   Thread.sleep(2000);
+                               } catch (InterruptedException e) {
+                                   throw new RuntimeException(e);
+                               }
                                startActivity(intent1);
                            }else{
                                Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();

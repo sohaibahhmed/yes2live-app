@@ -109,7 +109,7 @@ public class homepage extends AppCompatActivity {
         dietryModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(homepage.this, married.class);
+                Intent intent1 = new Intent(homepage.this, dietaryinfo.class);
                 startActivity(intent1);
             };
         });
