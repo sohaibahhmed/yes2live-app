@@ -23,9 +23,7 @@
             android:background="@color/white"
             app:srcCompat="@drawable/ic_baseline_navigate_before_24"
             android:contentDescription="TODO" />
-        <!--
 
-        -->
     </LinearLayout>
 
 

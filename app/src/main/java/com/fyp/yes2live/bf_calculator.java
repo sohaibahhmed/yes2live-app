@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class bf_calculator extends AppCompatActivity {
-
+// 3 text views one image one button one realtive layout
     android.widget.Button mrecalculatebf;
 
 
@@ -19,13 +19,13 @@ public class bf_calculator extends AppCompatActivity {
     Intent intent;
     ImageView mimageview;
     String mbf;
-    float intbf;
+    double BFP=0.0;//final ans is save in this
 
     String height;
     String weight;
     String waist;
     String neck;
-    float intheight,intweight,intWaist,intNeck;
+    float floatheight, floatweight,floatWaist, floatNeck;
     RelativeLayout mbackground;
     RelativeLayout mtextcolor;
 
@@ -34,13 +34,6 @@ public class bf_calculator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bf_calculator);
-
-//        getSupportActionBar().setElevation(0);
-//        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"white\"></font>"));
-//        getSupportActionBar().setTitle("Result");
-//        ColorDrawable colorDrawable=new ColorDrawable(Color.parseColor("#1E1D1D"));
-//        getSupportActionBar().setBackgroundDrawable(colorDrawable);
-
 
         intent=getIntent();
         mbfdisplay=findViewById(R.id.bfresult);
@@ -55,24 +48,23 @@ public class bf_calculator extends AppCompatActivity {
         weight=intent.getStringExtra("Weight");
         waist=intent.getStringExtra("waist");
         neck=intent.getStringExtra("neck");
-        intheight=Float.parseFloat(height);
-        intweight=Float.parseFloat(weight);
-        intWaist=Float.parseFloat(waist);
-        intNeck=Float.parseFloat(neck);
+        floatheight =Float.parseFloat(height);
+        floatweight =Float.parseFloat(weight);
+        floatWaist=Float.parseFloat(waist);
+        floatNeck =Float.parseFloat(neck);
 
-
-        double BFP=0.0;
-       if(intent.getStringExtra("gender").equalsIgnoreCase("male"))
+       if(intent.getStringExtra("gender").equalsIgnoreCase("male"))// if gender from previous screen is male
        {
 //           log10(waist-neck)
-           double logWN= Math.log10(intWaist-intNeck);
+           double logWN= Math.log10(floatWaist- floatNeck);// math. is built in class of java
 //           log10(height)
-           double logH=Math.log10(intheight);
+           double logH=Math.log10(floatheight);
            BFP = 495/(((1.0324 - 0.19077)*logWN) + (0.15456)*(logH))- 450;
        }else{
-           //BFP = 495/(1.29579 - 0.35004×log10(waist+hip-neck) + 0.22100×log10(height))- 450
+           double logWN= Math.log10(floatWaist- floatNeck);
+           double logH=Math.log10(floatheight);
+           BFP = 495/(((1.0324 - 0.19077)*logWN) + (0.15456)*(logH))- 450;
        }
-
 
 
 

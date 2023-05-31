@@ -16,18 +16,18 @@ public class bmiactivity extends AppCompatActivity {
 
     android.widget.Button mcalculatebmi;
 
-    TextView mcurrentheight;
+    TextView mcurrentheight; //text view of height
     TextView mcurrentage, mcurrentweight;
     ImageView mincrementage, mincrementweight, mdecrementage, mdecrementweight;
     SeekBar mseekbarforheight;
     RelativeLayout mmale, mfemale;
 
-    int intweight=55;
+    int intweight=55;// we add or minus one from this on increment and decrement
     int intage=25;
-    int currentprogress;
-    String mintprogress="170";
-    String typeofuser="0";
-    String weight2="55";
+    int currentprogress;//used for seekbar(current value or heght of seekbar)
+    String mintprogress="170";//string type variable used for height
+    String typeofuser="0";//whether the user is male or female
+    String weight2="55";//this variable is used to show on textview
     String age2="25";
 
 
@@ -52,11 +52,12 @@ public class bmiactivity extends AppCompatActivity {
         mmale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mmale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.focusmf));
+                mmale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.focusmf));//when click on male its colour changes (focusmf)
                 mfemale.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.feature_bg));
                 typeofuser="Male";
             }
         });
+        // same in female case heighlight the female
         mfemale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,16 +68,18 @@ public class bmiactivity extends AppCompatActivity {
         });
 
 
-        mseekbarforheight.setMax(300);
-        mseekbarforheight.setProgress(170);
+        mseekbarforheight.setMax(300);//max value of height on seekbar
+        mseekbarforheight.setProgress(170);//initial vale of seekbar
+
+        //seekbar working
         mseekbarforheight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                currentprogress=i;
+                currentprogress=i;//height from seekbar u decide
                 mintprogress=String.valueOf(currentprogress);
                 mcurrentheight.setText(mintprogress);
             }
-
+         //default method of setonbarSeekBarchangelistener must include
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
@@ -133,7 +136,7 @@ public class bmiactivity extends AppCompatActivity {
 
 
 
-
+    //calculate bmi (formula)
 
         mcalculatebmi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +156,7 @@ public class bmiactivity extends AppCompatActivity {
                 }
                 else{
                     Intent intent=new Intent(bmiactivity.this, bmi_calculator.class);
-
+        // putextra is used to send data to next screen with intent
                     intent.putExtra("gender", typeofuser);
                     intent.putExtra("Height", mintprogress);
                     intent.putExtra("Weight", weight2);

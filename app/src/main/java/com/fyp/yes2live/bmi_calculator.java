@@ -2,10 +2,7 @@ package com.fyp.yes2live;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,20 +11,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class bmi_calculator extends AppCompatActivity {
-
+   // the bmi calculator screen have three textviews one image and one button
     android.widget.Button mrecalculatebmi;
 
 
     TextView mbmidisplay, mbmicategory,mgender;
     Intent intent;
     ImageView mimageview;
-    String mbmi;
-    float intbmi;
+    String mbmi;// string variable
+    float floatbmi;// contain the value of bmi
 
     String height;
     String weight;
-    float intheight,intweight;
-    RelativeLayout mbackground;
+    float floatheight, floatweight;
+    RelativeLayout mbackground;// relative layout
     RelativeLayout mtextcolor;
 
     @SuppressLint("MissingInflatedId")
@@ -36,54 +33,47 @@ public class bmi_calculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi_calculator);
 
-//        getSupportActionBar().setElevation(0);
-//        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"white\"></font>"));
-//        getSupportActionBar().setTitle("Result");
-//        ColorDrawable colorDrawable=new ColorDrawable(Color.parseColor("#1E1D1D"));
-//        getSupportActionBar().setBackgroundDrawable(colorDrawable);
-
-
-        intent=getIntent();
-        mbmidisplay=findViewById(R.id.bmiresult);
-        mbmicategory=findViewById(R.id.bmicategory);
-        mgender=findViewById(R.id.genderdisplay);
-        mbackground=findViewById(R.id.contentlayout);
-        mimageview=findViewById(R.id.imageview);
-        mrecalculatebmi=findViewById(R.id.recalculatebmi);
-
+        intent=getIntent();//get an intent
+        mbmidisplay=findViewById(R.id.bmiresult);// textview of bmi(55)
+        mbmicategory=findViewById(R.id.bmicategory);// text view (your bmi category)
+        mgender=findViewById(R.id.genderdisplay);//textview (gender)
+        mbackground=findViewById(R.id.contentlayout);// relative layout
+        mimageview=findViewById(R.id.imageview);// image(tick one )
+        mrecalculatebmi=findViewById(R.id.recalculatebmi);//button (recalculate bmi)
+    // getextra is used to get data along intent from another screen
 
         height=intent.getStringExtra("Height");
         weight=intent.getStringExtra("Weight");
-        intheight=Float.parseFloat(height);
-        intweight=Float.parseFloat(weight);
+        floatheight =Float.parseFloat(height);// changing to float from string
+        floatweight =Float.parseFloat(weight);
 
-        intheight=intheight/100;
-        intbmi=intweight/(intheight*intheight);
-        mbmi=Float.toString(intbmi);
+        floatheight = floatheight /100;//convert height from cm to m
+        floatbmi = floatweight /(floatheight * floatheight);// fromula to calculate bmi
+        mbmi=Float.toString(floatbmi);//cahnge value from float to string
 
 
 
-        if(intbmi<16){
+        if(floatbmi <16){
             mbmicategory.setText("Severe Thinness");
-            mbackground.setBackground(getDrawable(R.drawable.resultred));
-            mimageview.setImageResource(R.drawable.cross);
+            mbackground.setBackground(getDrawable(R.drawable.resultred));// layout become red
+            mimageview.setImageResource(R.drawable.cross);// cross picture
         }
-        else if(intbmi<16.9 && intbmi>16){
+        else if(floatbmi <16.9 && floatbmi >16){
             mbmicategory.setText("Moderate Thinness");
             mbackground.setBackground(getDrawable(R.drawable.resultred));
             mimageview.setImageResource(R.drawable.warning);
         }
-        else if(intbmi<18.4 && intbmi>17){
+        else if(floatbmi <18.4 && floatbmi >17){
             mbmicategory.setText("Mild Thinness");
             mbackground.setBackground(getDrawable(R.drawable.resultred));
             mimageview.setImageResource(R.drawable.warning);
         }
-        else if(intbmi<25 && intbmi>18.4){
+        else if(floatbmi <25 && floatbmi >18.4){
             mbmicategory.setText("Normal");
             mbackground.setBackground(getDrawable(R.drawable.resultgreen));
             mimageview.setImageResource(R.drawable.tick);
         }
-        else if(intbmi<29.4 && intbmi>25){
+        else if(floatbmi <29.4 && floatbmi >25){
             mbmicategory.setText("Over Weight");
             mbackground.setBackground(getDrawable(R.drawable.resultred));
             mimageview.setImageResource(R.drawable.warning);

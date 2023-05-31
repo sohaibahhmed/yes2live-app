@@ -25,9 +25,9 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 public class homepage extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
+    private DrawerLayout drawerLayout;//line 20(drawerlayout)
     private ActionBarDrawerToggle toggle;
-    private NavigationView navigationView;
+    private NavigationView navigationView;//auto three lines on top (side nav bar view)
     private BottomNavigationView bottomNavigationView;
     private ImageSlider imageSlider;
     private RelativeLayout bmiModule;
@@ -50,7 +50,7 @@ public class homepage extends AppCompatActivity {
         bottomNavigationView=findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setBackground(null);
         imageSlider = findViewById(R.id.imageSlider);
-
+// top toolbar set (three icons) or sidebar
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -62,10 +62,10 @@ public class homepage extends AppCompatActivity {
                 return true;
             }
         });
-
+// set the home setting and profile on bottom
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {// bottom nevigation method
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         Intent intent = new Intent(homepage.this, homepage.class);
@@ -86,14 +86,14 @@ public class homepage extends AppCompatActivity {
             }
         });
 
-
+// code to add pictures (time is mention ) on image slider
         ArrayList<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.dietplanslider1, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.dietplanslider1, ScaleTypes.CENTER_CROP));// images should be in center
         slideModels.add(new SlideModel(R.drawable.dietplanslider1,ScaleTypes.CENTER_CROP));
 
         imageSlider.setImageList(slideModels, ScaleTypes.CENTER_CROP);
 
-
+// click on features where to go
         bmiModule = (RelativeLayout) findViewById(R.id.bmi);
 
         bmiModule.setOnClickListener(new View.OnClickListener() {

@@ -15,7 +15,7 @@ public class SharedPreferenceManager {
         this.context=context;
     }
 
-    public void saveUser(User user){
+    public void saveUser(User user){//used in signup and login api's integration
         sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         editor=sharedPreference.edit();
         editor.putLong("id",user.getId());

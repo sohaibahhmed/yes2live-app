@@ -64,7 +64,7 @@
                             android:layout_height="230dp"
                             android:orientation="horizontal"
                             android:layout_marginTop="60dp">
-
+                            <!-- the images on slider comes from homepage.java file-->
                             <com.denzcoskun.imageslider.ImageSlider
                                 android:id="@+id/imageSlider"
                                 android:layout_width="wrap_content"
@@ -246,7 +246,7 @@
 
                 </FrameLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <!--  all the three options (home,settings,profile)comes from menu folder below the layout folder  -->
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/navigation_view"
                 android:layout_width="wrap_content"
