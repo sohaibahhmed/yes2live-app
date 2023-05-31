@@ -1,19 +1,567 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/summary"
     tools:context=".Summary">
 
-    <TextView
+
+    <ImageButton
+        android:id="@+id/PreviousButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="summary"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="#00F2F2F2"
+        app:srcCompat="@drawable/ic_baseline_navigate_before_24" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="45dp">
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Age"
+                android:paddingLeft="30dp"
+                android:layout_marginStart="15dp"
+                android:textStyle="normal"
+                android:textColor="#5B5A5A"
+                android:fontFamily="@font/roboto_black"
+                />
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Gender"
+                android:paddingLeft="26dp"
+                android:layout_marginStart="15dp"
+                android:textStyle="normal"
+                android:textColor="#5B5A5A"
+                android:fontFamily="@font/roboto_black"
+                />
+
+
+            <TextView
+                android:id="@+id/Height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Height"
+                android:paddingLeft="26dp"
+                android:layout_marginStart="15dp"
+                android:textStyle="normal"
+                android:textColor="#5B5A5A"
+                android:fontFamily="@font/roboto_black"
+                />
+
+            <TextView
+                android:id="@+id/Weight"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/roboto_black"
+                android:paddingLeft="26dp"
+                android:text="Weight"
+                android:textColor="#5B5A5A"
+                android:textSize="15sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="65dp">
+
+            <TextView
+                android:id="@+id/age_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="22"
+                android:paddingLeft="34dp"
+                android:layout_marginStart="12dp"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
+                />
+
+            <TextView
+                android:id="@+id/Usergender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="F"
+                android:paddingLeft="44dp"
+                android:layout_marginStart="15dp"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
+                />
+
+            <TextView
+                android:id="@+id/HeightNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="152.4"
+                android:paddingLeft="41dp"
+                android:layout_marginStart="15dp"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
+                />
+
+            <TextView
+                android:id="@+id/WeightNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="43"
+                android:paddingLeft="44dp"
+                android:layout_marginStart="15dp"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="95dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="161dp"
+                android:layout_height="wrap_content"
+                android:text="You need to daily fbs reading to assess your disease " />
+
+            <Button
+                android:id="@+id/fastingReport"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/search_rounded"
+                android:text="Fbs Reading"
+                android:textSize="11dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="145dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="161dp"
+                android:layout_height="wrap_content"
+                android:text="You need to daily fbs reading to assess your disease " />
+
+            <Button
+                android:id="@+id/randomSugarreport"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/search_rounded"
+                android:text="Rbs Reading"
+                android:textSize="11dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="7dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/cm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingLeft="215dp"
+                android:text="cm"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingLeft="37dp"
+                android:text="kg"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="|"
+                android:textColor="@color/dark_grey"
+                android:textSize="35dp" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="|"
+                android:textColor="@color/dark_grey"
+                android:textSize="35dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="|"
+                android:textColor="@color/dark_grey"
+                android:textSize="35dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="195dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Summary"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="225dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Disease Information"
+            android:textColor="@color/black"
+            android:textSize="17dp" />
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="260dp"
+            android:showDividers="middle"
+            android:divider="@color/dark_grey">
+
+
+            <TableRow
+                android:paddingBottom="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/t1"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:text="Disease" />
+
+                <TextView
+                    android:id="@+id/diseaseName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:text="Diabetes"
+                    android:textSize="13dp"
+                    android:textColor="@color/black" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                >
+
+                <TextView
+                    android:id="@+id/t2"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Date"
+                    android:textSize="13dp"/>
+
+                <TextView
+                    android:id="@+id/dateStart"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22-02-2022"
+                    android:textSize="13dp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                >
+
+                <TextView
+                    android:id="@+id/t3"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="HbA1c value in mmols"
+                    android:textSize="13dp"/>
+
+                <TextView
+                    android:id="@+id/value"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prediabetes"
+                    android:textSize="13dp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                >
+
+                <TextView
+                    android:id="@+id/t4"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Health Status"
+                    android:textSize="13dp"/>
+
+                <TextView
+                    android:id="@+id/status"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Improvements needed"
+                    android:textSize="13dp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                >
+
+
+
+
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/mes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="367dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="210dp"
+                android:text="You need to assess your disease again after 3 months"
+                android:textColor="@color/black"
+                android:textSize="13dp"/>
+
+            <Button
+                android:id="@+id/updateBtn"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="210dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/search_rounded"
+                android:text="Update"
+                android:textSize="11dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/healthCurve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mes"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Health Curve"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+
+
+
+        <TextView
+            android:id="@+id/overallCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/healthCurve"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Overall Condition"
+            android:textColor="@color/black"
+            android:textSize="13dp" />
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idBarChart"
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:layout_below="@+id/overallCondition"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="8dp" />
+
+
+        <!--
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:elevation="8dp"
+            app:itemBackground="@color/editTextBack"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:menu="@menu/nav_menu" />
+    -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_below="@+id/mes"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="230dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dietPlanCard"
+                android:layout_width="128dp"
+                android:layout_height="66.58dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:background="#5BFAF2F2"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:lineSpacingExtra="4dp"
+                    android:text=" My \n Diet Plan"
+                    android:textSize="18dp" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/workplan"
+                android:layout_width="128dp"
+                android:layout_height="66.58dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="15dp"
+                android:background="#5BFAF2F2"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:lineSpacingExtra="4dp"
+                    android:text=" Workout \n Plan"
+                    android:textSize="18dp" />
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="-35dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/workoutplan"
+                android:elevation="4dp" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="-230dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/food"
+                android:elevation="4dp" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

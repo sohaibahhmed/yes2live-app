@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class target_weight extends AppCompatActivity {
-    Button button;
+    private Button button;
+    private TextView range;
+    private SharedPreferenceManager sharedPreferenceManager;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -20,6 +23,11 @@ public class target_weight extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_weight);
         button = (Button) findViewById(R.id.NextButton);
+        range=findViewById(R.id.weightRange);
+
+        long user_id = sharedPreferenceManager.getUser().getId();
+
+        //calling endpoint to get BMI range and set to range text field.
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

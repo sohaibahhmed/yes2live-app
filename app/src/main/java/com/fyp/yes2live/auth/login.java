@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fyp.yes2live.R;
+import com.fyp.yes2live.SharedPreferenceManager;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.homepage;
@@ -31,6 +32,7 @@ public class login extends AppCompatActivity {
     TextView signup_btn;
     APIInterface apiInterface;
 
+    SharedPreferenceManager sharedPreferenceManager;
     // defining our own password pattern
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -87,14 +89,9 @@ public class login extends AppCompatActivity {
                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                            BaseResponse loginResponse = response.body();
                            if (loginResponse.getStatus().equals("SUCCESS")) {
+                               sharedPreferenceManager.saveUser(loginResponse.getPayload());
                                Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                Intent intent1 = new Intent(login.this, homepage.class);
-                               Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                               try {
-                                   Thread.sleep(2000);
-                               } catch (InterruptedException e) {
-                                   throw new RuntimeException(e);
-                               }
                                startActivity(intent1);
                            }else{
                                Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
