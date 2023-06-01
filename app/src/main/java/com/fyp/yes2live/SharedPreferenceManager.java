@@ -23,6 +23,9 @@ public class SharedPreferenceManager {
         editor.putString("email",user.getEmail());
         //for loggedin status... if loggedIn return true
         editor.putBoolean("logged",true);
+        if(user.getTargetWeight() > 0){
+            editor.putBoolean("saveTargetAndRange", true);
+        }
         editor.apply();
     }
 
@@ -50,5 +53,57 @@ public class SharedPreferenceManager {
         editor.putString("date",date);
         editor.apply();
         return null;
+    }
+
+    public void saveActivityLevel(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        editor=sharedPreference.edit();
+        editor.putBoolean("activity_level",true);
+        editor.apply();
+
+    }
+
+    public void saveQuestion(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        editor=sharedPreference.edit();
+        editor.putBoolean("saveAssessment",true);
+        editor.apply();
+    }
+    //Check whether user loggedIn or not
+    public  boolean isLoggedIn(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        //if user loggedIn return true otherwise return false
+        return sharedPreference.getBoolean("logged",false);
+
+    }
+
+    //Check whether user enter activity level
+    public  boolean isActivityLevel(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        //if user loggedIn return true otherwise return false
+        return sharedPreference.getBoolean("activity_level",false);
+
+    }
+    public  boolean isQuestionnaire(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        //if user loggedIn return true otherwise return false
+        return sharedPreference.getBoolean("saveAssessment",false);
+
+    }
+
+    public void saveRanges() {
+        sharedPreference = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreference.edit();
+        editor.putInt("TargetWeight",1);
+        editor.putBoolean("saveTargetAndRange", true);
+        editor.apply();
+    }
+
+    //Check whether user enter Targetweight and ranges
+    public  boolean isSavedTargetWeight(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        //if user loggedIn return true otherwise return false
+        return sharedPreference.getBoolean("saveTargetAndRange",false);
+
     }
 }

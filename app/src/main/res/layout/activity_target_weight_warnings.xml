@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TargetWeightWarnings">
+
+    <ImageView
+        android:id="@+id/warning"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/eating"
+        android:foregroundGravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/warning"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="26dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Calorie Budget Too Low"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/warning"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/roboto_regular"
+        android:justificationMode="inter_word"
+        android:lineSpacingExtra="7dp"
+        android:text="Your daily caloric allotment has fallen below 1200, which is risk if you are not under a doctor's or a nutriotionist's care. Click on the button below if yoy are following a very low calorie diet under the direction of medical practitioner"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+
+        android:textSize="14dp" />
+
+    <android.widget.Button
+        android:id="@+id/b1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/message"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/buttonbackground"
+        android:text="Set my calorie budget to a safer level"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"></android.widget.Button>
+
+    <android.widget.Button
+        android:id="@+id/button_2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/message"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/buttonbackground1"
+        android:padding="10dp"
+        android:text="I am being supervised by a medical professional on a very low calorie diet"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"></android.widget.Button>
+
+
+</RelativeLayout>

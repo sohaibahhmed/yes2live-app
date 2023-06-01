@@ -13,6 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 
+import com.fyp.yes2live.apiConfig.APIClient;
+import com.fyp.yes2live.apiConfig.APIInterface;
+import com.fyp.yes2live.auth.login;
+import com.fyp.yes2live.model.User;
+import com.fyp.yes2live.response.BaseResponse;
+import com.fyp.yes2live.response.UserBaseResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +30,7 @@ public class ActivityLevel extends AppCompatActivity implements View.OnClickList
     private SharedPreferenceManager sharedPreferenceManager;
     private double activity_level;
     private Integer age;
+    private APIInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,11 +100,34 @@ public class ActivityLevel extends AppCompatActivity implements View.OnClickList
 
     public void openHomePage() {
         long userId= sharedPreferenceManager.getUser().getId();
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);//calling get client method of API client class fpr getting api urls etc (object)
+        User user = new User(userId,activity_level);//initialize the user constructor see User class
+        Call<UserBaseResponse> call = apiInterface.calculateCalories(user);//calling login method of api interface
+        //call.enque is used to catch the response of api
+        call.enqueue(new Callback<UserBaseResponse>() {//call.enque have two default methods one is onResponse(that hold the api success and failure  response both) and on failure(hold the response if api is not working)
+            @Override
+            public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
+                UserBaseResponse userResponse = response.body();
+                if (userResponse.getStatus().equals("SUCCESS")) {
+                    sharedPreferenceManager.saveActivityLevel();
+                    Intent intent1 = new Intent(ActivityLevel.this, homepage.class);
+                    startActivity(intent1);
+                } else {
+                    Toast.makeText(ActivityLevel.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserBaseResponse> call, Throwable t) {
+                Toast.makeText(ActivityLevel.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
     public void openBMIPage() {
-//        Intent intent1 = new Intent(this, BMIquestions.class);
-//        startActivity(intent1);
+        Intent intent1 = new Intent(this, question1.class);
+        startActivity(intent1);
     }
 }

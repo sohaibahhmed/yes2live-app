@@ -32,10 +32,12 @@ import com.fyp.yes2live.Notifications.LunchBroadcast;
 import com.fyp.yes2live.Notifications.MorningSnackBroadcast;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
+import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.response.GetExerciseListResponse;
 import com.fyp.yes2live.response.GetLogDataResponse;
 import com.fyp.yes2live.response.GetLogListResponse;
 import com.fyp.yes2live.response.GetPerDayLogDataResponse;
+import com.fyp.yes2live.response.UserBaseResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.LocalDate;
@@ -154,24 +156,24 @@ public class Track extends AppCompatActivity {
         exercise_recyclerView.setLayoutManager(layoutManager);
         exercise_recyclerView.setItemViewCacheSize(5);
 
-////      checking perday calories
-//        valueProgress= Integer.parseInt(per_day_calorie.getText().toString());
-//        String cal= calorie_intake.getText().toString();
+//      checking perday calories
+        valueProgress= Integer.parseInt(per_day_calorie.getText().toString());
+        String cal= calorie_intake.getText().toString();
 //
-//        if(calorie_intake.getText().toString().equals("0")){
-//            NotificationChannel();
-//        }
-//        if(Exercise_burned.getText().toString().equals(0)){
-//            e_NotificationChannel();
-//        }
-//
-//        //Default  Notification
-//        b_NotificationChannel();
-//        l_NotificationChannel();
-//        d_NotificationChannel();
-//        MSNotification();
-//        EveningSnacksNotification();
-//
+        if(calorie_intake.getText().toString().equals("0")){
+            NotificationChannel();
+        }
+        if(Exercise_burned.getText().toString().equals(0)){
+            e_NotificationChannel();
+        }
+
+        //Default  Notification
+        b_NotificationChannel();
+        l_NotificationChannel();
+        d_NotificationChannel();
+        MSNotification();
+        EveningSnacksNotification();
+
 //        //Previous Button
 //        previousButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -180,20 +182,18 @@ public class Track extends AppCompatActivity {
 //                startActivity(i);
 //            }
 //        });
-//
-//        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
-//        long user_id = sharedPreferenceManager.getUser().getId();
-//        Log.d("Magic", "user id: " + user_id);
-//
-//        String calorie = getIntent().getStringExtra("per_day_calorie");
-//        per_day_calorie.setText(calorie);
-//
-//        //Log Card
-//        txt_name = findViewById(R.id.txt_food_name);
-//        txt_cal = findViewById(R.id.txt_calories);
-//        txt_quan = findViewById(R.id.txt_quantity);
-//        txt_serve = findViewById(R.id.txt_serving);
-//        //updateProgress();
+
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
+        long user_id = sharedPreferenceManager.getUser().getId();
+
+        String calorie = getIntent().getStringExtra("per_day_calorie");
+        per_day_calorie.setText(calorie);
+
+        //Log Card
+        txt_name = findViewById(R.id.txt_food_name);
+        txt_cal = findViewById(R.id.txt_calories);
+        txt_quan = findViewById(R.id.txt_quantity);
+        txt_serve = findViewById(R.id.txt_serving);
 
 
         breakfast.setOnClickListener(new View.OnClickListener() {
@@ -253,70 +253,29 @@ public class Track extends AppCompatActivity {
         });
         // notify when intake catlories are greater than total calories
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            date=LocalDate.now();
+        }
+        dateHistory.setText(date.toString());
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            date=LocalDate.now();
-//        }
-//        dateHistory.setText(date.toString());
-//
 //        //GetLogData
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<GetLogDataResponse> call3 = apiInterface.getLogData(user_id);
-//        call3.enqueue(new Callback<GetLogDataResponse>() {
-//
-//            @Override
-//            public void onResponse(Call<GetLogDataResponse> call, Response<GetLogDataResponse> response) {
-//
-//                GetLogDataResponse getLogDataResponse = response.body();
-//
-//                if (response.isSuccessful()) {
-//                    if (getLogDataResponse.getStatus().equals("SUCCESS")) {
-//                        calories=getLogDataResponse.getPayload().weightloss_calories;
-//                        per_day_carb.setText(String.valueOf(getLogDataResponse.getPayload().t_carbs));
-//                        per_day_calorie.setText(String.valueOf(getLogDataResponse.getPayload().weightloss_calories));
-//                        per_day_carb.setText(String.valueOf(getLogDataResponse.getPayload().t_carbs));
-//                        lunch_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_lCalories));
-//                        dinner_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_dCalories));
-//                        bf_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_bCalories));
-//                        morning_snack_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_msCalories));
-//                        evening_snack_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_esCalories));
-//                        per_day_protein.setText(String.valueOf(getLogDataResponse.getPayload().t_proteins));
-//                        per_day_fat.setText(String.valueOf(getLogDataResponse.getPayload().t_fat));
-//
-//                    } else {
-//                        //  Log.d("Magic", "error11: " + getLogDataResponse.getMessage());
-//                        //  Toast.makeText(CalorieCounter.this, getLogDataResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    // Log.d("Magic", "error10: " + getLogDataResponse.getMessage());
-//                    // Toast.makeText(CalorieCounter.this, getLogDataResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<GetLogDataResponse> call, Throwable t) {
-//                Toast.makeText(Track.this, "Check you Internet Connection", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
-//
-//
-//        if(!dateHistory.isSelected()){
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                sharedPreferenceManager.saveDate(String.valueOf(LocalDate.now()));
-//            }
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                date=LocalDate.now();
-//            }
-//        }
-//
-//        else {
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                date= LocalDate.parse(dateHistory.getText().toString());
-//            }
-//        }
-//
+        this.populateCaloriesInffo(user_id);
+
+        if(!dateHistory.isSelected()){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                sharedPreferenceManager.saveDate(String.valueOf(LocalDate.now()));
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                date=LocalDate.now();
+            }
+        }
+
+        else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                date= LocalDate.parse(dateHistory.getText().toString());
+            }
+        }
+
 //        //getPerDayLogData
 //        apiInterface = APIClient.getClient().create(APIInterface.class);
 //        Call<GetPerDayLogDataResponse> call = apiInterface.getPerDayLogData(user_id, String.valueOf(date));
@@ -850,8 +809,8 @@ public class Track extends AppCompatActivity {
     private void NotificationChannel() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "FITVISOR";
-            String description = "FITVISOR`S CHANNEL";
+            CharSequence name = "Yes2Live";
+            String description = "Yes2Live CHANNEL";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel("Daily_Notification", name, importance);
             channel.setDescription(description);
@@ -978,4 +937,35 @@ public class Track extends AppCompatActivity {
         });
     }
 
+    public void populateCaloriesInffo(long user_id) {
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+                Call<UserBaseResponse> call = apiInterface.userProfile(user_id);
+        call.enqueue(new Callback<UserBaseResponse>() {
+            @Override
+            public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
+
+                UserBaseResponse userProfile = response.body();
+                if (userProfile.getStatus().equals("SUCCESS")) {
+                    calories=(int) userProfile.getPayload().getWeightLossCalories();
+                    per_day_carb.setText(String.valueOf(userProfile.getPayload().getT_carbs()));
+                    per_day_calorie.setText(String.valueOf(userProfile.getPayload().getWeightLossCalories()));
+                    lunch_cal.setText(String.valueOf(userProfile.getPayload().getL_calories()));
+                    dinner_cal.setText(String.valueOf(userProfile.getPayload().getD_calories()));
+                    bf_cal.setText(String.valueOf(userProfile.getPayload().getB_calories()));
+                    morning_snack_cal.setText(String.valueOf(userProfile.getPayload().getMs_calories()));
+                    evening_snack_cal.setText(String.valueOf(userProfile.getPayload().getEs_calories()));
+                    per_day_protein.setText(String.valueOf(userProfile.getPayload().getT_proteins()));
+                    per_day_fat.setText(String.valueOf(userProfile.getPayload().getT_fat()));
+                }else{
+                    Toast.makeText(Track.this, userProfile.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UserBaseResponse> call, Throwable t) {
+                Toast.makeText(Track.this,  t.toString()+" Not Found in Databses ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

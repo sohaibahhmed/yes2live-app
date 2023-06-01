@@ -12,12 +12,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fyp.yes2live.ActivityLevel;
 import com.fyp.yes2live.R;
 import com.fyp.yes2live.SharedPreferenceManager;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.homepage;
 import com.fyp.yes2live.model.User;
+import com.fyp.yes2live.question1;
 import com.fyp.yes2live.response.BaseResponse;
 
 import java.util.regex.Pattern;
@@ -109,6 +111,7 @@ public class login extends AppCompatActivity {
 
            };
        });
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
     }
     private boolean validateEmail() {
 
@@ -151,6 +154,27 @@ public class login extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        if (sharedPreferenceManager.isLoggedIn()) {
+            if (sharedPreferenceManager.isQuestionnaire()) {
+                if (sharedPreferenceManager.isActivityLevel()) {
+                    Intent intent = new Intent(login.this, homepage.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(login.this, ActivityLevel.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }else{
+                Intent intent = new Intent(login.this, question1.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+
+        }
+    }
 
 }

@@ -47,6 +47,53 @@ public class question1 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                declare variable
+                int ageInt = Integer.valueOf(age.getText().toString());
+                double weightDouble = Double.valueOf(weight.getText().toString());
+                double heightDouble = Double.valueOf(height.getText().toString());
+
+//                add empty field validation
+                if (height.getText().toString().isEmpty() || weight.getText().toString().isEmpty() || age.getText().toString().isEmpty()) {
+                    Toast.makeText(question1.this,
+                            "Empty field not allowed!",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                if (ageInt < 15) {
+                    age.setError("You need to be older than 15 to registered");
+                    return;
+                }
+
+                if (ageInt > 80) {
+                    age.setError("You need to be younger than 80 to registered");
+                    return;
+                }
+
+                if (weightDouble < 20) {
+                    weight.setError("Enter numeric weight greater than 20 kg");
+                    weight.requestFocus();
+                    return;
+                }
+
+                if (weightDouble > 300) {
+                    weight.setError("Enter weight less than 300 kg");
+                    return;
+                }
+
+                if (heightDouble < 101) {
+                    height.setError("Enter height greater than 100 cm");
+                    height.requestFocus();
+                    return;
+                }
+
+                if (heightDouble > 243) {
+                    height.setError("Enter height less than 243 cm");
+                    height.requestFocus();
+                    return;
+                }
+
+
                 int selectedId = rgGender.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 if(selectedId==R.id.male){
@@ -59,13 +106,15 @@ public class question1 extends AppCompatActivity {
                 sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
                 long userId = sharedPreferenceManager.getUser().id;
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                User user = new User(userId,Integer.valueOf(age.getText().toString()),gender,Double.valueOf(weight.getText().toString()),Double.valueOf(height.getText().toString()));
+                User user = new User(userId,ageInt,gender,weightDouble,heightDouble);
                 Call<BaseResponse> call = apiInterface.update(user);
                 call.enqueue(new Callback<BaseResponse>() {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                         BaseResponse loginResponse = response.body();
                         if (loginResponse.getStatus().equals("SUCCESS")) {
+                            sharedPreferenceManager.saveUser(loginResponse.getPayload());
+                            sharedPreferenceManager.saveQuestion();
                             Toast.makeText(question1.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(question1.this, homepage.class);
                             startActivity(intent);

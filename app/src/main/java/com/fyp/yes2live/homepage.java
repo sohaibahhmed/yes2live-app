@@ -37,6 +37,8 @@ public class homepage extends AppCompatActivity {
     private RelativeLayout weightlossModule;
     private RelativeLayout dietryModule;
 
+    SharedPreferenceManager sharedPreferenceManager;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,8 +129,16 @@ public class homepage extends AppCompatActivity {
         weightlossModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(homepage.this, target_weight.class);
-                startActivity(intent1);
+                if(sharedPreferenceManager.isSavedTargetWeight()){
+                    Intent intent1 = new Intent(homepage.this, target_weight.class);
+                    startActivity(intent1);
+                }else{
+                    Intent intent = new Intent(homepage.this, dietaryinfo.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+
+
             };
         });
     }

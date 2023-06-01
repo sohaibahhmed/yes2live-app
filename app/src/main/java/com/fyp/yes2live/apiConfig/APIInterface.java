@@ -54,6 +54,21 @@ public interface APIInterface {
             @Path("userID") long userID
     );
 
+    @GET("user/calculateCalories") //APIs endpoint
+    Call<UserBaseResponse> calculateCalories(
+            @Body User user
+    );
+
+    @GET("user/bmiRange") //APIs endpoint
+    Call<UserBaseResponse> Bmi_range(
+            @Path("userID") long userID
+    );
+
+    @POST("user/calculateCaloriesBasedOnWeightLoss") //APIs endpoint
+    Call<UserBaseResponse> calculateCaloriesBasedOnWeightLoss(
+            @Body User user
+    );
+
     @GET("getList")
     Call<List<SearchItemResponse>> getList(
             @Query("key") String keyword

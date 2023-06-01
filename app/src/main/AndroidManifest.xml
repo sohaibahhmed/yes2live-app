@@ -94,6 +94,10 @@
             android:name=".Track"
             android:exported="false" />
         <activity
+            android:name=".ActivityLevel"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
