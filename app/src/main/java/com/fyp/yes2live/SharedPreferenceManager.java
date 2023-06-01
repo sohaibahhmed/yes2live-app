@@ -26,6 +26,12 @@ public class SharedPreferenceManager {
         if(user.getTargetWeight() > 0){
             editor.putBoolean("saveTargetAndRange", true);
         }
+        if(user.getActivityLevel() > 0){
+            editor.putBoolean("activity_level",true);
+        }
+        if(user.getAge() > 1){
+            editor.putBoolean("saveAssessment",true);
+        }
         editor.apply();
     }
 
@@ -104,6 +110,14 @@ public class SharedPreferenceManager {
         sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         //if user loggedIn return true otherwise return false
         return sharedPreference.getBoolean("saveTargetAndRange",false);
+
+    }
+
+    public void logout(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        editor=sharedPreference.edit();
+        editor.clear();
+        editor.apply();
 
     }
 }

@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.fyp.yes2live.auth.login;
 import com.fyp.yes2live.ui.navbar.PersonalDetail;
 import com.fyp.yes2live.ui.navbar.Settings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -62,6 +63,13 @@ public class homepage extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 drawerLayout.closeDrawer(GravityCompat.START);
+                switch (item.getItemId()) {
+                    case R.id.logout:
+                        sharedPreferenceManager.logout();
+                        Intent i = new Intent(homepage.this, login.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                }
                 return true;
             }
         });

@@ -89,18 +89,18 @@ public class Track extends AppCompatActivity {
         morning_snack_cal = findViewById(R.id.ms_cal);
 
         final Handler handler= new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(intake_calories < calories){
-                    progressBar.setProgress(intake_calories);
-                    handler.postDelayed(this,200);
-                }
-                else {
-                    handler.removeCallbacks(this);
-                }
-            }
-        },200);
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if(intake_calories < calories){
+//                    progressBar.setProgress(intake_calories);
+//                    handler.postDelayed(this,200);
+//                }
+//                else {
+//                    handler.removeCallbacks(this);
+//                }
+//            }
+//        },200);
 
         //PerDayLog
         per_day_protein = findViewById(R.id.TotalProtein);
