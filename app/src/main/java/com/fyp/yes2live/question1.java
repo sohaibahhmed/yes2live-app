@@ -116,7 +116,7 @@ public class question1 extends AppCompatActivity {
                             sharedPreferenceManager.saveUser(loginResponse.getPayload());
                             sharedPreferenceManager.saveQuestion();
                             Toast.makeText(question1.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(question1.this, homepage.class);
+                            Intent intent = new Intent(question1.this, ActivityLevel.class);
                             startActivity(intent);
                         }else{
                             Toast.makeText(question1.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();

@@ -54,12 +54,12 @@ public interface APIInterface {
             @Path("userID") long userID
     );
 
-    @GET("user/calculateCalories") //APIs endpoint
+    @POST("user/calculateCalories") //APIs endpoint
     Call<UserBaseResponse> calculateCalories(
             @Body User user
     );
 
-    @GET("user/bmiRange") //APIs endpoint
+    @GET("user/bmiRange/{userID}") //APIs endpoint
     Call<UserBaseResponse> Bmi_range(
             @Path("userID") long userID
     );

@@ -41,12 +41,14 @@ public class target_weight extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         setContentView(R.layout.activity_target_weight);
         nextBtn = (Button) findViewById(R.id.NextButton);
         range=findViewById(R.id.weightRange);
         seekBar = findViewById(R.id.seekbarforheight);
         upBtn = findViewById(R.id.upBotton);
         targetWeight=findViewById(R.id.t_Weight);
+        reachGoal = findViewById(R.id.goal);
 
         long user_id = sharedPreferenceManager.getUser().getId();
         callBMIRange(user_id);

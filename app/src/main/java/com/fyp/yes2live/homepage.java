@@ -45,6 +45,7 @@ public class homepage extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigation_view);
@@ -130,10 +131,10 @@ public class homepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(sharedPreferenceManager.isSavedTargetWeight()){
-                    Intent intent1 = new Intent(homepage.this, target_weight.class);
+                    Intent intent1 = new Intent(homepage.this, Track.class);
                     startActivity(intent1);
                 }else{
-                    Intent intent = new Intent(homepage.this, dietaryinfo.class);
+                    Intent intent = new Intent(homepage.this, target_weight.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
@@ -141,5 +142,6 @@ public class homepage extends AppCompatActivity {
 
             };
         });
+
     }
 }

@@ -35,13 +35,13 @@ public class ActivityLevel extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
-        getSupportActionBar().hide();
         previous = findViewById(R.id.PreviousButton);
 
         card1 = (CardView) findViewById(R.id.level1);
         card2 = (CardView) findViewById(R.id.level2);
         card3 = (CardView) findViewById(R.id.level3);
         card4 = (CardView) findViewById(R.id.level4);
+        card5 = (CardView) findViewById(R.id.level5);
 
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
