@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class signup extends AppCompatActivity {
-
+//1 image 1 textview 4 textinputedittext 1 button 1 textview
     Button signup_button;
     APIInterface apiInterface;
     SharedPreferenceManager sharedPreferenceManager;
@@ -87,7 +87,7 @@ public class signup extends AppCompatActivity {
                 else {
 
                     /**
-                     login endpoint
+                     signup endpoint
                      **/
                     apiInterface = APIClient.getClient().create(APIInterface.class);
                     User user = new User(user_name,emailInput,passwordInput);
@@ -100,7 +100,7 @@ public class signup extends AppCompatActivity {
                                 sharedPreferenceManager.saveUser(signupResponse.getPayload());
                                 Toast.makeText(signup.this, signupResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 try {
-                                    Thread.sleep(5000);
+                                    Thread.sleep(2000);
                                 } catch (InterruptedException e) {
                                     throw new RuntimeException(e);
                                 }

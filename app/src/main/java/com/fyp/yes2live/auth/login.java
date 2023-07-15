@@ -30,6 +30,7 @@ import retrofit2.Response;
 
 
 public class login extends AppCompatActivity {
+    // 1 image 1 textview 2 textinputedittext 1 button 1 textview
     Button login_btn;
     TextView signup_btn;
     APIInterface apiInterface;

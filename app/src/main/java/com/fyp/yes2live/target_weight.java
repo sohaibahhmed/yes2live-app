@@ -103,12 +103,12 @@ public class target_weight extends AppCompatActivity {
                     //Set body message of Dialog
                     builder.setMessage("Target weight can't be empty");
                     // Is dismiss when touching outside?
-                    builder.setCancelable(true);
+                    builder.setCancelable(true);//to cancel the dilogue box(option of cross)
                     AlertDialog dialog = builder.create();
                     dialog.closeOptionsMenu();
                     dialog.setTitle("Alert");
                     dialog.show();
-                }else{
+                }else{// we send id weight and reach goal
                     long userId = sharedPreferenceManager.getUser().getId();
                     double weight = Double.valueOf(targetWeight.getText().toString());
                     double reachGoal = start_value;

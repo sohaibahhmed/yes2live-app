@@ -51,6 +51,8 @@ public class User {
     private double t_proteins;
     @SerializedName("t_fat")
     private double t_fat;
+    @SerializedName("username")
+    private String username;
     @SerializedName("t_carbs")
     private double t_carbs;
 
@@ -65,8 +67,8 @@ public class User {
         this.email = email;
     }
 
-    public User(String name, String email, String password) {
-        this.name = name;
+    public User(String username, String email, String password) {
+        this.username= username;
         this.email = email;
         this.password = password;
     }

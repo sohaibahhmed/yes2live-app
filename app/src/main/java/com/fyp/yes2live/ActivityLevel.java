@@ -29,7 +29,6 @@ public class ActivityLevel extends AppCompatActivity implements View.OnClickList
     private CardView card1,card2,card3,card4,card5;
     private SharedPreferenceManager sharedPreferenceManager;
     private double activity_level;
-    private Integer age;
     private APIInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

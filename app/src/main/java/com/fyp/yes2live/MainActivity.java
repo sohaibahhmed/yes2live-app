@@ -15,6 +15,7 @@ import com.fyp.yes2live.auth.signup;
  * MAIN ACTIVITY
  */
 public class MainActivity extends AppCompatActivity {
+    // one image 3 buttons (log ,sign,how we work)
     Button login;
     Button signup;
 

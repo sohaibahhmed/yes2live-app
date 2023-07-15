@@ -35,6 +35,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIInterface {
+    // in this class we define the endpoints of all our api's
     @POST("user/login")
     Call<BaseResponse> login(// login method
             @Body User user
@@ -49,32 +50,32 @@ public interface APIInterface {
             @Body User user
     );
 
-    @GET("user/getByID/{userID}") //APIs endpoint
+    @GET("user/getByID/{userID}") //APIs endpoint used in dietry info
     Call<UserBaseResponse> userProfile(
             @Path("userID") long userID
     );
 
-    @POST("user/calculateCalories") //APIs endpoint
+    @POST("user/calculateCalories") //APIs endpoint//on next button of activity level
     Call<UserBaseResponse> calculateCalories(
             @Body User user
     );
 
-    @GET("user/bmiRange/{userID}") //APIs endpoint
+    @GET("user/bmiRange/{userID}") //APIs endpoint tell ur weight range on target weight
     Call<UserBaseResponse> Bmi_range(
             @Path("userID") long userID
     );
 
-    @POST("user/calculateCaloriesBasedOnWeightLoss") //APIs endpoint
+    @POST("user/calculateCaloriesBasedOnWeightLoss") //APIs endpoint used on next button of target weight page
     Call<UserBaseResponse> calculateCaloriesBasedOnWeightLoss(
             @Body User user
     );
 
-    @GET("getList")
-    Call<List<SearchItemResponse>> getList(
-            @Query("key") String keyword
-    );
+//    @GET("getList")
+//    Call<List<SearchItemResponse>> getList(
+//            @Query("key") String keyword
+//    );
 
-    @GET("mealfood/getList")
+    @GET("mealfood/getList")//used in on track page (when click on add sign )
     Call<SearchItemBaseResponse> getList1(
             @Query("key") String keyword
     );
@@ -147,7 +148,7 @@ public interface APIInterface {
     );
 
     //GetAllExerciseList
-    @GET("exercise/getList")
+    @GET("exercise/getList")// used on track page click on exercise
     Call<ExerciseBaseResponse> viewTrackingExercises(
             @Query("key") String keyword
     );

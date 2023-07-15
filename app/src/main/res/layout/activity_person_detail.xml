@@ -42,7 +42,11 @@
         android:letterSpacing=".07"
         android:textSize="16sp"
         android:textStyle="bold" />
-
+<!-- They act as containers for displaying
+various types of content, such as text, images,
+buttons, or even other UI elements. The rectangular
+shape and defined boundaries of a card make it easier for users
+to understand and interact with the information.-->
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/level1"

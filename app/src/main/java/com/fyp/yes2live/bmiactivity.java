@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 public class bmiactivity extends AppCompatActivity {
 
-    android.widget.Button mcalculatebmi;
+    android.widget.Button mcalculatebmi; // bmi button
 
-    TextView mcurrentheight; //text view of height
-    TextView mcurrentage, mcurrentweight;
+    TextView mcurrentheight; //text view of height 170
+    TextView mcurrentage, mcurrentweight;// text view of 50 and 25
     ImageView mincrementage, mincrementweight, mdecrementage, mdecrementweight;
     SeekBar mseekbarforheight;
     RelativeLayout mmale, mfemale;

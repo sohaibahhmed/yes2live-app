@@ -24,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class question1 extends AppCompatActivity {
+    // gender age weight height ( behalf of id)
     private Button next;
     private EditText age, height, weight;
     private RadioGroup rgGender;

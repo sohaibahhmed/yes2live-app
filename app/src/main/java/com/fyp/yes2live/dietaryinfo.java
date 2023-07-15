@@ -3,6 +3,7 @@ package com.fyp.yes2live;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,7 +23,8 @@ import retrofit2.Response;
 
 public class dietaryinfo extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView nextbtn, user_bmi;
+    private TextView user_bmi;// for bmi result
+    private Button nextbtn;
     private EditText age, height, weight;
     private RadioGroup rgGender;
     private RadioButton rbMale, rbFemale;
@@ -52,7 +54,7 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         user_id = sharedPreferenceManager.getUser().getId();
         //getUserData
-        this.fetchUser();
+        this.fetchUser();//
         nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +63,7 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
             };
         });
     }
-
+//getbyid api
     public void fetchUser() {
         apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<UserBaseResponse> call = apiInterface.userProfile(user_id);
