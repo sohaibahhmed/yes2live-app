@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.076" />
 
     <RadioGroup
-        android:id="@+id/gender_Grp"
+        android:id="@+id/married_Grp"
         android:layout_width="411dp"
         android:layout_height="192dp"
         android:orientation="horizontal"
@@ -46,6 +46,7 @@
             app:layout_constraintTop_toBottomOf="parent" />
 
         <RadioButton
+            android:id="@+id/nobtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-84dp"

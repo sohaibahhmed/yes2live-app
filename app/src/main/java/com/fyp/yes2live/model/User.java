@@ -56,9 +56,25 @@ public class User {
     @SerializedName("t_carbs")
     private double t_carbs;
 
+    @SerializedName("married")
+    private boolean married;
 
-    public String getName() {
-        return name;
+    @SerializedName("pregnant")
+    private boolean pregnant;
+
+    @SerializedName("diabetesInFamily")
+    private boolean diabetesInFamily;
+
+    @SerializedName("otherDiseases")
+    private String otherDiseases;
+
+     @SerializedName("hba1cReading")
+    private double hba1cReading;
+
+
+ // constructors
+    public User(){//default constructor
+
     }
 
     public User(long id, String name, String email) {
@@ -104,7 +120,7 @@ public class User {
         this.targetWeight = targetWeight;
         this.peerWeekGoal = peerWeekGoal;
     }
-
+    //setter and getter
     public String getDob() {
         return dob;
     }
@@ -135,6 +151,10 @@ public class User {
 
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -275,5 +295,53 @@ public class User {
 
     public void setT_carbs(double t_carbs) {
         this.t_carbs = t_carbs;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public boolean isMarried() {
+        return married;
+    }
+
+    public void setMarried(boolean married) {
+        this.married = married;
+    }
+
+    public boolean isPregnant() {
+        return pregnant;
+    }
+
+    public void setPregnant(boolean pregnant) {
+        this.pregnant = pregnant;
+    }
+
+    public boolean isDiabetesInFamily() {
+        return diabetesInFamily;
+    }
+
+    public void setDiabetesInFamily(boolean diabetesInFamily) {
+        this.diabetesInFamily = diabetesInFamily;
+    }
+
+    public String getOtherDiseases() {
+        return otherDiseases;
+    }
+
+    public void setOtherDiseases(String otherDiseases) {
+        this.otherDiseases = otherDiseases;
+    }
+
+    public double getHba1cReading() {
+        return hba1cReading;
+    }
+
+    public void setHba1cReading(double hba1cReading) {
+        this.hba1cReading = hba1cReading;
     }
 }

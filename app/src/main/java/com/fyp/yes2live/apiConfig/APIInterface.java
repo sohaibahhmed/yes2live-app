@@ -205,6 +205,26 @@ public interface APIInterface {
             @Query("time_in_mins") int time_in_mins
 
     );
+    @PUT("user/married") //APIs endpoint
+    Call<UserBaseResponse> married(
+            @Body User user
+    );
+    @PUT("user/pregnant") //APIs endpoint
+    Call<UserBaseResponse> pregnant(
+            @Body User user
+    );
+    @PUT("user/diabetesInFamily") //APIs endpoint
+    Call<UserBaseResponse> diabetesInFamily(
+            @Body User user
+    );
+    @PUT("user/otherDiseases") //APIs endpoint
+    Call<UserBaseResponse> otherDiseases(
+            @Body User user
+    );
+    @PUT("user/hba1c") //APIs endpoint
+    Call<UserBaseResponse> hba1c(
+            @Body User user
+    );
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);
 //
