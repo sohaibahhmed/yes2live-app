@@ -60,7 +60,8 @@ public class bloodrelative extends AppCompatActivity {
                             UserBaseResponse diabeticResponse = response.body();
                             if (diabeticResponse.getStatus().equals("SUCCESS")) {
                                 Toast.makeText(bloodrelative.this, diabeticResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(bloodrelative.this, hypertension.class);
+                                Intent intent = new Intent(bloodrelative.this, AnyDisease.class);
+                                intent.putExtra("diabetic_family",isdiabetic);
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(bloodrelative.this, diabeticResponse.getMessage(), Toast.LENGTH_SHORT).show();

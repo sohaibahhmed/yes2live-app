@@ -17,6 +17,7 @@ import com.fyp.yes2live.SharedPreferenceManager;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.model.User;
+import com.fyp.yes2live.model.UserDto;
 import com.fyp.yes2live.question1;
 import com.fyp.yes2live.response.BaseResponse;
 
@@ -90,7 +91,7 @@ public class signup extends AppCompatActivity {
                      signup endpoint
                      **/
                     apiInterface = APIClient.getClient().create(APIInterface.class);
-                    User user = new User(user_name,emailInput,passwordInput);
+                    UserDto user = new UserDto(user_name,emailInput,passwordInput);
                     Call<BaseResponse> call = apiInterface.signUp(user);
                     call.enqueue(new Callback<BaseResponse>() {
                         @Override

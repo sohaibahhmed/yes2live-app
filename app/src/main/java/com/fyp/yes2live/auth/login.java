@@ -19,6 +19,7 @@ import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.homepage;
 import com.fyp.yes2live.model.User;
+import com.fyp.yes2live.model.UserDto;
 import com.fyp.yes2live.question1;
 import com.fyp.yes2live.response.BaseResponse;
 
@@ -84,7 +85,7 @@ public class login extends AppCompatActivity {
                     login endpoint
                     **/
                    apiInterface = APIClient.getClient().create(APIInterface.class);//calling get client method of API client class fpr getting api urls etc (object)
-                   User user = new User(emailInput,passwordInput);//initialize the user constructor see User class
+                   UserDto user = new UserDto(emailInput,passwordInput);//initialize the user constructor see User class
                    Call<BaseResponse> call = apiInterface.login(user);//calling login method of api interface
                    //call.enque is used to catch the response of api
                    call.enqueue(new Callback<BaseResponse>() {//call.enque have two default methods one is onResponse(that hold the api success and failure  response both) and on failure(hold the response if api is not working)

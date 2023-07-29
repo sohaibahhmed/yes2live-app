@@ -14,9 +14,9 @@ public class SearchItemResponse {
     @SerializedName("calories")
     @Expose
     private String calories;
-    @SerializedName("proteins")
+    @SerializedName("protein")
     @Expose
-    private String proteins;
+    private String protein;
     @SerializedName("fat")
     @Expose
     private String fat;
@@ -36,7 +36,7 @@ public class SearchItemResponse {
         this.id = log_food_items_id;
         this.itemName = items_name;
         this.calories = calories;
-        this.proteins = proteins;
+        this.protein = proteins;
         this.fat = fat;
         this.carbs = carbs;
         this.quantity = quantity;
@@ -71,12 +71,12 @@ public class SearchItemResponse {
         this.calories = calories;
     }
 
-    public String getProteins() {
-        return proteins;
+    public String getProtein() {
+        return protein;
     }
 
-    public void setProteins(String proteins) {
-        this.proteins = proteins;
+    public void setProtein(String protein) {
+        this.protein = protein;
     }
 
     public String getFat() {

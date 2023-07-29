@@ -62,6 +62,7 @@ public class married extends AppCompatActivity {
                         if (marriedResponse.getStatus().equals("SUCCESS")) {
                             Toast.makeText(married.this, marriedResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(married.this, pregnant.class);
+                            intent.putExtra("married",isMarried);
                             startActivity(intent);
                         }else{
                             Toast.makeText(married.this, marriedResponse.getMessage(), Toast.LENGTH_SHORT).show();

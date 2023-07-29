@@ -22,6 +22,7 @@ import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.response.DeleteFoodItem;
 import com.fyp.yes2live.response.GetLogListResponse;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -56,23 +57,23 @@ public class LogAdapter extends  RecyclerView.Adapter<LogAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.foodName.setText(getLunchListResponses.get(position).getItemName());
-        holder.calories.setText(getLunchListResponses.get(position).getCalories().toString());
+        holder.calories.setText(String.valueOf(getLunchListResponses.get(position).getCalories()));
         holder.servings.setText(getLunchListResponses.get(position).getServingType());
-        holder.quantity.setText(getLunchListResponses.get(position).getQuantity());
+        holder.quantity.setText(String.valueOf(getLunchListResponses.get(position).getQuantity()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 categoryType=1;
-                int intake_id=getLunchListResponses.get(position).getIntakeId();
+                long intake_id=getLunchListResponses.get(position).getIntakeId();
                 Log.d("Magic", "intake_id: " + intake_id);
                 Intent intent = new Intent(context.getApplicationContext(), FoodDescription.class);
                 intent.putExtra("foodName", getLunchListResponses.get(position).getItemName());
-                intent.putExtra("calories", getLunchListResponses.get(position).getCalories().toString());
+                intent.putExtra("calories", String.valueOf(getLunchListResponses.get(position).getCalories()));
                 intent.putExtra("quantity", getLunchListResponses.get(position).getQuantity());
-                intent.putExtra("proteins",getLunchListResponses.get(position).getProteins().toString());
-                intent.putExtra("fats",getLunchListResponses.get(position).getFat().toString());
-                intent.putExtra("carbs",getLunchListResponses.get(position).getCarbs().toString());
+                intent.putExtra("proteins",String.valueOf(getLunchListResponses.get(position).getProteins()));
+                intent.putExtra("fats",String.valueOf(getLunchListResponses.get(position).getFat()));
+                intent.putExtra("carbs",String.valueOf(getLunchListResponses.get(position).getCarbs()));
                 intent.putExtra("servings", getLunchListResponses.get(position).getServingType());
                 intent.putExtra("intakeId", getLunchListResponses.get(position).getIntakeId());
                 intent.putExtra("update",3);
@@ -84,7 +85,7 @@ public class LogAdapter extends  RecyclerView.Adapter<LogAdapter.MyViewHolder> {
 
         LocalDate date;
         date= LocalDate.now();
-        Integer intakeId=getLunchListResponses.get(position).intakeId;
+        long intakeId=getLunchListResponses.get(position).intakeId;
         sharedPreferenceManager = new SharedPreferenceManager(context.getApplicationContext());
         long userId=sharedPreferenceManager.getUser().getId();
 
@@ -97,7 +98,7 @@ public class LogAdapter extends  RecyclerView.Adapter<LogAdapter.MyViewHolder> {
                 Log.d("Magic", "Date: " + date);
 
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<DeleteFoodItem> call3 = apiInterface.deleteMe(userId, date, intakeId);
+                Call<DeleteFoodItem> call3 = apiInterface.deleteMeal(userId, Date.valueOf(String.valueOf(date)), intakeId);
                 call3.enqueue(new Callback<DeleteFoodItem>() {
                     @Override
                     public void onResponse(Call<DeleteFoodItem> call, Response<DeleteFoodItem> response) {

@@ -7,13 +7,13 @@ public class GetLogListResponse {
 
     @SerializedName("intakeId")
     @Expose
-    public int intakeId;
+    public long intakeId;
     @SerializedName("calories")
     @Expose
-    public Double calories;
+    public int calories;
     @SerializedName("quantity")
     @Expose
-    public String quantity;
+    public double quantity;
     @SerializedName("itemName")
     @Expose
     public String itemName;
@@ -22,15 +22,15 @@ public class GetLogListResponse {
     public String servingType;
     @SerializedName("proteins")
     @Expose
-    public Double proteins;
+    public int proteins;
     @SerializedName("carbs")
     @Expose
-    public Double carbs;
+    public int carbs;
     @SerializedName("fat")
     @Expose
-    public Double fat;
+    public int fat;
 
-    public GetLogListResponse(int intakeId, Double calories, String quantity, String itemName, String servingType, Double proteins, Double carbs, Double fat) {
+    public GetLogListResponse(int intakeId, int calories, double quantity, String itemName, String servingType, int proteins, int carbs, int fat) {
         this.intakeId = intakeId;
         this.calories = calories;
         this.quantity = quantity;
@@ -41,27 +41,27 @@ public class GetLogListResponse {
         this.fat = fat;
     }
 
-    public int getIntakeId() {
+    public long getIntakeId() {
         return intakeId;
     }
 
-    public void setIntakeId(int intakeId) {
+    public void setIntakeId(long intakeId) {
         this.intakeId = intakeId;
     }
 
-    public Double getCalories() {
+    public int getCalories() {
         return calories;
     }
 
-    public void setCalories(Double calories) {
+    public void setCalories(int calories) {
         this.calories = calories;
     }
 
-    public String getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
@@ -81,27 +81,27 @@ public class GetLogListResponse {
         this.servingType = servingType;
     }
 
-    public Double getProteins() {
+    public int getProteins() {
         return proteins;
     }
 
-    public void setProteins(Double proteins) {
+    public void setProteins(int proteins) {
         this.proteins = proteins;
     }
 
-    public Double getCarbs() {
+    public int getCarbs() {
         return carbs;
     }
 
-    public void setCarbs(Double carbs) {
+    public void setCarbs(int carbs) {
         this.carbs = carbs;
     }
 
-    public Double getFat() {
+    public int getFat() {
         return fat;
     }
 
-    public void setFat(Double fat) {
+    public void setFat(int fat) {
         this.fat = fat;
     }
 }

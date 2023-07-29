@@ -40,6 +40,7 @@ import com.fyp.yes2live.response.GetPerDayLogDataResponse;
 import com.fyp.yes2live.response.UserBaseResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
@@ -277,283 +278,274 @@ public class Track extends AppCompatActivity {
         }
 
 //        //getPerDayLogData
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<GetPerDayLogDataResponse> call = apiInterface.getPerDayLogData(user_id, String.valueOf(date));
-//        call.enqueue(new Callback<GetPerDayLogDataResponse>() {
-//
-//            @Override
-//            public void onResponse(Call<GetPerDayLogDataResponse> call, Response<GetPerDayLogDataResponse> response) {
-//
-//                GetPerDayLogDataResponse getPerDayLogDataResponse = response.body();
-//                intake_calories=getPerDayLogDataResponse.getPayload().totalEatenCalories;
-//                if (response.isSuccessful()) {
-//                    if (getPerDayLogDataResponse.getStatus().equals("SUCCESS")) {
-//
-//                        B_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_BCalories));
-//                        D_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_DCalories));
-//                        ES_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_ESCalories));
-//                        MS_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_MSCalories));
-//                        L_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_LCalories));
-//                        Exercise_burned.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalBurnedCalories));
-//                        Protein_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEatenProtein));
-//                        Carbs_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEatenCarbs));
-//                        Fats_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEatenFat));
-//                        calorie_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().getTotalEatenCalories()));
-//                        Log.d("magic", "per_day_calorie " + per_day_calorie.getText().toString());
-//                        Log.d("magic", "calorie_intake " + calorie_intake.getText().toString());
-//                        if (calories < intake_calories) {
-//                            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Track.this);
-//                            //Set body message of Dialog
-//                            builder.setMessage("You consumed more calories than you required. Having more calories than you need can cause you to lose focus on your weight loss Track.");
-//                            // Is dismiss when touching outside?
-//                            builder.setCancelable(true);
-//                            androidx.appcompat.app.AlertDialog dialog = builder.create();
-//                            dialog.closeOptionsMenu();
-//                            dialog.setTitle("Alert");
-//                            dialog.show();
-//                        } else {
-//                            Log.d("magic", "per_day_calorie 1 " + calories);
-//                            Log.d("magic", "calorie_intake 1 " + intake_calories);
-//                            // Toast.makeText(CalorieCounter.this, "not ", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//
-//                    }
-//
-//
-//                }
-//
-//
-//                else {
-//                    Log.d("Magic", "error8: " + getPerDayLogDataResponse.getMessage());
-//
-//                    //Toast.makeText(CalorieCounter.this, getPerDayLogDataResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<GetPerDayLogDataResponse> call, Throwable t) {
-//                Log.d("Magic", "error9: " + t.getMessage());
-//                //  Toast.makeText(CalorieCounter.this, "Check you Internet Connection", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<GetPerDayLogDataResponse> call = apiInterface.getPerDietSummary(user_id, Date.valueOf(date.toString()));
+        call.enqueue(new Callback<GetPerDayLogDataResponse>() {
+
+            @Override
+            public void onResponse(Call<GetPerDayLogDataResponse> call, Response<GetPerDayLogDataResponse> response) {
+
+                GetPerDayLogDataResponse getPerDayLogDataResponse = response.body();
+                intake_calories=getPerDayLogDataResponse.getPayload().totalEatenCalories;
+                if (response.isSuccessful()) {
+                    if (getPerDayLogDataResponse.getStatus().equals("SUCCESS")) {
+
+                        B_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_BCalories));
+                        D_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_DCalories));
+                        ES_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_ESCalories));
+                        MS_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_MSCalories));
+                        L_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEaten_LCalories));
+                        Exercise_burned.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalBurnedCalories));
+                        Protein_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEatenProtein));
+                        Carbs_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEatenCarbs));
+                        Fats_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().totalEatenFat));
+                        calorie_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().getTotalEatenCalories()));
+                        Log.d("magic", "per_day_calorie " + per_day_calorie.getText().toString());
+                        Log.d("magic", "calorie_intake " + calorie_intake.getText().toString());
+                        if (calories < intake_calories) {
+                            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Track.this);
+                            //Set body message of Dialog
+                            builder.setMessage("You consumed more calories than you required. Having more calories than you need can cause you to lose focus on your weight loss Track.");
+                            // Is dismiss when touching outside?
+                            builder.setCancelable(true);
+                            androidx.appcompat.app.AlertDialog dialog = builder.create();
+                            dialog.closeOptionsMenu();
+                            dialog.setTitle("Alert");
+                            dialog.show();
+                        } else {
+                            Log.d("magic", "per_day_calorie 1 " + calories);
+                            Log.d("magic", "calorie_intake 1 " + intake_calories);
+                            // Toast.makeText(CalorieCounter.this, "not ", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                else {
+                    Log.d("Magic", "error8: " + getPerDayLogDataResponse.getMessage());
+                    //Toast.makeText(CalorieCounter.this, getPerDayLogDataResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetPerDayLogDataResponse> call, Throwable t) {
+                Log.d("Magic", "error9: " + t.getMessage());
+                //  Toast.makeText(CalorieCounter.this, "Check you Internet Connection", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 //        //GetLunchListApi
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<List<GetLogListResponse>> call1 = apiInterface.getLunchList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
-//        call1.enqueue(new Callback<List<GetLogListResponse>>() {
-//            @Override
-//            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-//                if (response.isSuccessful()) {
-//                    List<GetLogListResponse> getLunchListResponses = response.body();
-//                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-//                    l_recyclerView.setAdapter(logAdapter);
-//                    logAdapter.notifyDataSetChanged();
-//                } else {
-//                    //  Toast.makeText(CalorieCounter.this, "Response is not successful", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
-//                Log.d("Magic", "error7: " + t.getMessage());
-//                //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        });
-//
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<List<GetLogListResponse>> call1 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"lunch");
+        call1.enqueue(new Callback<List<GetLogListResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                if (response.isSuccessful()) {
+                    List<GetLogListResponse> getLunchListResponses = response.body();
+                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                    l_recyclerView.setAdapter(logAdapter);
+                    logAdapter.notifyDataSetChanged();
+                } else {
+                    //  Toast.makeText(CalorieCounter.this, "Response is not successful", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                Log.d("Magic", "error7: " + t.getMessage());
+                //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
 //        //GetBreakfastListApi
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<List<GetLogListResponse>> call2 = apiInterface.getBreakfastList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
-//        call2.enqueue(new Callback<List<GetLogListResponse>>() {
-//
-//            @Override
-//            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-//                if (response.isSuccessful()) {
-//                    List<GetLogListResponse> getLunchListResponses = response.body();
-//                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-//                    recyclerView.setAdapter(logAdapter);
-//                    logAdapter.notifyDataSetChanged();
-//                } else {
-//                    //  Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
-//                Log.d("Magic", "error6: " + t.getMessage());
-//                // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        });
-//
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<List<GetLogListResponse>> call2 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"breakfast");
+        call2.enqueue(new Callback<List<GetLogListResponse>>() {
+
+            @Override
+            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                if (response.isSuccessful()) {
+                    List<GetLogListResponse> getLunchListResponses = response.body();
+                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                    recyclerView.setAdapter(logAdapter);
+                    logAdapter.notifyDataSetChanged();
+                } else {
+                    //  Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                Log.d("Magic", "error6: " + t.getMessage());
+                // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
 //        //GetMMorningSnacksListApi
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<List<GetLogListResponse>> call4 = apiInterface.getMorningSnacksList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
-//        call4.enqueue(new Callback<List<GetLogListResponse>>() {
-//            @Override
-//            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-//                if (response.isSuccessful()) {
-//                    List<GetLogListResponse> getLunchListResponses = response.body();
-//                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-//                    ms_recyclerView.setAdapter(logAdapter);
-//                    logAdapter.notifyDataSetChanged();
-//                } else {
-//                    //    Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
-//                Log.d("Magic", "error5: " + t.getMessage());
-//                // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        });
-//
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<List<GetLogListResponse>> call4 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"morning snacks");
+        call4.enqueue(new Callback<List<GetLogListResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                if (response.isSuccessful()) {
+                    List<GetLogListResponse> getLunchListResponses = response.body();
+                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                    ms_recyclerView.setAdapter(logAdapter);
+                    logAdapter.notifyDataSetChanged();
+                } else {
+                    //    Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                Log.d("Magic", "error5: " + t.getMessage());
+                // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
 //        //GetEveningListListApi
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<List<GetLogListResponse>> call5 = apiInterface.getEveningSnacksList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
-//        call5.enqueue(new Callback<List<GetLogListResponse>>() {
-//            @Override
-//            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-//                if (response.isSuccessful()) {
-//                    List<GetLogListResponse> getLunchListResponses = response.body();
-//                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-//                    es_recyclerView.setAdapter(logAdapter);
-//                    logAdapter.notifyDataSetChanged();
-//                } else {
-//                    // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
-//                Log.d("Magic", "error4: " + t.getMessage());
-//                //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        });
-//
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<List<GetLogListResponse>> call5 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"evening snacks");
+        call5.enqueue(new Callback<List<GetLogListResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                if (response.isSuccessful()) {
+                    List<GetLogListResponse> getLunchListResponses = response.body();
+                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                    es_recyclerView.setAdapter(logAdapter);
+                    logAdapter.notifyDataSetChanged();
+                } else {
+                    // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                Log.d("Magic", "error4: " + t.getMessage());
+                //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
 //        //GetDinnerListApi
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<List<GetLogListResponse>> call6 = apiInterface.getDinnerList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
-//        call6.enqueue(new Callback<List<GetLogListResponse>>() {
-//            @Override
-//            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-//                if (response.isSuccessful()) {
-//                    List<GetLogListResponse> getLunchListResponses = response.body();
-//                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-//                    dinner_recyclerView.setAdapter(logAdapter);
-//                    logAdapter.notifyDataSetChanged();
-//                } else {
-//                    // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
-//                Log.d("Magic", "error3: " + t.getMessage());
-//                //   Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        });
-//
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<List<GetLogListResponse>> call6 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"dinner");
+        call6.enqueue(new Callback<List<GetLogListResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                if (response.isSuccessful()) {
+                    List<GetLogListResponse> getLunchListResponses = response.body();
+                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                    dinner_recyclerView.setAdapter(logAdapter);
+                    logAdapter.notifyDataSetChanged();
+                } else {
+                    // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                Log.d("Magic", "error3: " + t.getMessage());
+                //   Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
 //        //GetExerciseListApi
-//        apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<List<GetExerciseListResponse>> call7 = apiInterface.getExerciseList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
-//        call7.enqueue(new Callback<List<GetExerciseListResponse>>() {
-//
-//            @Override
-//            public void onResponse(Call<List<GetExerciseListResponse>> call, Response<List<GetExerciseListResponse>> response) {
-//                if (response.isSuccessful()) {
-//                    List<GetExerciseListResponse> getExerciseListResponses = response.body();
-//                    ExerciseLogAdapter exerciseLogAdapter = new ExerciseLogAdapter(getExerciseListResponses, Track.this);
-//                    exercise_recyclerView.setAdapter(exerciseLogAdapter);
-//                    exerciseLogAdapter.notifyDataSetChanged();
-//                } else {
-//                    //  Toast.makeText(CalorieCounter.this, "Exercise Error", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<GetExerciseListResponse>> call, Throwable t) {
-//                Toast.makeText(Track.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                Log.d("Magic", "error2: " + t.getMessage());
-//
-//            }
-//        });
-//
-//
-//        int int_id=getIntent().getIntExtra("int_id",1);
-//
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(Calendar.HOUR_OF_DAY, 19);
-//        calendar.set(Calendar.MINUTE, 15);
-//        calendar.set(Calendar.SECOND, 00);
-//
-//        Calendar b_calendar = Calendar.getInstance();
-//        b_calendar.set(Calendar.HOUR_OF_DAY, 23);
-//        b_calendar.set(Calendar.MINUTE, 00);
-//        b_calendar.set(Calendar.SECOND, 00);
-//
-//        Calendar l_calendar = Calendar.getInstance();
-//        l_calendar.set(Calendar.HOUR_OF_DAY, 1);
-//        l_calendar.set(Calendar.MINUTE, 30);
-//        l_calendar.set(Calendar.SECOND, 30);
-//
-//        Calendar e_calendar = Calendar.getInstance();
-//        e_calendar.set(Calendar.HOUR_OF_DAY, 7);
-//        e_calendar.set(Calendar.MINUTE, 30);
-//        e_calendar.set(Calendar.SECOND, 00);
-//
-//        Calendar d_calendar = Calendar.getInstance();
-//        d_calendar.set(Calendar.HOUR_OF_DAY, 9);
-//        d_calendar.set(Calendar.MINUTE, 30);
-//        d_calendar.set(Calendar.SECOND, 00);
-//
-//        Calendar ms_calendar = Calendar.getInstance();
-//        ms_calendar.set(Calendar.HOUR_OF_DAY, 11);
-//        ms_calendar.set(Calendar.MINUTE, 30);
-//        ms_calendar.set(Calendar.SECOND, 00);
-//
-//        Calendar es_calendar = Calendar.getInstance();
-//        es_calendar.set(Calendar.HOUR_OF_DAY, 5);
-//        es_calendar.set(Calendar.MINUTE, 00);
-//        es_calendar.set(Calendar.SECOND, 00);
-//
-//        if (Calendar.getInstance().after(calendar)) {
-//            calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        if (Calendar.getInstance().after(b_calendar)) {
-//            b_calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        if (Calendar.getInstance().after(e_calendar)) {
-//            e_calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        if(Calendar.getInstance().after(l_calendar)){
-//            l_calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        if(Calendar.getInstance().after(d_calendar)){
-//            d_calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        if(Calendar.getInstance().after(ms_calendar)){
-//            ms_calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        if(Calendar.getInstance().after(es_calendar)){
-//            es_calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//
-//        Intent intent = new Intent(Track.this, DailyBroadcast.class);
-//        Intent intent1 = new Intent(Track.this, BreakfastBroadcast.class);
-//        Intent intent2 = new Intent(Track.this, LunchBroadcast.class);
-//        Intent intent3 = new Intent(Track.this, ExerciseBroadcast.class);
-//        Intent intent4 = new Intent(Track.this, DinnerBroadcast.class);
-//        Intent intent5 = new Intent(Track.this, MorningSnackBroadcast.class);
-//        Intent intent6 = new Intent(Track.this, EveningSnackBroadcast.class);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<List<GetExerciseListResponse>> call7 = apiInterface.getExerciseList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
+        call7.enqueue(new Callback<List<GetExerciseListResponse>>() {
+
+            @Override
+            public void onResponse(Call<List<GetExerciseListResponse>> call, Response<List<GetExerciseListResponse>> response) {
+                if (response.isSuccessful()) {
+                    List<GetExerciseListResponse> getExerciseListResponses = response.body();
+                    ExerciseLogAdapter exerciseLogAdapter = new ExerciseLogAdapter(getExerciseListResponses, Track.this);
+                    exercise_recyclerView.setAdapter(exerciseLogAdapter);
+                    exerciseLogAdapter.notifyDataSetChanged();
+                } else {
+                    //  Toast.makeText(CalorieCounter.this, "Exercise Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetExerciseListResponse>> call, Throwable t) {
+                Toast.makeText(Track.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("Magic", "error2: " + t.getMessage());
+
+            }
+        });
+
+
+        int int_id=getIntent().getIntExtra("int_id",1);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 15);
+        calendar.set(Calendar.SECOND, 00);
+
+        Calendar b_calendar = Calendar.getInstance();
+        b_calendar.set(Calendar.HOUR_OF_DAY, 23);
+        b_calendar.set(Calendar.MINUTE, 00);
+        b_calendar.set(Calendar.SECOND, 00);
+
+        Calendar l_calendar = Calendar.getInstance();
+        l_calendar.set(Calendar.HOUR_OF_DAY, 1);
+        l_calendar.set(Calendar.MINUTE, 30);
+        l_calendar.set(Calendar.SECOND, 30);
+
+        Calendar e_calendar = Calendar.getInstance();
+        e_calendar.set(Calendar.HOUR_OF_DAY, 7);
+        e_calendar.set(Calendar.MINUTE, 30);
+        e_calendar.set(Calendar.SECOND, 00);
+
+        Calendar d_calendar = Calendar.getInstance();
+        d_calendar.set(Calendar.HOUR_OF_DAY, 9);
+        d_calendar.set(Calendar.MINUTE, 30);
+        d_calendar.set(Calendar.SECOND, 00);
+
+        Calendar ms_calendar = Calendar.getInstance();
+        ms_calendar.set(Calendar.HOUR_OF_DAY, 11);
+        ms_calendar.set(Calendar.MINUTE, 30);
+        ms_calendar.set(Calendar.SECOND, 00);
+
+        Calendar es_calendar = Calendar.getInstance();
+        es_calendar.set(Calendar.HOUR_OF_DAY, 5);
+        es_calendar.set(Calendar.MINUTE, 00);
+        es_calendar.set(Calendar.SECOND, 00);
+
+        if (Calendar.getInstance().after(calendar)) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        if (Calendar.getInstance().after(b_calendar)) {
+            b_calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        if (Calendar.getInstance().after(e_calendar)) {
+            e_calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(Calendar.getInstance().after(l_calendar)){
+            l_calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(Calendar.getInstance().after(d_calendar)){
+            d_calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(Calendar.getInstance().after(ms_calendar)){
+            ms_calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(Calendar.getInstance().after(es_calendar)){
+            es_calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        Intent intent = new Intent(Track.this, DailyBroadcast.class);
+        Intent intent1 = new Intent(Track.this, BreakfastBroadcast.class);
+        Intent intent2 = new Intent(Track.this, LunchBroadcast.class);
+        Intent intent3 = new Intent(Track.this, ExerciseBroadcast.class);
+        Intent intent4 = new Intent(Track.this, DinnerBroadcast.class);
+        Intent intent5 = new Intent(Track.this, MorningSnackBroadcast.class);
+        Intent intent6 = new Intent(Track.this, EveningSnackBroadcast.class);
         bottomNavClick();
     }
 
@@ -620,7 +612,7 @@ public class Track extends AppCompatActivity {
 
                 //getPerDayLogData
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<GetPerDayLogDataResponse> call2 = apiInterface.getPerDayLogData(user_id, (date));
+                Call<GetPerDayLogDataResponse> call2 = apiInterface.getPerDietSummary(user_id, Date.valueOf(date));
                 call2.enqueue(new Callback<GetPerDayLogDataResponse>() {
                     @Override
                     public void onResponse(Call<GetPerDayLogDataResponse> call, Response<GetPerDayLogDataResponse> response) {
@@ -654,7 +646,7 @@ public class Track extends AppCompatActivity {
 
                 //GetLunchListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call3 = apiInterface.getLunchList(sharedPreferenceManager.getUser().getId(), date);
+                Call<List<GetLogListResponse>> call3 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"lunch");
                 call3.enqueue(new Callback<List<GetLogListResponse>>() {
                     @Override
                     public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
@@ -677,7 +669,7 @@ public class Track extends AppCompatActivity {
 
                 //GetBreakfastListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call4 = apiInterface.getBreakfastList(sharedPreferenceManager.getUser().getId(), date);
+                Call<List<GetLogListResponse>> call4 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"breakfast");
                 call4.enqueue(new Callback<List<GetLogListResponse>>() {
                     @Override
                     public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
@@ -700,7 +692,7 @@ public class Track extends AppCompatActivity {
 
                 //GetMMorningSnacksListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call5 = apiInterface.getMorningSnacksList(sharedPreferenceManager.getUser().getId(), date);
+                Call<List<GetLogListResponse>> call5 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"morning snacks");
                 call5.enqueue(new Callback<List<GetLogListResponse>>() {
                     @Override
                     public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
@@ -723,7 +715,7 @@ public class Track extends AppCompatActivity {
 
                 //GetEveningListListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call6 = apiInterface.getEveningSnacksList(sharedPreferenceManager.getUser().getId(), date);
+                Call<List<GetLogListResponse>> call6 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"evening snacks");
                 call6.enqueue(new Callback<List<GetLogListResponse>>() {
                     @Override
                     public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
@@ -746,7 +738,7 @@ public class Track extends AppCompatActivity {
 
                 //GetDinnerListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call7 = apiInterface.getDinnerList(sharedPreferenceManager.getUser().getId(), date);
+                Call<List<GetLogListResponse>> call7 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"dinner");
                 call7.enqueue(new Callback<List<GetLogListResponse>>() {
                     @Override
                     public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {

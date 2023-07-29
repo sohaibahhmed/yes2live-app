@@ -9,20 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.response.AddFoodResponse;
-import com.fyp.yes2live.response.BaseResponse;
 import com.fyp.yes2live.response.SearchItemResponse;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -75,7 +73,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
                 intent.putExtra("quantity", searchItemResponses.get(position).getQuantity());
                 intent.putExtra("servings", searchItemResponses.get(position).getServing_type());
                 intent.putExtra("carbs", searchItemResponses.get(position).getCarbs());
-                intent.putExtra("proteins", searchItemResponses.get(position).getProteins());
+                intent.putExtra("proteins", searchItemResponses.get(position).getProtein());
                 intent.putExtra("fats", searchItemResponses.get(position).getFat());
                 intent.putExtra("intake",2);
                 intent.putExtra("user_log_id", searchItemResponses.get(position).getLog_food_items_id());
@@ -127,13 +125,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
                 long userId=sharedPreferenceManager.getUser().getId();
                 Double c= Double.valueOf(searchItemResponses.get(position).getCalories());
                 Double cs= Double.valueOf(searchItemResponses.get(position).getCarbs());
-                Double p= Double.valueOf(searchItemResponses.get(position).getProteins());
+               // Double p= Double.valueOf(searchItemResponses.get(position).getProteins());
                 Double f= Double.valueOf(searchItemResponses.get(position).getFat());
-                Double q= Double.valueOf(searchItemResponses.get(position).getQuantity());
+                Double quan= Double.valueOf(searchItemResponses.get(position).getQuantity());
 
                 //Api->saveMe(Food)
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<AddFoodResponse> call = apiInterface.saveMe(userId, date, food_log_id, type, c, cs, p, f, q);
+                Call<AddFoodResponse> call = apiInterface.saveMeal(userId, Date.valueOf(date), food_log_id, type, quan);
                 call.enqueue(new Callback<AddFoodResponse>() {
                     @Override
                     public void onResponse(Call<AddFoodResponse> call, Response<AddFoodResponse> response) {

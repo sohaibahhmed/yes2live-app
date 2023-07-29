@@ -1,24 +1,31 @@
 package com.fyp.yes2live.apiConfig;
 
+import com.fyp.yes2live.model.DiabeticPatient;
 import com.fyp.yes2live.model.User;
+import com.fyp.yes2live.model.UserDto;
 import com.fyp.yes2live.response.AddFoodResponse;
 import com.fyp.yes2live.response.BaseResponse;
 import com.fyp.yes2live.response.DeleteExerciseItem;
 import com.fyp.yes2live.response.DeleteFoodItem;
 import com.fyp.yes2live.response.ExerciseBaseResponse;
+import com.fyp.yes2live.response.FastingSugarTestResponse;
 import com.fyp.yes2live.response.GetBurnedCaloriesResponse;
 import com.fyp.yes2live.response.GetExerciseListResponse;
 import com.fyp.yes2live.response.GetExerciseLogResponse;
+import com.fyp.yes2live.response.GetHealthDetails;
 import com.fyp.yes2live.response.GetLogDataResponse;
 import com.fyp.yes2live.response.GetLogListResponse;
 import com.fyp.yes2live.response.GetPerDayLogDataResponse;
+import com.fyp.yes2live.response.RandomSugarTestResponse;
 import com.fyp.yes2live.response.SearchExerciseResponse;
 import com.fyp.yes2live.response.SearchItemBaseResponse;
 import com.fyp.yes2live.response.SearchItemResponse;
 import com.fyp.yes2live.response.UpdateExerciseResponse;
 import com.fyp.yes2live.response.UpdateFoodIntakeResponse;
+import com.fyp.yes2live.response.UserAssessmentResponse;
 import com.fyp.yes2live.response.UserBaseResponse;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -38,11 +45,11 @@ public interface APIInterface {
     // in this class we define the endpoints of all our api's
     @POST("user/login")
     Call<BaseResponse> login(// login method
-            @Body User user
+            @Body UserDto user
     );
     @POST("user/signUp") //APIs endpoint
     Call<BaseResponse> signUp(
-            @Body User user
+            @Body UserDto user
     );
 
     @POST("user/update") //APIs endpoint
@@ -91,45 +98,19 @@ public interface APIInterface {
             @Query("date") String date
     );
 
-    @GET("getLunchList")
-    Call<List<GetLogListResponse>> getLunchList(
+    @GET("foodIntake/getItemList")
+    Call<List<GetLogListResponse>> getItemList(
             @Query("user_id") long user_id,
-            @Query("datee") String datee
+            @Query("datee") Date datee,
+            @Query("type") String type
     );
 
     //DeleteFoodItem...
-    @DELETE("deleteMe")
-    Call<DeleteFoodItem> deleteMe(
+    @DELETE("foodIntake/deleteMeal")
+    Call<DeleteFoodItem> deleteMeal(
             @Query("user_id") long user_id,
-            @Query("date") LocalDate date,
-            @Query("intakeId") int intakeId
-    );
-
-    @GET("getBreakfastList")
-    Call<List<GetLogListResponse>> getBreakfastList(
-            @Query("user_id") long user_id,
-            @Query("datee") String datee
-    );
-
-    //GetMorningSnacksList
-    @GET("getMorningSnacksList")
-    Call<List<GetLogListResponse>> getMorningSnacksList(
-            @Query("user_id") long user_id,
-            @Query("datee") String datee
-    );
-
-    //GetEveningSnacksList
-    @GET("getEveningSnacksList")
-    Call<List<GetLogListResponse>> getEveningSnacksList(
-            @Query("user_id") long user_id,
-            @Query("datee") String datee
-    );
-
-    //GetDinnerList
-    @GET("getDinnerList")
-    Call<List<GetLogListResponse>> getDinnerList(
-            @Query("user_id") long user_id,
-            @Query("datee") String datee
+            @Query("date") Date date,
+            @Query("foodIntakeId") long intakeId
     );
 
     //getExerciseList
@@ -155,16 +136,12 @@ public interface APIInterface {
 
     //Save Food Items
     @FormUrlEncoded
-    @POST("saveMe")
-    Call<AddFoodResponse> saveMe(
+    @POST("foodIntake/saveMeal")
+    Call<AddFoodResponse> saveMeal(
             @Field("user_id") long user_id,
-            @Field("date") String date,
-            @Field("log_food_items_id") int log_food_items_id,
+            @Field("date") Date date,
+            @Field("foodMealId") long foodMealId,
             @Field("type") String type,
-            @Field("calories") double calories,
-            @Field("carbs") double carbs,
-            @Field("proteins") double proteins,
-            @Field("fat") double fat,
             @Field("quantity") double quantity
     );
 
@@ -173,7 +150,7 @@ public interface APIInterface {
     Call<UpdateFoodIntakeResponse> updateFoodIntake(
             @Query ("user_id") long user_id,
             @Query("date") String date,
-            @Query("fdIntk_id") int fdIntk_id,
+            @Query("fdIntk_id") long fdIntk_id,
             @Query("quantity") double quantity
 
     );
@@ -224,6 +201,42 @@ public interface APIInterface {
     @PUT("user/hba1c") //APIs endpoint
     Call<UserBaseResponse> hba1c(
             @Body User user
+    );
+
+
+    @POST("user_assessment")
+    Call<UserAssessmentResponse> user_assessment(
+            @Body DiabeticPatient diabeticPatient
+    );
+
+    @GET("getHealthDetails")
+    Call<GetHealthDetails> getHealthDetails(
+            @Query("user_id") long user_id,
+            @Query("hba1c_date") String hba1c_date
+
+    );
+
+    @FormUrlEncoded
+    @POST("fasting_sugar_test_report")
+    Call<FastingSugarTestResponse> fasting_sugar_test_report(
+            @Field("user_id") long user_id,
+            @Field("diabetic_patient_id") int diabetic_patient_id,
+            @Field("fasting_sugar_date") LocalDate fasting_sugar_date,
+            @Field("fasting_sugar_ranges") int fasting_sugar_ranges
+    );
+
+    @FormUrlEncoded
+    @POST("random_sugar_test_report")
+    Call<RandomSugarTestResponse> random_sugar_test_report(
+            @Field("user_id") long user_id,
+            @Field("diabetic_patient_id") int diabetic_patient_id,
+            @Field("random_sugar_date") LocalDate random_sugar_date,
+            @Field("random_sugar_ranges") int random_sugar_ranges
+    );
+    @GET("foodIntake/getPerDayDietSummary")
+    Call<GetPerDayLogDataResponse> getPerDietSummary(
+            @Query("user_id") long user_id,
+            @Query("date") Date date
     );
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);

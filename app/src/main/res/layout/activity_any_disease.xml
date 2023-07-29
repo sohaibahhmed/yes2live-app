@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".hypertension">
+    tools:context=".AnyDisease">
 
     <TextView
         android:id="@+id/hyper"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hyper" />
 
     <CheckBox
-        android:id="@+id/cardio"
+        android:id="@+id/cardiovascular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hypertension" />
 
     <CheckBox
-        android:id="@+id/none"
+        android:id="@+id/noDisease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -71,6 +71,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:text="Next"
         android:textSize="24dp"
+        android:onClick="clickNext"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -61,6 +61,7 @@ public class pregnant extends AppCompatActivity {
                         if (pregnantResponse.getStatus().equals("SUCCESS")) {
                             Toast.makeText(pregnant.this, pregnantResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(pregnant.this, bloodrelative.class);
+                            intent.putExtra("pragnant",isPregnant);
                             startActivity(intent);
                         }else{
                             Toast.makeText(pregnant.this, pregnantResponse.getMessage(), Toast.LENGTH_SHORT).show();

@@ -36,7 +36,7 @@
             android:name=".Hba1c"
             android:exported="false" />
         <activity
-            android:name=".hypertension"
+            android:name=".AnyDisease"
             android:exported="false" />
         <activity
             android:name=".bloodrelative"
@@ -95,6 +95,9 @@
             android:exported="false" />
         <activity
             android:name=".ActivityLevel"
+            android:exported="false" />
+        <activity
+            android:name=".FoodDescription"
             android:exported="false" />
 
         <activity

@@ -7,6 +7,11 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/Dietplan"
+        android:title="Diet plan"
+        android:icon="@drawable/eating" />
+
+    <item
         android:id="@+id/navigation_person"
         android:icon="@drawable/ic_person"
         android:title="@string/title_profile" />

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RandomTest">
+
+    <ImageButton
+        android:id="@+id/PreviousButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/roboto_regular"
+            android:letterSpacing=".05"
+            android:paddingStart="25dp"
+            android:text="ADD RBS REPORT"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/datetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:letterSpacing=".05"
+            android:paddingStart="25dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/rangeRandomReport"
+            android:layout_width="230dp"
+            android:layout_height="45dp"
+            android:inputType="number"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="60dp"
+            android:textAlignment="center"
+            android:background="@drawable/rounded_edittext"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="RBS (e.g 110 mg/dl)"
+            android:letterSpacing=".02"
+            android:textColorHint="#FDBDBCBC"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/addRandomReport"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/buttoncorners"
+            android:backgroundTint="@color/dark_grey"
+            android:hint="Add"
+            android:fontFamily="@font/roboto_regular"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
+            android:letterSpacing=".02"/>
+
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/dark_grey"
+            android:background="@drawable/buttoncorners"
+            android:hint="Cancel"
+            android:textColorHint="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="18sp"
+            android:letterSpacing=".02"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

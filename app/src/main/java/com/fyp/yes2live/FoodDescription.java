@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.sql.Date;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,12 +42,11 @@ public class FoodDescription extends AppCompatActivity {
     TextView fats;
     TextView calories;
     EditText quantity;
-    NumberPicker numberPicker;
     Button AddFood;
     SharedPreferenceManager sharedPreferenceManager;
     String type;
     private Bundle extras;
-    Double c,f,cs,q,p;
+    Double c,f,cs,quant,p;
     private int id;
     String date;
     String dateHistory;
@@ -56,7 +56,7 @@ public class FoodDescription extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_description);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         AddFood=findViewById(R.id.NextButton);
         servings = findViewById(R.id.servings);
@@ -96,7 +96,7 @@ public class FoodDescription extends AppCompatActivity {
         {
             c= valueOf(cal);
             p= valueOf(protein);
-            q= valueOf(quan.toString());
+            quant= valueOf(quan.toString());
             f= valueOf(fat);
             cs= valueOf(carb);
         }
@@ -122,7 +122,7 @@ public class FoodDescription extends AppCompatActivity {
                 int food_log_id = getIntent().getIntExtra("user_log_id", 1);
 
                 String getcalorie = getIntent().getStringExtra("calories");
-                Integer intake_id = getIntent().getIntExtra("intakeId", 1);
+                long intake_id = getIntent().getIntExtra("intakeId", 1);
 
                 //Check which type is selected by user
                 if (Track.Type == 1) {
@@ -146,7 +146,7 @@ public class FoodDescription extends AppCompatActivity {
                 intent1.putExtra("protein", p);
                 intent1.putExtra("serving", serve);
                 intent1.putExtra("foodname", name);
-                intent1.putExtra("quantity", q);
+                intent1.putExtra("quantity", quant);
                 intent1.putExtra("date", date);
                 intent1.putExtra("type", type);
 
@@ -158,7 +158,7 @@ public class FoodDescription extends AppCompatActivity {
                 Log.d("Magic", "Proteins: " + p);
                 Log.d("Magic", "Carbs: " + cs);
                 Log.d("Magic", "Calories: " + c);
-                Log.d("Magic", "Quantity: " + q);
+                Log.d("Magic", "Quantity: " + quant);
                 Log.d("Magic", "log_food_item_id: " + food_log_id);
                 Log.d("Magic", "FoodName: " + name);
                 Log.d("Magic", "Type: " + type);
@@ -180,7 +180,7 @@ public class FoodDescription extends AppCompatActivity {
 
                     //Api->saveMe(Food)
                     apiInterface = APIClient.getClient().create(APIInterface.class);
-                    Call<AddFoodResponse> call = apiInterface.saveMe(userId, date, food_log_id, type, c, cs, p, f, q);;
+                    Call<AddFoodResponse> call = apiInterface.saveMeal(userId, Date.valueOf(date), food_log_id, type,quant);;
                     call.enqueue(new Callback<AddFoodResponse>() {
                         @Override
                         public void onResponse(Call<AddFoodResponse> call, Response<AddFoodResponse> response) {
@@ -218,7 +218,7 @@ public class FoodDescription extends AppCompatActivity {
                     foodname.setText(name);
                     //Api->saveMe(Food)
                     apiInterface = APIClient.getClient().create(APIInterface.class);
-                    Call<UpdateFoodIntakeResponse> call = apiInterface.updateFoodIntake(userId, date, intake_id, q);
+                    Call<UpdateFoodIntakeResponse> call = apiInterface.updateFoodIntake(userId, date, intake_id, quant);
                     call.enqueue(new Callback<UpdateFoodIntakeResponse>() {
                         @Override
                         public void onResponse(Call<UpdateFoodIntakeResponse> call, Response<UpdateFoodIntakeResponse> response) {
@@ -295,7 +295,7 @@ public class FoodDescription extends AppCompatActivity {
                     f=d8;
                     cs=d9;
                     p=d7;
-                    q=d1;
+                    quant=d1;
                 }
             }
 

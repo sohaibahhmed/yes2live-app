@@ -37,8 +37,8 @@ public class User {
     @SerializedName("peerWeekGoal")
     private double peerWeekGoal;
     private double weightLossCalories;
-    @SerializedName("B_calories")
-    private double B_calories;
+    @SerializedName("b_calories")
+    private double b_calories;
     @SerializedName("ms_calories")
     private double ms_calories;
     @SerializedName("l_calories")
@@ -234,11 +234,11 @@ public class User {
     }
 
     public double getB_calories() {
-        return B_calories;
+        return b_calories;
     }
 
     public void setB_calories(double b_calories) {
-        B_calories = b_calories;
+        this.b_calories = b_calories;
     }
 
     public double getMs_calories() {

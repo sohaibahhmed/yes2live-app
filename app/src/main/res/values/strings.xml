@@ -66,4 +66,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string-array name="choice_preference">
+        <item>Gym</item>
+        <item>Yoga</item>
+    </string-array>
 </resources>
