@@ -32,11 +32,13 @@ import com.fyp.yes2live.Notifications.LunchBroadcast;
 import com.fyp.yes2live.Notifications.MorningSnackBroadcast;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
+import com.fyp.yes2live.auth.login;
 import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.response.GetExerciseListResponse;
 import com.fyp.yes2live.response.GetLogDataResponse;
 import com.fyp.yes2live.response.GetLogListResponse;
 import com.fyp.yes2live.response.GetPerDayLogDataResponse;
+import com.fyp.yes2live.response.LogListBaseResponse;
 import com.fyp.yes2live.response.UserBaseResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -89,11 +91,12 @@ public class Track extends AppCompatActivity {
         dinner_cal = findViewById(R.id.d_cal);
         morning_snack_cal = findViewById(R.id.ms_cal);
 
-        final Handler handler= new Handler();
+//        final Handler handler= new Handler();
 //        handler.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
 //                if(intake_calories < calories){
+//                    progressBar=findViewById(R.id.circularProgressIndicator);
 //                    progressBar.setProgress(intake_calories);
 //                    handler.postDelayed(this,200);
 //                }
@@ -176,13 +179,13 @@ public class Track extends AppCompatActivity {
         EveningSnacksNotification();
 
 //        //Previous Button
-//        previousButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i=new Intent(Track.this,homepage.class);
-//                startActivity(i);
-//            }
-//        });
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(Track.this,homepage.class);
+                startActivity(i);
+            }
+        });
 
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         long user_id = sharedPreferenceManager.getUser().getId();
@@ -302,10 +305,10 @@ public class Track extends AppCompatActivity {
                         calorie_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().getTotalEatenCalories()));
                         Log.d("magic", "per_day_calorie " + per_day_calorie.getText().toString());
                         Log.d("magic", "calorie_intake " + calorie_intake.getText().toString());
-                        if (calories < intake_calories) {
+                        if (getPerDayLogDataResponse.getStatus().equals("WARNING")) {
                             androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Track.this);
                             //Set body message of Dialog
-                            builder.setMessage("You consumed more calories than you required. Having more calories than you need can cause you to lose focus on your weight loss Track.");
+                            builder.setMessage(getPerDayLogDataResponse.getMessage());
                             // Is dismiss when touching outside?
                             builder.setCancelable(true);
                             androidx.appcompat.app.AlertDialog dialog = builder.create();
@@ -335,22 +338,26 @@ public class Track extends AppCompatActivity {
 
 //        //GetLunchListApi
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<List<GetLogListResponse>> call1 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"lunch");
-        call1.enqueue(new Callback<List<GetLogListResponse>>() {
+        Call<LogListBaseResponse> call1 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"lunch");
+        call1.enqueue(new Callback<LogListBaseResponse>() {
             @Override
-            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+            public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                LogListBaseResponse itemList = response.body();
                 if (response.isSuccessful()) {
-                    List<GetLogListResponse> getLunchListResponses = response.body();
-                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                    l_recyclerView.setAdapter(logAdapter);
-                    logAdapter.notifyDataSetChanged();
-                } else {
+                    if (itemList.getStatus().equals("SUCCESS")) {
+                        List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                        LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                        l_recyclerView.setAdapter(logAdapter);
+                        logAdapter.notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                     //  Toast.makeText(CalorieCounter.this, "Response is not successful", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+            public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                 Log.d("Magic", "error7: " + t.getMessage());
                 //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -359,23 +366,28 @@ public class Track extends AppCompatActivity {
 
 //        //GetBreakfastListApi
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<List<GetLogListResponse>> call2 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"breakfast");
-        call2.enqueue(new Callback<List<GetLogListResponse>>() {
+        Call<LogListBaseResponse> call2 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"breakfast");
+        call2.enqueue(new Callback<LogListBaseResponse>() {
 
             @Override
-            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+            public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                LogListBaseResponse itemList = response.body();
                 if (response.isSuccessful()) {
-                    List<GetLogListResponse> getLunchListResponses = response.body();
-                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                    recyclerView.setAdapter(logAdapter);
-                    logAdapter.notifyDataSetChanged();
+                    if (itemList.getStatus().equals("SUCCESS")) {
+                        List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                        LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                        recyclerView.setAdapter(logAdapter);
+                        logAdapter.notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     //  Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+            public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                 Log.d("Magic", "error6: " + t.getMessage());
                 // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -384,22 +396,27 @@ public class Track extends AppCompatActivity {
 
 //        //GetMMorningSnacksListApi
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<List<GetLogListResponse>> call4 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"morning snacks");
-        call4.enqueue(new Callback<List<GetLogListResponse>>() {
+        Call<LogListBaseResponse> call4 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"morning snacks");
+        call4.enqueue(new Callback<LogListBaseResponse>() {
             @Override
-            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-                if (response.isSuccessful()) {
-                    List<GetLogListResponse> getLunchListResponses = response.body();
-                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                    ms_recyclerView.setAdapter(logAdapter);
-                    logAdapter.notifyDataSetChanged();
+            public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                    LogListBaseResponse itemList = response.body();
+                    if (response.isSuccessful()) {
+                        if (itemList.getStatus().equals("SUCCESS")) {
+                        List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                        LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                        ms_recyclerView.setAdapter(logAdapter);
+                        logAdapter.notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     //    Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+            public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                 Log.d("Magic", "error5: " + t.getMessage());
                 // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -408,22 +425,27 @@ public class Track extends AppCompatActivity {
 
 //        //GetEveningListListApi
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<List<GetLogListResponse>> call5 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"evening snacks");
-        call5.enqueue(new Callback<List<GetLogListResponse>>() {
+        Call<LogListBaseResponse> call5 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"evening snacks");
+        call5.enqueue(new Callback<LogListBaseResponse>() {
             @Override
-            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+            public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                LogListBaseResponse itemList = response.body();
                 if (response.isSuccessful()) {
-                    List<GetLogListResponse> getLunchListResponses = response.body();
-                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                    es_recyclerView.setAdapter(logAdapter);
-                    logAdapter.notifyDataSetChanged();
+                    if (itemList.getStatus().equals("SUCCESS")) {
+                        List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                        LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                        es_recyclerView.setAdapter(logAdapter);
+                        logAdapter.notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+            public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                 Log.d("Magic", "error4: " + t.getMessage());
                 //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -432,22 +454,27 @@ public class Track extends AppCompatActivity {
 
 //        //GetDinnerListApi
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<List<GetLogListResponse>> call6 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"dinner");
-        call6.enqueue(new Callback<List<GetLogListResponse>>() {
+        Call<LogListBaseResponse> call6 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date.toString()),"dinner");
+        call6.enqueue(new Callback<LogListBaseResponse>() {
             @Override
-            public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-                if (response.isSuccessful()) {
-                    List<GetLogListResponse> getLunchListResponses = response.body();
-                    LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                    dinner_recyclerView.setAdapter(logAdapter);
-                    logAdapter.notifyDataSetChanged();
+            public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                    LogListBaseResponse itemList = response.body();
+                    if (response.isSuccessful()) {
+                        if (itemList.getStatus().equals("SUCCESS")) {
+                        List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                        LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                        dinner_recyclerView.setAdapter(logAdapter);
+                        logAdapter.notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+            public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                 Log.d("Magic", "error3: " + t.getMessage());
                 //   Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -577,24 +604,24 @@ public class Track extends AppCompatActivity {
                 long user_id=sharedPreferenceManager.getUser().getId();
 
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<GetLogDataResponse> call = apiInterface.getLogData(user_id);
-                call.enqueue(new Callback<GetLogDataResponse>() {
+                Call<UserBaseResponse> call = apiInterface.userProfile(user_id);
+                call.enqueue(new Callback<UserBaseResponse>() {
                     @Override
-                    public void onResponse(Call<GetLogDataResponse> call, Response<GetLogDataResponse> response) {
+                    public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
 
-                        GetLogDataResponse getLogDataResponse = response.body();
+                        UserBaseResponse getLogDataResponse = response.body();
                         if (response.isSuccessful()) {
                             if (getLogDataResponse.getStatus().equals("SUCCESS")) {
-                                per_day_carb.setText(String.valueOf(getLogDataResponse.getPayload().t_carbs));
-                                per_day_calorie.setText(String.valueOf(getLogDataResponse.getPayload().weightloss_calories));
-                                per_day_carb.setText(String.valueOf(getLogDataResponse.getPayload().t_carbs));
-                                lunch_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_lCalories));
-                                dinner_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_dCalories));
-                                bf_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_bCalories));
-                                morning_snack_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_msCalories));
-                                evening_snack_cal.setText(String.valueOf(getLogDataResponse.getPayload().t_esCalories));
-                                per_day_protein.setText(String.valueOf(getLogDataResponse.getPayload().t_proteins));
-                                per_day_fat.setText(String.valueOf(getLogDataResponse.getPayload().t_fat));
+                                User user = getLogDataResponse.getPayload();
+                                per_day_carb.setText(String.valueOf((int) user.getT_carbs()));
+                                per_day_calorie.setText(String.valueOf((int) user.getWeightLossCalories()));
+                                lunch_cal.setText(String.valueOf((int) user.getL_calories()));
+                                dinner_cal.setText(String.valueOf((int) user.getD_calories()));
+                                bf_cal.setText(String.valueOf((int) user.getB_calories()));
+                                morning_snack_cal.setText(String.valueOf((int) user.getMs_calories()));
+                                evening_snack_cal.setText(String.valueOf((int) user.getEs_calories()));
+                                per_day_protein.setText(String.valueOf((int) user.getT_proteins()));
+                                per_day_fat.setText(String.valueOf((int) user.getT_fat()));
 
                             } else {
                                 // Toast.makeText(CalorieCounter.this, getLogDataResponse.getMessage(), Toast.LENGTH_SHORT).show();
@@ -605,7 +632,7 @@ public class Track extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<GetLogDataResponse> call, Throwable t) {
+                    public void onFailure(Call<UserBaseResponse> call, Throwable t) {
                         //  Toast.makeText(CalorieCounter.this, "Check you Internet Connection", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -646,22 +673,27 @@ public class Track extends AppCompatActivity {
 
                 //GetLunchListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call3 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"lunch");
-                call3.enqueue(new Callback<List<GetLogListResponse>>() {
+                Call<LogListBaseResponse> call3 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"lunch");
+                call3.enqueue(new Callback<LogListBaseResponse>() {
                     @Override
-                    public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                    public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                        LogListBaseResponse itemList = response.body();
                         if (response.isSuccessful()) {
-                            List<GetLogListResponse> getLunchListResponses = response.body();
-                            LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                            l_recyclerView.setAdapter(logAdapter);
-                            logAdapter.notifyDataSetChanged();
+                            if (itemList.getStatus().equals("SUCCESS")) {
+                                List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                                LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                                l_recyclerView.setAdapter(logAdapter);
+                                logAdapter.notifyDataSetChanged();
+                            }else{
+                                Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             //  Toast.makeText(CalorieCounter.this, "Response is not successful", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                    public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                         //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -669,22 +701,27 @@ public class Track extends AppCompatActivity {
 
                 //GetBreakfastListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call4 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"breakfast");
-                call4.enqueue(new Callback<List<GetLogListResponse>>() {
+                Call<LogListBaseResponse> call4 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"breakfast");
+                call4.enqueue(new Callback<LogListBaseResponse>() {
                     @Override
-                    public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-                        if (response.isSuccessful()) {
-                            List<GetLogListResponse> getLunchListResponses = response.body();
-                            LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                            recyclerView.setAdapter(logAdapter);
-                            logAdapter.notifyDataSetChanged();
+                    public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                            LogListBaseResponse itemList = response.body();
+                            if (response.isSuccessful()) {
+                                if (itemList.getStatus().equals("SUCCESS")) {
+                                List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                                LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                                recyclerView.setAdapter(logAdapter);
+                                logAdapter.notifyDataSetChanged();
+                            }else{
+                                Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             //  Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                    public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                         //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -692,22 +729,27 @@ public class Track extends AppCompatActivity {
 
                 //GetMMorningSnacksListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call5 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"morning snacks");
-                call5.enqueue(new Callback<List<GetLogListResponse>>() {
+                Call<LogListBaseResponse> call5 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"morning snacks");
+                call5.enqueue(new Callback<LogListBaseResponse>() {
                     @Override
-                    public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                    public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                        LogListBaseResponse itemList = response.body();
                         if (response.isSuccessful()) {
-                            List<GetLogListResponse> getLunchListResponses = response.body();
-                            LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                            ms_recyclerView.setAdapter(logAdapter);
-                            logAdapter.notifyDataSetChanged();
+                            if (itemList.getStatus().equals("SUCCESS")) {
+                                List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                                LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                                ms_recyclerView.setAdapter(logAdapter);
+                                logAdapter.notifyDataSetChanged();
+                            }else{
+                                Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             //    Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                    public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                         //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -715,22 +757,27 @@ public class Track extends AppCompatActivity {
 
                 //GetEveningListListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call6 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"evening snacks");
-                call6.enqueue(new Callback<List<GetLogListResponse>>() {
+                Call<LogListBaseResponse> call6 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"evening snacks");
+                call6.enqueue(new Callback<LogListBaseResponse>() {
                     @Override
-                    public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
-                        if (response.isSuccessful()) {
-                            List<GetLogListResponse> getLunchListResponses = response.body();
-                            LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                            es_recyclerView.setAdapter(logAdapter);
-                            logAdapter.notifyDataSetChanged();
+                    public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                            LogListBaseResponse itemList = response.body();
+                            if (response.isSuccessful()) {
+                                if (itemList.getStatus().equals("SUCCESS")) {
+                                List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                                LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                                es_recyclerView.setAdapter(logAdapter);
+                                logAdapter.notifyDataSetChanged();
+                            }else{
+                                Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                    public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                         // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -738,22 +785,27 @@ public class Track extends AppCompatActivity {
 
                 //GetDinnerListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetLogListResponse>> call7 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"dinner");
-                call7.enqueue(new Callback<List<GetLogListResponse>>() {
+                Call<LogListBaseResponse> call7 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"dinner");
+                call7.enqueue(new Callback<LogListBaseResponse>() {
                     @Override
-                    public void onResponse(Call<List<GetLogListResponse>> call, Response<List<GetLogListResponse>> response) {
+                    public void onResponse(Call<LogListBaseResponse> call, Response<LogListBaseResponse> response) {
+                        LogListBaseResponse itemList = response.body();
                         if (response.isSuccessful()) {
-                            List<GetLogListResponse> getLunchListResponses = response.body();
-                            LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
-                            dinner_recyclerView.setAdapter(logAdapter);
-                            logAdapter.notifyDataSetChanged();
+                            if (itemList.getStatus().equals("SUCCESS")) {
+                                List<GetLogListResponse> getLunchListResponses = itemList.getPayload();
+                                LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
+                                dinner_recyclerView.setAdapter(logAdapter);
+                                logAdapter.notifyDataSetChanged();
+                            }else{
+                                Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<GetLogListResponse>> call, Throwable t) {
+                    public void onFailure(Call<LogListBaseResponse> call, Throwable t) {
                         //  Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -931,8 +983,8 @@ public class Track extends AppCompatActivity {
 
     public void populateCaloriesInffo(long user_id) {
         apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<UserBaseResponse> call = apiInterface.userProfile(user_id);
-        call.enqueue(new Callback<UserBaseResponse>() {
+        Call<UserBaseResponse> userProfile = apiInterface.userProfile(user_id);
+        userProfile.enqueue(new Callback<UserBaseResponse>() {
             @Override
             public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
 
@@ -959,5 +1011,10 @@ public class Track extends AppCompatActivity {
                 Toast.makeText(Track.this,  t.toString()+" Not Found in Databses ", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void openDatePicker(View view) {
+
+        datePickerDialog.show();
     }
 }

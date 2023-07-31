@@ -398,7 +398,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/BreakfastCard"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="16dp"
@@ -502,10 +502,10 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/addBreakfast"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="40dp"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="113dp"
-                            android:insetTop="10dp"
+                            android:layout_marginStart="120dp"
+                            android:insetTop="20dp"
                             android:insetBottom="0dp"
                             android:minHeight="20dp"
                             android:textAllCaps="false"
@@ -538,7 +538,7 @@
                 <!-- Morning Snacks -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/MorningSnackCard"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="16dp"
@@ -642,10 +642,10 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/addMorningSnacks"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="40dp"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="110dp"
-                            android:insetTop="10dp"
+                            android:layout_marginStart="70dp"
+                            android:insetTop="20dp"
                             android:insetBottom="0dp"
                             android:minHeight="20dp"
                             android:textAllCaps="false"
@@ -656,8 +656,7 @@
                             app:iconTint="@color/dark_grey"
                             app:layout_constraintStart_toEndOf="@+id/morningSnack"
                             app:layout_constraintTop_toBottomOf="@+id/morningSnack"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0"/>
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -677,7 +676,7 @@
                 <!-- Lunch Snacks -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/LunchCard"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="16dp"
@@ -780,10 +779,10 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/addLunch"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="40dp"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="141dp"
-                            android:insetTop="7dp"
+                            android:layout_marginStart="150dp"
+                            android:insetTop="20dp"
                             android:insetBottom="0dp"
                             android:minHeight="20dp"
                             android:textAllCaps="false"
@@ -815,7 +814,7 @@
                 <!-- Evening Snacks -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/EvningSnacksCard"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="16dp"
@@ -917,10 +916,10 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/addEveningSnacks"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="40dp"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="110dp"
-                            android:insetTop="5dp"
+                            android:layout_marginStart="80dp"
+                            android:insetTop="20dp"
                             android:insetBottom="0dp"
                             android:minHeight="20dp"
                             android:textAllCaps="false"
@@ -951,7 +950,7 @@
                 <!-- Dinner -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/DinnerCard"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="16dp"
@@ -1054,10 +1053,10 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/addDinner"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="40dp"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="140dp"
-                            android:insetTop="7dp"
+                            android:layout_marginStart="146dp"
+                            android:insetTop="20dp"
                             android:insetBottom="0dp"
                             android:minHeight="20dp"
                             android:textAllCaps="false"
@@ -1087,7 +1086,7 @@
                 <!-- Exercise -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/ExerciseCard"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="16dp"
@@ -1143,10 +1142,10 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/addExercise"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="wrap_content"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="163dp"
-                            android:insetTop="8dp"
+                            android:layout_marginStart="133dp"
+                            android:insetTop="20dp"
                             android:insetBottom="0dp"
                             android:minHeight="20dp"
                             android:textAllCaps="false"

@@ -122,7 +122,7 @@ public class FoodDescription extends AppCompatActivity {
                 int food_log_id = getIntent().getIntExtra("user_log_id", 1);
 
                 String getcalorie = getIntent().getStringExtra("calories");
-                long intake_id = getIntent().getIntExtra("intakeId", 1);
+                long intake_id = getIntent().getLongExtra("intakeId", 1);
 
                 //Check which type is selected by user
                 if (Track.Type == 1) {
@@ -231,10 +231,8 @@ public class FoodDescription extends AppCompatActivity {
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
-                                } else if (updateFoodIntakeResponse.getStatus().equals("Fail!")) {
-                                    Toast.makeText(FoodDescription.this, updateFoodIntakeResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 } else {
-                                   // Toast.makeText(FoodDescription.this, updateFoodIntakeResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FoodDescription.this, updateFoodIntakeResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                               //  Toast.makeText(FoodDescription.this, updateFoodIntakeResponse.getStatus().toString(), Toast.LENGTH_SHORT).show();

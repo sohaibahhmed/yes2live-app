@@ -70,7 +70,7 @@ public class LogAdapter extends  RecyclerView.Adapter<LogAdapter.MyViewHolder> {
                 Intent intent = new Intent(context.getApplicationContext(), FoodDescription.class);
                 intent.putExtra("foodName", getLunchListResponses.get(position).getItemName());
                 intent.putExtra("calories", String.valueOf(getLunchListResponses.get(position).getCalories()));
-                intent.putExtra("quantity", getLunchListResponses.get(position).getQuantity());
+                intent.putExtra("quantity", String.valueOf(getLunchListResponses.get(position).getQuantity()));
                 intent.putExtra("proteins",String.valueOf(getLunchListResponses.get(position).getProteins()));
                 intent.putExtra("fats",String.valueOf(getLunchListResponses.get(position).getFat()));
                 intent.putExtra("carbs",String.valueOf(getLunchListResponses.get(position).getCarbs()));
