@@ -16,6 +16,7 @@ import com.fyp.yes2live.response.GetHealthDetails;
 import com.fyp.yes2live.response.GetLogDataResponse;
 import com.fyp.yes2live.response.GetLogListResponse;
 import com.fyp.yes2live.response.GetPerDayLogDataResponse;
+import com.fyp.yes2live.response.LogListBaseResponse;
 import com.fyp.yes2live.response.RandomSugarTestResponse;
 import com.fyp.yes2live.response.SearchExerciseResponse;
 import com.fyp.yes2live.response.SearchItemBaseResponse;
@@ -99,7 +100,7 @@ public interface APIInterface {
     );
 
     @GET("foodIntake/getItemList")
-    Call<List<GetLogListResponse>> getItemList(
+    Call<LogListBaseResponse> getItemList(
             @Query("user_id") long user_id,
             @Query("datee") Date datee,
             @Query("type") String type
@@ -146,7 +147,7 @@ public interface APIInterface {
     );
 
     //UpdateFoodIntake
-    @PUT("updateFoodIntake")
+    @PUT("foodIntake/updateFoodIntake")
     Call<UpdateFoodIntakeResponse> updateFoodIntake(
             @Query ("user_id") long user_id,
             @Query("date") String date,

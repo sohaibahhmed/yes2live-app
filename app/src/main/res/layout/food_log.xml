@@ -6,7 +6,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/foodCard"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="85dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_rounded">
@@ -86,9 +86,9 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/deleteFood"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="305dp"
+            android:layout_marginStart="275dp"
             android:layout_marginTop="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
