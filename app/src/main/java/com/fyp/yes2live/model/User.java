@@ -2,6 +2,8 @@ package com.fyp.yes2live.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Date;
+
 public class User {
     @SerializedName("name")
     public String name;
@@ -70,6 +72,12 @@ public class User {
 
      @SerializedName("hba1cReading")
     private double hba1cReading;
+
+    @SerializedName("startGoalDate")
+    private String startGoalDate;
+
+    @SerializedName("admin")
+    private boolean admin;
 
 
  // constructors
@@ -343,5 +351,21 @@ public class User {
 
     public void setHba1cReading(double hba1cReading) {
         this.hba1cReading = hba1cReading;
+    }
+
+    public String getStartGoalDate() {
+        return startGoalDate;
+    }
+
+    public void setStartGoalDate(String startGoalDate) {
+        this.startGoalDate = startGoalDate;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,12 +35,14 @@ import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.auth.login;
 import com.fyp.yes2live.model.User;
+import com.fyp.yes2live.response.ExerciseDoneBaseResponse;
 import com.fyp.yes2live.response.GetExerciseListResponse;
 import com.fyp.yes2live.response.GetLogDataResponse;
 import com.fyp.yes2live.response.GetLogListResponse;
 import com.fyp.yes2live.response.GetPerDayLogDataResponse;
 import com.fyp.yes2live.response.LogListBaseResponse;
 import com.fyp.yes2live.response.UserBaseResponse;
+import com.fyp.yes2live.ui.navbar.PersonalDetail;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.sql.Date;
@@ -90,6 +93,8 @@ public class Track extends AppCompatActivity {
         lunch_cal = findViewById(R.id.l_cal);
         dinner_cal = findViewById(R.id.d_cal);
         morning_snack_cal = findViewById(R.id.ms_cal);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setFocusableInTouchMode(true);
 
 //        final Handler handler= new Handler();
 //        handler.postDelayed(new Runnable() {
@@ -315,11 +320,19 @@ public class Track extends AppCompatActivity {
                             dialog.closeOptionsMenu();
                             dialog.setTitle("Alert");
                             dialog.show();
-                        } else {
-                            Log.d("magic", "per_day_calorie 1 " + calories);
-                            Log.d("magic", "calorie_intake 1 " + intake_calories);
-                            // Toast.makeText(CalorieCounter.this, "not ", Toast.LENGTH_SHORT).show();
                         }
+//                        else {
+//                            B_intake.setText(String.valueOf(0));
+//                            D_intake.setText(String.valueOf(0));
+//                            ES_intake.setText(String.valueOf(0));
+//                            MS_intake.setText(String.valueOf(0));
+//                            L_intake.setText(String.valueOf(0));
+//                            Exercise_burned.setText(String.valueOf(0));
+//                            Protein_intake.setText(String.valueOf(0));
+//                            Carbs_intake.setText(String.valueOf(0));
+//                            Fats_intake.setText(String.valueOf(0));
+//                            calorie_intake.setText(String.valueOf(0));
+//                        }
                     }
                 }
                 else {
@@ -465,9 +478,9 @@ public class Track extends AppCompatActivity {
                         LogAdapter logAdapter = new LogAdapter(getLunchListResponses, Track.this);
                         dinner_recyclerView.setAdapter(logAdapter);
                         logAdapter.notifyDataSetChanged();
-                    }else{
-                        Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                        }else{
+                            Toast.makeText(Track.this, itemList.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                 } else {
                     // Toast.makeText(CalorieCounter.this, "Sorry", Toast.LENGTH_SHORT).show();
                 }
@@ -483,23 +496,27 @@ public class Track extends AppCompatActivity {
 
 //        //GetExerciseListApi
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<List<GetExerciseListResponse>> call7 = apiInterface.getExerciseList(sharedPreferenceManager.getUser().getId(), String.valueOf(date));
-        call7.enqueue(new Callback<List<GetExerciseListResponse>>() {
-
+        Call<ExerciseDoneBaseResponse> call7 = apiInterface.getExerciseList(sharedPreferenceManager.getUser().getId(), Date.valueOf(String.valueOf(date)));
+        call7.enqueue(new Callback<ExerciseDoneBaseResponse>() {
             @Override
-            public void onResponse(Call<List<GetExerciseListResponse>> call, Response<List<GetExerciseListResponse>> response) {
+            public void onResponse(Call<ExerciseDoneBaseResponse> call, Response<ExerciseDoneBaseResponse> response) {
+                ExerciseDoneBaseResponse exerciseDoneBaseResponse = response.body();
                 if (response.isSuccessful()) {
-                    List<GetExerciseListResponse> getExerciseListResponses = response.body();
-                    ExerciseLogAdapter exerciseLogAdapter = new ExerciseLogAdapter(getExerciseListResponses, Track.this);
-                    exercise_recyclerView.setAdapter(exerciseLogAdapter);
-                    exerciseLogAdapter.notifyDataSetChanged();
+                    if (exerciseDoneBaseResponse.getStatus().equals("SUCCESS")) {
+                        List<GetExerciseListResponse> getExerciseListResponses = response.body().getPayload();
+                        ExerciseLogAdapter exerciseLogAdapter = new ExerciseLogAdapter(getExerciseListResponses, Track.this);
+                        exercise_recyclerView.setAdapter(exerciseLogAdapter);
+                        exerciseLogAdapter.notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(Track.this, exerciseDoneBaseResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     //  Toast.makeText(CalorieCounter.this, "Exercise Error", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<GetExerciseListResponse>> call, Throwable t) {
+            public void onFailure(Call<ExerciseDoneBaseResponse> call, Throwable t) {
                 Toast.makeText(Track.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d("Magic", "error2: " + t.getMessage());
 
@@ -659,7 +676,16 @@ public class Track extends AppCompatActivity {
                                 calorie_intake.setText(String.valueOf(getPerDayLogDataResponse.getPayload().getTotalEatenCalories()));
 
                             } else {
-                                //  Toast.makeText(CalorieCounter.this, getPerDayLogDataResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                B_intake.setText(String.valueOf(0));
+                                D_intake.setText(String.valueOf(0));
+                                ES_intake.setText(String.valueOf(0));
+                                MS_intake.setText(String.valueOf(0));
+                                L_intake.setText(String.valueOf(0));
+                                Exercise_burned.setText(String.valueOf(0));
+                                Protein_intake.setText(String.valueOf(0));
+                                Carbs_intake.setText(String.valueOf(0));
+                                Fats_intake.setText(String.valueOf(0));
+                                calorie_intake.setText(String.valueOf(0));
                             }
                         } else {
 //                    Toast.makeText(CalorieCounter.this, getPerDayLogDataResponse.getMessage(), Toast.LENGTH_SHORT).show();
@@ -814,12 +840,13 @@ public class Track extends AppCompatActivity {
 
                 //GetExerciseListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<List<GetExerciseListResponse>> call8 = apiInterface.getExerciseList(sharedPreferenceManager.getUser().getId(), date);
-                call8.enqueue(new Callback<List<GetExerciseListResponse>>() {
+                Call<ExerciseDoneBaseResponse> call8 = apiInterface.getExerciseList(sharedPreferenceManager.getUser().getId(), Date.valueOf(String.valueOf(date)));
+                call8.enqueue(new Callback<ExerciseDoneBaseResponse>() {
                     @Override
-                    public void onResponse(Call<List<GetExerciseListResponse>> call, Response<List<GetExerciseListResponse>> response) {
+                    public void onResponse(Call<ExerciseDoneBaseResponse> call, Response<ExerciseDoneBaseResponse> response) {
                         if (response.isSuccessful()) {
-                            Log.d("Magic", "openHomePage: " + user_id);                            List<GetExerciseListResponse> getExerciseListResponses = response.body();
+                            Log.d("Magic", "openHomePage: " + user_id);
+                            List<GetExerciseListResponse> getExerciseListResponses = response.body().getPayload();
                             ExerciseLogAdapter exerciseLogAdapter = new ExerciseLogAdapter(getExerciseListResponses, Track.this);
                             exercise_recyclerView.setAdapter(exerciseLogAdapter);
                             exerciseLogAdapter.notifyDataSetChanged();
@@ -829,8 +856,8 @@ public class Track extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<List<GetExerciseListResponse>> call, Throwable t) {
-                        // Toast.makeText(CalorieCounter.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call<ExerciseDoneBaseResponse> call, Throwable t) {
+                        Toast.makeText(Track.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -958,22 +985,14 @@ public class Track extends AppCompatActivity {
     }
 
     private void bottomNavClick() {
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnItemSelectedListener(item -> {
-
-
-            Fragment selectedFragment = null;
             switch (item.getItemId()) {
-                case R.id.navGoal:
-                    Intent intent = new Intent(Track.this, Goal.class);
-                    startActivity(intent);
-                    break;
-                case R.id.navProfile:
-                    Intent intent2 = new Intent(Track.this, Profile.class);
+                case R.id.navHome:
+                    Intent intent2 = new Intent(Track.this, homepage.class);
                     startActivity(intent2);
                     break;
-                case R.id.navTrack:
-                    Intent intent3 = new Intent(Track.this, Track.class);
+                case R.id.navProfile:
+                    Intent intent3 = new Intent(Track.this, PersonalDetail.class);
                     startActivity(intent3);
                     break;
             }

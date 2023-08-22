@@ -28,17 +28,13 @@ public class Goal extends AppCompatActivity {
 
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
-                case R.id.navGoal:
-                    Intent intent = new Intent(Goal.this, Goal.class);
+                case R.id.navTrack:
+                    Intent intent = new Intent(Goal.this, Track.class);
                     startActivity(intent);
                     break;
-                case R.id.navProfile:
-                    Intent intent2 = new Intent(Goal.this, Profile.class);
+                case R.id.navHome:
+                    Intent intent2 = new Intent(Goal.this, homepage.class);
                     startActivity(intent2);
-                    break;
-                case R.id.navTrack:
-                    Intent intent3 = new Intent(Goal.this, Track.class);
-                    startActivity(intent3);
                     break;
             }
             return true;

@@ -40,7 +40,7 @@ public class FastingReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fasting_report);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         range=findViewById(R.id.rangefastingReport);
         add=findViewById(R.id.addFastReport);
         date=findViewById(R.id.datetext);

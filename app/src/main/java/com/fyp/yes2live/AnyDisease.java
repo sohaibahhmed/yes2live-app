@@ -23,7 +23,6 @@ public class AnyDisease extends AppCompatActivity {
 //    declaration of variables
     CheckBox hypertension, cardiovascular, none;
     AlertDialog hyperdialog;
-//    ImageButton previousBtn;
     AlertDialog cardiodialog;
     Boolean BP, Cholestrol,Others,None = false;
     EditText systolic,diastolic;
@@ -35,12 +34,6 @@ public class AnyDisease extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_any_disease);
-        //getSupportActionBar().hide();
-
-        Log.d("Magic", "BP: " + BP);
-        Log.d("Magic", "Cholestrol: " + Cholestrol);
-        Log.d("Magic", "Others: " + Others);
-        Log.d("Magic", "None: " + None);
 
 //        previousBtn= findViewById(R.id.PreviousButton);
         hypertension = findViewById(R.id.hypertension);
@@ -296,7 +289,6 @@ public class AnyDisease extends AppCompatActivity {
                 hypertension.setChecked(false);
                 none.setEnabled(true);
                 BP=false;
-                Log.d("Magic", "BP: " + BP);
             }
         });
 

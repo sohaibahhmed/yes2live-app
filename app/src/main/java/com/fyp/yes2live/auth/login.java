@@ -13,12 +13,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fyp.yes2live.ActivityLevel;
+import com.fyp.yes2live.Admin.Daashboard;
+import com.fyp.yes2live.Admin.MealFood.FoodList;
 import com.fyp.yes2live.R;
 import com.fyp.yes2live.SharedPreferenceManager;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.homepage;
-import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.model.UserDto;
 import com.fyp.yes2live.question1;
 import com.fyp.yes2live.response.BaseResponse;
@@ -93,10 +94,17 @@ public class login extends AppCompatActivity {
                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                            BaseResponse loginResponse = response.body();
                            if (loginResponse.getStatus().equals("SUCCESS")) {
-                               sharedPreferenceManager.saveUser(loginResponse.getPayload());
-                               Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                               Intent intent1 = new Intent(login.this, homepage.class);
-                               startActivity(intent1);
+                               if(loginResponse.getPayload().isAdmin()){
+                                   Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                   Intent intent1 = new Intent(login.this, Daashboard.class);
+                                   startActivity(intent1);
+                               }else{
+                                   sharedPreferenceManager.saveUser(loginResponse.getPayload());
+                                   Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                   Intent intent1 = new Intent(login.this, homepage.class);
+                                   startActivity(intent1);
+                               }
+
                            }else{
                                Toast.makeText(login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                            }

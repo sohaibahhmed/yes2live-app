@@ -2,6 +2,7 @@ package com.fyp.yes2live;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fyp.yes2live.apiConfig.APIClient;
@@ -55,8 +57,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
 
         String name = searchItemResponses.get(position).getItems_name();
         holder.foodName.setText(searchItemResponses.get(position).getItems_name());
-        holder.calories.setText(searchItemResponses.get(position).getCalories());
-        holder.quantity.setText(searchItemResponses.get(position).getQuantity());
+        holder.calories.setText(String.valueOf(searchItemResponses.get(position).getCalories()));
+        holder.quantity.setText(String.valueOf(searchItemResponses.get(position).getQuantity()));
         holder.servings.setText(searchItemResponses.get(position).getServing_type());
         //holder.carbs.setText( searchItemResponses.get(position).getCarbs());
 
@@ -121,7 +123,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
                     date= (dateHistory);
                 }
 
-                Integer food_log_id = searchItemResponses.get(position).getLog_food_items_id();
+                long food_log_id = searchItemResponses.get(position).getLog_food_items_id();
                 long userId=sharedPreferenceManager.getUser().getId();
                 Double c= Double.valueOf(searchItemResponses.get(position).getCalories());
                 Double cs= Double.valueOf(searchItemResponses.get(position).getCarbs());
@@ -145,7 +147,22 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
                                 context.getApplicationContext().startActivity(intent);
                             } else if (addFoodResponse.getStatus().equals("Fail!")) {
                                 Toast.makeText(context.getApplicationContext(), addFoodResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            } else {
+                            } else if (addFoodResponse.getStatus().equals("WARNING")) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                //Set body message of Dialog
+                                builder.setMessage(addFoodResponse.getMessage())
+                                .setCancelable(false)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                                AlertDialog dialog = builder.create();
+                                //dialog.closeOptionsMenu();
+                                dialog.setTitle("ERROR");
+                                dialog.show();
+                            }
+                            else {
                                 Toast.makeText(context.getApplicationContext(), addFoodResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }

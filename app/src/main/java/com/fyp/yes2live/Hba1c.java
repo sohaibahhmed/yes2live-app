@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -63,8 +64,10 @@ public class Hba1c extends AppCompatActivity {
         pregnant = getIntent().getBooleanExtra("pregnant", false);
         no_diseases = getIntent().getBooleanExtra("no_diseases", false);
 
-        date_n = LocalDate.now();
-        date.setText(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            date_n = LocalDate.now();
+            date.setText(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        }
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +82,10 @@ public class Hba1c extends AppCompatActivity {
                         Toast.makeText(Hba1c.this, "Your Sugar level is too high. You should consult your doctor", Toast.LENGTH_SHORT).show();
                     } else {
                         String pattern = "yyyy-MM-dd"; // Example: "2023-07-25"
-                        String dateString = date_n.format(DateTimeFormatter.ofPattern(pattern));
+                        String dateString = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            dateString = date_n.format(DateTimeFormatter.ofPattern(pattern));
+                        }
                         apiInterface = APIClient.getClient().create(APIInterface.class);
                         DiabeticPatient diabeticPatient = new DiabeticPatient(user_id, blood_pressure, cholesterol, diabetic_family, dateString, hba1cDouble, systolic_ranges, diastolic_ranges, cholesterol_ranges, married, other_diseases, pregnant, no_diseases);
                         Call<UserAssessmentResponse> call = apiInterface.user_assessment(diabeticPatient);

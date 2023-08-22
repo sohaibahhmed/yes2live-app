@@ -30,7 +30,7 @@
             android:inputType="number"
             android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/roboto_regular"
-            android:hint="Systolic"
+            android:hint="Systolic(>90)"
             android:letterSpacing=".02"
             android:textColorHint="#FDBDBCBC"
             android:textSize="18sp" />

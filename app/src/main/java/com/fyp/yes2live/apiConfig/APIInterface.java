@@ -8,13 +8,16 @@ import com.fyp.yes2live.response.BaseResponse;
 import com.fyp.yes2live.response.DeleteExerciseItem;
 import com.fyp.yes2live.response.DeleteFoodItem;
 import com.fyp.yes2live.response.ExerciseBaseResponse;
+import com.fyp.yes2live.response.ExerciseDoneBaseResponse;
+import com.fyp.yes2live.response.ExerciseItemResponse;
 import com.fyp.yes2live.response.FastingSugarTestResponse;
+import com.fyp.yes2live.response.FoodItemResponse;
+import com.fyp.yes2live.response.GeneralResponse;
 import com.fyp.yes2live.response.GetBurnedCaloriesResponse;
 import com.fyp.yes2live.response.GetExerciseListResponse;
 import com.fyp.yes2live.response.GetExerciseLogResponse;
 import com.fyp.yes2live.response.GetHealthDetails;
 import com.fyp.yes2live.response.GetLogDataResponse;
-import com.fyp.yes2live.response.GetLogListResponse;
 import com.fyp.yes2live.response.GetPerDayLogDataResponse;
 import com.fyp.yes2live.response.LogListBaseResponse;
 import com.fyp.yes2live.response.RandomSugarTestResponse;
@@ -25,10 +28,10 @@ import com.fyp.yes2live.response.UpdateExerciseResponse;
 import com.fyp.yes2live.response.UpdateFoodIntakeResponse;
 import com.fyp.yes2live.response.UserAssessmentResponse;
 import com.fyp.yes2live.response.UserBaseResponse;
+import com.fyp.yes2live.response.UserListBaseResponse;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -78,10 +81,10 @@ public interface APIInterface {
             @Body User user
     );
 
-//    @GET("getList")
-//    Call<List<SearchItemResponse>> getList(
-//            @Query("key") String keyword
-//    );
+    @GET("mealfood/getByItemName")
+    Call<SearchItemBaseResponse> getItemName(
+            @Query("itemName") String keyword
+    );
 
     @GET("mealfood/getList")//used in on track page (when click on add sign )
     Call<SearchItemBaseResponse> getList1(
@@ -115,18 +118,18 @@ public interface APIInterface {
     );
 
     //getExerciseList
-    @GET("getExerciseList")
-    Call<List<GetExerciseListResponse>> getExerciseList(
+    @GET("exerciseTracking/getExerciseList")
+    Call<ExerciseDoneBaseResponse> getExerciseList(
             @Query("user_id") long user_id,
-            @Query("date") String date
+            @Query("datee") Date date
     );
 
     //DeleteFoodItem...
-    @DELETE("deleteExDone")
+    @DELETE("exerciseTracking/deleteExercise")
     Call<DeleteExerciseItem> deleteExDone(
             @Query("user_id") long user_id,
-            @Query("date") LocalDate date,
-            @Query("exercise_done_id") int exercise_done_id
+            @Query("date") Date date,
+            @Query("exerciseTrackingId") int exerciseTrackingId
     );
 
     //GetAllExerciseList
@@ -157,29 +160,28 @@ public interface APIInterface {
     );
 
     //GetBurnedCalories
-    @GET("burnedKcal")
+    @GET("exerciseTracking/burnedKcal")
     Call<GetBurnedCaloriesResponse> burnedKcal(
             @Query("user_id") long user_id,
-            @Query("exerciseTracking_id") int exerciseTracking_id,
+            @Query("exerciseId") long exerciseId,
             @Query("time_in_mins") int time_in_mins
     );
 
     //Save Food Items
     @FormUrlEncoded
-    @POST("exerciseLog")
+    @POST("exerciseTracking/saveExercise")
     Call<GetExerciseLogResponse> exerciseLog(
             @Field("user_id") long user_id,
-            @Field("date") String date,
-            @Field("exercise_tracking_id") int exercise_tracking_id,
-            @Field("calories_burned") double calories_burned,
+            @Field("date") Date date,
+            @Field("exerciseId") long exerciseId,
             @Field("time_in_mins") int time_in_mins
     );
     //UpdateFoodIntake
-    @PUT("updateExerciseDone")
+    @PUT("exerciseTracking/updateExercise")
     Call<UpdateExerciseResponse> updateExerciseDone(
             @Query ("user_id") long user_id,
-            @Query("date") String date,
-            @Query("ExDone_id") int ExDone_id,
+            @Query("date") Date date,
+            @Query("exerciseTracking_id") long exerciseTracking_id,
             @Query("time_in_mins") int time_in_mins
 
     );
@@ -239,6 +241,42 @@ public interface APIInterface {
             @Query("user_id") long user_id,
             @Query("date") Date date
     );
+
+    @GET("mealfood/getNameList")
+    Call<FoodItemResponse> getNameList();
+
+    @POST("mealfood/add")
+    Call<GeneralResponse> addMealFood(
+            @Body SearchItemResponse item
+    );
+    @POST("exercise/add")
+    Call<GeneralResponse> addExercise(
+            @Body SearchExerciseResponse exercise
+    );
+
+    @GET("exercise/getNameList")
+    Call<ExerciseItemResponse> getExerciseNameList();
+
+    @GET("exercise/getByExerciseName")
+    Call<ExerciseBaseResponse> getByExerciseName(
+            @Query("itemName") String keyword
+    );
+    @DELETE("exercise/delete/{id}")
+    Call<GeneralResponse> deleteExercise(
+            @Path("id") long id
+    );
+
+    @DELETE("mealfood/delete/{id}")
+    Call<GeneralResponse> deleteMealFood(
+            @Path("id") long id
+    );
+
+    @GET("user/getListByName")
+    Call<ExerciseItemResponse> getUserList();
+
+    @GET("user/getByUserName")
+    Call<UserListBaseResponse> getByUserName(
+            @Query("userName") String userName);
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);
 //

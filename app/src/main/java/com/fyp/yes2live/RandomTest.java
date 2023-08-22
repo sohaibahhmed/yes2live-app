@@ -41,7 +41,7 @@ public class RandomTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_test);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         rangeRandom=findViewById(R.id.rangeRandomReport);
         add=findViewById(R.id.addRandomReport);
         date=findViewById(R.id.datetext);

@@ -23,6 +23,7 @@ import com.fyp.yes2live.response.GetBurnedCaloriesResponse;
 import com.fyp.yes2live.response.GetExerciseLogResponse;
 import com.fyp.yes2live.response.UpdateExerciseResponse;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import retrofit2.Call;
@@ -41,7 +42,7 @@ public class Workout extends AppCompatActivity {
     Double calories;
     String Exercise_name, name;
     Integer exercise_done;
-    Integer exercise_tracking_id;
+    long exercise_tracking_id;
     String BurnedCal;
     String date;
     String dateHistory;
@@ -52,7 +53,6 @@ public class Workout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        getSupportActionBar().hide();
         upBtn = findViewById(R.id.upBotton);
         nextBtn = findViewById(R.id.Next);
         TextView exercise = findViewById(R.id.workout);
@@ -61,7 +61,7 @@ public class Workout extends AppCompatActivity {
 
         Exercise_name = getIntent().getStringExtra("exerciseName");
         name = getIntent().getStringExtra("exercise_name");
-        exercise_tracking_id = getIntent().getIntExtra("ExerciseTrackingId", 1);
+        exercise_tracking_id = getIntent().getLongExtra("ExerciseTrackingId",0);
         exercise_done = getIntent().getIntExtra("exercise_done_id", 1);
         exercise.setText(Exercise_name);
         BurnedCal = getIntent().getStringExtra("burnes_calories");
@@ -166,7 +166,7 @@ public class Workout extends AppCompatActivity {
                     if (exercise.getText().toString().equals(Exercise_name)) {
                         //Api->saveMe(Food)
                         apiInterface = APIClient.getClient().create(APIInterface.class);
-                        Call<GetExerciseLogResponse> call = apiInterface.exerciseLog(userId, date, exercise_tracking_id, calories, time);
+                        Call<GetExerciseLogResponse> call = apiInterface.exerciseLog(userId, Date.valueOf(String.valueOf(date)), exercise_tracking_id, time);
                         call.enqueue(new Callback<GetExerciseLogResponse>() {
                             @Override
                             public void onResponse(Call<GetExerciseLogResponse> call, Response<GetExerciseLogResponse> response) {
@@ -203,7 +203,7 @@ public class Workout extends AppCompatActivity {
                         // cal.setText(String.valueOf(calories));
                         //Api->saveMe(Food)
                         apiInterface = APIClient.getClient().create(APIInterface.class);
-                        Call<UpdateExerciseResponse> call2 = apiInterface.updateExerciseDone(userId, date, exercise_done, time);
+                        Call<UpdateExerciseResponse> call2 = apiInterface.updateExerciseDone(userId, Date.valueOf(String.valueOf(date)), exercise_done, time);
                         call2.enqueue(new Callback<UpdateExerciseResponse>() {
                             @Override
                             public void onResponse(Call<UpdateExerciseResponse> call, Response<UpdateExerciseResponse> response) {

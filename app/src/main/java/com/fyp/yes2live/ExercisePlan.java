@@ -45,7 +45,7 @@ public class ExercisePlan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_plan);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         bottomNavigationView=findViewById(R.id.bottomNavigationView);
         previous=findViewById(R.id.upBotton);
         plan=findViewById(R.id.explan);
@@ -209,10 +209,10 @@ public class ExercisePlan extends AppCompatActivity {
                         startActivity(intent);
                         break;
 
-                    case R.id.Dietplan:
-                        Intent intent4 = new Intent(ExercisePlan.this, Dietplan.class);
-                        startActivity(intent4);
-                        break;
+//                    case R.id.:
+//                        Intent intent4 = new Intent(ExercisePlan.this, Dietplan.class);
+//                        startActivity(intent4);
+//                        break;
 
                     case R.id.navigation_person:
                         Intent intent2 = new Intent(ExercisePlan.this, PersonalDetail.class);

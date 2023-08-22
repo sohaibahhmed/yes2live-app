@@ -13,7 +13,7 @@ public class GetHealthDetailsPayload {
     private int age;
     @SerializedName("gender")
     @Expose
-    private boolean gender;
+    private String gender;
     @SerializedName("height")
     @Expose
     private double height;
@@ -34,7 +34,7 @@ public class GetHealthDetailsPayload {
     private double hba1c_ranges;
 
 
-    public GetHealthDetailsPayload(int diabetic_patient_id, int age, boolean gender, double height, double weight, String improvement_status, String disease_category, String hba1c_date, double hba1c_ranges) {
+    public GetHealthDetailsPayload(int diabetic_patient_id, int age, String gender, double height, double weight, String improvement_status, String disease_category, String hba1c_date, double hba1c_ranges) {
         this.diabetic_patient_id = diabetic_patient_id;
         this.age = age;
         this.gender = gender;
@@ -62,11 +62,11 @@ public class GetHealthDetailsPayload {
         this.age = age;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

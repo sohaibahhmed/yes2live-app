@@ -36,7 +36,6 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diabetic_info);
-     //   getSupportActionBar().hide();
 
         nextbtn = findViewById(R.id.NextButton);
         user_bmi = findViewById(R.id.bmi);
@@ -47,10 +46,6 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
         rbMale = findViewById(R.id.updatemale);
         rbFemale = findViewById(R.id.updatefemale);
 
-//        findViewById(R.id.updatefemale).setOnClickListener(this);
-//        findViewById(R.id.updatemale).setOnClickListener(this);
-//        findViewById(R.id.NextButton).setOnClickListener(this);
-
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         user_id = sharedPreferenceManager.getUser().getId();
         //getUserData
@@ -58,8 +53,13 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
         nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(dietaryinfo.this, married.class);
-                startActivity(intent1);
+                if(gender.equalsIgnoreCase("male")){
+                    Intent intent1 = new Intent(dietaryinfo.this, bloodrelative.class);
+                    startActivity(intent1);
+                }else{
+                    Intent intent1 = new Intent(dietaryinfo.this, married.class);
+                    startActivity(intent1);
+                }
             };
         });
     }
@@ -100,17 +100,8 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
         });
     }
 
-    public void onClick(View view) {
+    @Override
+    public void onClick(View v) {
 
-//        switch (view.getId()) {
-//            case R.id.NextButton:
-//                openAssessmenetPage();
-//        }
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        Intent i=new Intent(dietaryinfo.this, HomePage.class);
-//        startActivity(i);
-//    }
 }

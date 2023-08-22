@@ -22,6 +22,7 @@ import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.response.DeleteExerciseItem;
 import com.fyp.yes2live.response.GetExerciseListResponse;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -76,8 +77,6 @@ public class ExerciseLogAdapter extends  RecyclerView.Adapter<ExerciseLogAdapter
         Integer exercise_id=getExerciseListResponses.get(position).exercise_done_id;
         SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(context.getApplicationContext());
         long userId=sharedPreferenceManager.getUser().getId();
-
-
         holder.deleteExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +87,7 @@ public class ExerciseLogAdapter extends  RecyclerView.Adapter<ExerciseLogAdapter
                 Log.d("Magic", "Date: " + date);
 
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<DeleteExerciseItem> call7 = apiInterface.deleteExDone(userId, date, exercise_id);
+                Call<DeleteExerciseItem> call7 = apiInterface.deleteExDone(userId, Date.valueOf(String.valueOf(date)), exercise_id);
                 call7.enqueue(new Callback<DeleteExerciseItem>() {
                     @Override
                     public void onResponse(Call<DeleteExerciseItem> call, Response<DeleteExerciseItem> response) {
