@@ -2,6 +2,7 @@ package com.fyp.yes2live;
 
 import static java.lang.Double.valueOf;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import java.sql.Date;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fyp.yes2live.apiConfig.APIClient;
@@ -46,7 +48,7 @@ public class FoodDescription extends AppCompatActivity {
     SharedPreferenceManager sharedPreferenceManager;
     String type;
     private Bundle extras;
-    Double c,f,cs,quant,p;
+    Double c,f,cs,p,quant;
     private int id;
     String date;
     String dateHistory;
@@ -73,12 +75,12 @@ public class FoodDescription extends AppCompatActivity {
 
 
         String name=getIntent().getStringExtra("foodName");
-        String cal=getIntent().getStringExtra("calories");
+        double cal=getIntent().getDoubleExtra("calories",0.0);
         String serve=getIntent().getStringExtra("servings");
-        String carb=getIntent().getStringExtra("carbs");
-        String fat=getIntent().getStringExtra("fats");
-        String protein=getIntent().getStringExtra("proteins");
-        String quan=getIntent().getStringExtra("quantity");
+        double carb=getIntent().getDoubleExtra("carbs",0.0);
+        double fat=getIntent().getDoubleExtra("fats",0.0);
+        double protein=getIntent().getDoubleExtra("proteins",0.0);
+        int quan=getIntent().getIntExtra("quantity",0);
 
         foodname.setText(name);
         servings.setText(getIntent().getStringExtra("servings"));
@@ -96,7 +98,7 @@ public class FoodDescription extends AppCompatActivity {
         {
             c= valueOf(cal);
             p= valueOf(protein);
-            quant= valueOf(quan.toString());
+            quant= valueOf(quan);
             f= valueOf(fat);
             cs= valueOf(carb);
         }
@@ -194,8 +196,22 @@ public class FoodDescription extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 }
-                                if (addFoodResponse.getStatus().equals("Fail!")) {
+                                else if (addFoodResponse.getStatus().equals("Fail!")) {
                                     // Toast.makeText(FoodDescription.this, addFoodResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                } else if (addFoodResponse.getStatus().equals("WARNING")) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(FoodDescription.this);
+                                    //Set body message of Dialog
+                                    builder.setMessage(addFoodResponse.getMessage())
+                                            .setCancelable(false)
+                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.cancel();
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    //dialog.closeOptionsMenu();
+                                    dialog.setTitle("ERROR");
+                                    dialog.show();
                                 } else {
                                     //  Toast.makeText(FoodDescription.this, addFoodResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -275,10 +291,10 @@ public class FoodDescription extends AppCompatActivity {
                 }
                 else {
                     d1 = valueOf((s.toString()));
-                    Double d2 = Double.parseDouble(cal);
-                    Double d3 = Double.parseDouble(protein);
-                    Double d4 = Double.parseDouble(fat);
-                    Double d5 = Double.parseDouble(carb);
+                    Double d2 = cal;
+                    Double d3 = protein;
+                    Double d4 = fat;
+                    Double d5 = carb;
 
                     d6 = d1*d2;
                     Double d7 = d1 * d3;

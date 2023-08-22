@@ -40,39 +40,20 @@ public class pregnant extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int selectedId = rgPregnant.getCheckedRadioButtonId();
-                if(selectedId==R.id.yesbtn){
-                    isPregnant=true;
-                }
-                else {
-                    isPregnant=false;
-                }
-                sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
-                long userId = sharedPreferenceManager.getUser().id;
-                apiInterface = APIClient.getClient().create(APIInterface.class);
-                User user = new User();
-                user.setId(userId);
-                user.setPregnant(isPregnant);
-                Call<UserBaseResponse> call = apiInterface.pregnant(user);
-                call.enqueue(new Callback<UserBaseResponse>() {
-                    @Override
-                    public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
-                        UserBaseResponse pregnantResponse = response.body();
-                        if (pregnantResponse.getStatus().equals("SUCCESS")) {
-                            Toast.makeText(pregnant.this, pregnantResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(pregnant.this, bloodrelative.class);
-                            intent.putExtra("pragnant",isPregnant);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(pregnant.this, pregnantResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                if (rgPregnant.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(pregnant.this, "Select any one", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
+                    int selectedId = rgPregnant.getCheckedRadioButtonId();
+                    if (selectedId == R.id.yesbtn) {
+                        isPregnant = true;
+                    } else {
+                        isPregnant = false;
                     }
-                    @Override
-                    public void onFailure(Call<UserBaseResponse> call, Throwable t) {
-                        Toast.makeText(pregnant.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
-                    }
-
-                });
+                    Intent intent = new Intent(pregnant.this, bloodrelative.class);
+                    intent.putExtra("pregnant", isPregnant);
+                    startActivity(intent);
+                }
             }
 
         });

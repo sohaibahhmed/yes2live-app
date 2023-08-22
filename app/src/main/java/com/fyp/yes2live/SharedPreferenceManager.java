@@ -2,11 +2,15 @@ package com.fyp.yes2live;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.response.DietPlanPayload;
 import com.fyp.yes2live.response.ExercisePlanPayload;
 import com.fyp.yes2live.response.UserAssessmentPayload;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class SharedPreferenceManager {
     private static String SHARED_PREF_NAME="usersession";
@@ -24,13 +28,14 @@ public class SharedPreferenceManager {
         editor.putLong("id",user.getId());
         editor.putString("name",user.getName());
         editor.putString("email",user.getEmail());
+        editor.putString("startGoalDate", user.getStartGoalDate());
         //for loggedin status... if loggedIn return true
         editor.putBoolean("logged",true);
         if(user.getTargetWeight() > 0){
             editor.putBoolean("saveTargetAndRange", true);
         }
         if(user.getActivityLevel() > 0){
-            editor.putBoolean("activity_level",true);
+            editor.putBoolean("activity_level2",true);
         }
         if(user.getAge() > 1){
             editor.putBoolean("saveAssessment",true);
@@ -67,7 +72,7 @@ public class SharedPreferenceManager {
     public void saveActivityLevel(){
         sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         editor=sharedPreference.edit();
-        editor.putBoolean("activity_level",true);
+        editor.putBoolean("activity_level2",true);
         editor.apply();
 
     }
@@ -90,7 +95,7 @@ public class SharedPreferenceManager {
     public  boolean isActivityLevel(){
         sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         //if user loggedIn return true otherwise return false
-        return sharedPreference.getBoolean("activity_level",false);
+        return sharedPreference.getBoolean("activity_level2",false);
 
     }
     public  boolean isQuestionnaire(){
@@ -105,6 +110,9 @@ public class SharedPreferenceManager {
         editor = sharedPreference.edit();
         editor.putInt("TargetWeight",1);
         editor.putBoolean("saveTargetAndRange", true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            editor.putString("startGoalDate",LocalDate.now().toString());
+        }
         editor.apply();
     }
 
@@ -375,5 +383,19 @@ public class SharedPreferenceManager {
         sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         int prefer=sharedPreference.getInt("preference",1);
         return prefer;
+    }
+
+    public  String getGoalStartDate(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        //if user loggedIn return true otherwise return false
+        return sharedPreference.getString("startGoalDate",null);
+
+    }
+
+    public  boolean isDataSaved(){
+        sharedPreference=context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        //if user loggedIn return true otherwise return false
+        return sharedPreference.getBoolean("saveDate",false);
+
     }
 }

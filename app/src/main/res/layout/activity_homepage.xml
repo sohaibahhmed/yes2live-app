@@ -139,7 +139,7 @@
                                     android:layout_height="90dp"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="15dp"
-                                    android:background="@drawable/weightloss"
+                                    android:background="@drawable/weightloss2"
                                     android:scaleType="fitCenter" />
 
                                 <RelativeLayout

@@ -7,25 +7,30 @@ public class SearchExerciseResponse {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private long id;
     @SerializedName("exceriseName")
     @Expose
     private String exerciseName;
-    @SerializedName("met_value")
+    @SerializedName("met")
     @Expose
     private Float metValue;
 
-    public SearchExerciseResponse(Integer exerciseTrackingId, String exerciseName, Float metValue) {
+    public SearchExerciseResponse(long exerciseTrackingId, String exerciseName, Float metValue) {
         this.id = exerciseTrackingId;
         this.exerciseName = exerciseName;
         this.metValue = metValue;
     }
 
-    public Integer getExerciseTrackingId() {
+    public SearchExerciseResponse(String exerciseName, Float metValue) {
+        this.exerciseName = exerciseName;
+        this.metValue = metValue;
+    }
+
+    public long getExerciseTrackingId() {
         return id;
     }
 
-    public void setExerciseTrackingId(Integer exerciseTrackingId) {
+    public void setExerciseTrackingId(long exerciseTrackingId) {
         this.id = exerciseTrackingId;
     }
 

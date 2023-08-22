@@ -114,8 +114,8 @@ public class Summary extends AppCompatActivity {
 
                         Log.d("Magic", "DETAILS: " + getHealthDetails.getGetHealthDetailsPayload());
                         user_age.setText(String.valueOf(getHealthDetails.getGetHealthDetailsPayload().getAge()));
-                        Boolean user_gender = getHealthDetails.getGetHealthDetailsPayload().isGender();
-                        if (user_gender == true) {
+                        String user_gender = getHealthDetails.getGetHealthDetailsPayload().getGender();
+                        if (user_gender.equalsIgnoreCase("female")) {
                             gender.setText("F");
                         } else {
                             gender.setText("M");

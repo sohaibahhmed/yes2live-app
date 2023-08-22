@@ -54,7 +54,7 @@
             android:layout_marginTop="60dp"
             android:textAlignment="center"
             android:fontFamily="@font/roboto_regular"
-            android:hint="Hba1c (e.g 5.8)"
+            android:hint="Hba1c (between(4 and 14)"
             android:letterSpacing=".02"
             android:textColorHint="#FDBDBCBC"
             android:textSize="18sp" />

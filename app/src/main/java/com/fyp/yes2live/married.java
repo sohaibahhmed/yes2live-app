@@ -44,36 +44,16 @@ public class married extends AppCompatActivity {
                 int selectedId = rgMarried.getCheckedRadioButtonId();
                 if(selectedId==R.id.yesbtn){
                     isMarried=true;
+                    Intent intent = new Intent(married.this, pregnant.class);
+                    intent.putExtra("married",isMarried);
+                    startActivity(intent);
                 }
                 else {
                     isMarried=false;
+                    Intent intent = new Intent(married.this, bloodrelative.class);
+                    intent.putExtra("married",isMarried);
+                    startActivity(intent);
                 }
-                sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
-                long userId = sharedPreferenceManager.getUser().id;
-                apiInterface = APIClient.getClient().create(APIInterface.class);
-                User user = new User();
-                user.setId(userId);
-                user.setMarried(isMarried);
-                Call<UserBaseResponse> call = apiInterface.married(user);
-                call.enqueue(new Callback<UserBaseResponse>() {
-                    @Override
-                    public void onResponse(Call<UserBaseResponse> call, Response<UserBaseResponse> response) {
-                        UserBaseResponse marriedResponse = response.body();
-                        if (marriedResponse.getStatus().equals("SUCCESS")) {
-                            Toast.makeText(married.this, marriedResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(married.this, pregnant.class);
-                            intent.putExtra("married",isMarried);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(married.this, marriedResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    @Override
-                    public void onFailure(Call<UserBaseResponse> call, Throwable t) {
-                        Toast.makeText(married.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
-                    }
-
-                });
             }
 
         });

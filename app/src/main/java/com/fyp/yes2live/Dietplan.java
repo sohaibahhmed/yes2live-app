@@ -46,7 +46,7 @@ public class Dietplan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dietplan);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         bottomNavigationView=findViewById(R.id.bottomNavigationView);
         previous=findViewById(R.id.upBotton);
         w_plan1=findViewById(R.id.weekplan1);
@@ -133,10 +133,6 @@ public class Dietplan extends AppCompatActivity {
 
             }
         });
-
-        Log.d("Magic", "fat: "+sharedPreferenceManager.getUserDiabeticAssessment().getFat());
-        Log.d("Magic", "B_cal: "+sharedPreferenceManager.getUserDiabeticAssessment().getB_calories());
-        Log.d("Magic", "details: "+sharedPreferenceManager.getUserDiabeticAssessment());
         foodCalories.setText(String.valueOf(sharedPreferenceManager.getUserDiabeticAssessment().getB_calories()));
 
         total_fat.setText(String.valueOf(sharedPreferenceManager.getUserDiabeticAssessment().getFat()));
@@ -153,7 +149,6 @@ public class Dietplan extends AppCompatActivity {
         d_cal=sharedPreferenceManager.getUserDiabeticAssessment().getD_calories();
         bmi= (int) sharedPreferenceManager.getUserDiabeticAssessment().getBmi();
 
-        String breakfast=sharedPreferenceManager.getPlan1().getBreakfastFoodPackage();
 
         plan1.setTypeface(null, Typeface.BOLD);
         plan2.setTypeface(null,Typeface.NORMAL);
