@@ -470,7 +470,7 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/idBarChart"
             android:layout_width="350dp"
-            android:layout_height="160dp"
+            android:layout_height="130dp"
             android:layout_below="@+id/overallCondition"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
@@ -495,11 +495,11 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="95dp"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
             android:layout_below="@+id/mes"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="200dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -507,7 +507,7 @@
                 android:layout_width="128dp"
                 android:layout_height="66.58dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="#5BFAF2F2"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp">
@@ -521,44 +521,15 @@
                     android:lineSpacingExtra="4dp"
                     android:text=" My \n Diet Plan"
                     android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="75dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/food"
+                    android:elevation="4dp" />
             </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/workplan"
-                android:layout_width="128dp"
-                android:layout_height="66.58dp"
-                android:layout_marginStart="27dp"
-                android:layout_marginTop="15dp"
-                android:background="#5BFAF2F2"
-                app:cardCornerRadius="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:lineSpacingExtra="4dp"
-                    android:text=" Workout \n Plan"
-                    android:textSize="18dp" />
-            </androidx.cardview.widget.CardView>
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="-35dp"
-                android:layout_marginEnd="2dp"
-                android:background="@drawable/workoutplan"
-                android:elevation="4dp" />
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="-230dp"
-                android:layout_marginEnd="2dp"
-                android:background="@drawable/food"
-                android:elevation="4dp" />
 
 
         </LinearLayout>

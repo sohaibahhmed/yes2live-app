@@ -11,8 +11,8 @@ public interface DietplanApiInterface {
 
     @GET("user_dietPlan")
     Call<DietPlanResponse> user_dietPlan(
-            @Query("DiseaseCategory") String DiseaseCategory,
-            @Query("BreakfastCalories") Integer BreakfastCalories,
+            @Query("DiseaseCategory") String DiseaseCategory,//dibetic or predibetic
+            @Query("BreakfastCalories") Integer BreakfastCalories,//app dyge
             @Query("LunchCalories") Integer LunchCalories,
             @Query("SnackCalories") Integer SnackCalories,
             @Query("DinnerCalories") Integer DinnerCalories,

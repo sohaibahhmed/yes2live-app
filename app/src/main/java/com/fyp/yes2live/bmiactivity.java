@@ -67,7 +67,7 @@ public class bmiactivity extends AppCompatActivity {
             }
         });
 
-
+        //seekbar
         mseekbarforheight.setMax(300);//max value of height on seekbar
         mseekbarforheight.setProgress(170);//initial vale of seekbar
 

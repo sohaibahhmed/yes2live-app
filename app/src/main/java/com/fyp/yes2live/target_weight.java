@@ -132,7 +132,7 @@ public class target_weight extends AppCompatActivity {
 //                    startActivity(intent);
 //                    finish();
 //                }
-                            else if (baseResponse.getStatus().equals("ERROR")) {
+                            else if (baseResponse.getStatus().equals("WARNING")) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(target_weight.this);
                                 //Set body message of Dialog
                                 builder.setMessage(baseResponse.getMessage());

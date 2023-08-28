@@ -78,7 +78,7 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
                     age.setText(String.valueOf(user.getAge()));
                     height.setText(String.valueOf(user.getHeight()));
                     // user_gender.setHint(String.valueOf(getUserBioResponse.getUserBioPayload().isGender()));
-                    double int_height=user.getHeight()/100;
+                    double int_height=user.getHeight()/100;// change height from cm to m
                     double int_bmi=user.getWeight()/(int_height*int_height);// bmi is calculated
                     user_bmi.setText(String.valueOf(int_bmi));
                     gender = user.getGender();

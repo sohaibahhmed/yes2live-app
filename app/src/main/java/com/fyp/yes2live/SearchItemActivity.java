@@ -54,12 +54,10 @@ public class SearchItemActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemViewCacheSize(5);
-        //getSupportActionBar().hide();
-        cardView = findViewById(R.id.foodCard);
-        //searchView =findViewById(R.id.searchMeal);
+
         fetchItems(""); //without keyword
 
-
+// when click on search view
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -85,7 +83,7 @@ public class SearchItemActivity extends AppCompatActivity {
             }
         });
     }
-
+// 1. the api is getlist(show complete list of food items from db::mealfoodcontroller)
     public void fetchItems(String key) {
         apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<SearchItemBaseResponse> call = apiInterface.getList1("");
@@ -97,7 +95,7 @@ public class SearchItemActivity extends AppCompatActivity {
                 if (itemResponse.getStatus().equals("SUCCESS")) {
                     progressBar.setVisibility(View.GONE);
                     searchItemResponses = itemResponse.getPayload();
-                    itemAdapter = new ItemAdapter(searchItemResponses,SearchItemActivity.this);
+                    itemAdapter = new ItemAdapter(searchItemResponses,SearchItemActivity.this);// this is important class bc it calls two api
                     recyclerView.setAdapter(itemAdapter);
                     itemAdapter.notifyDataSetChanged();
                 }else{

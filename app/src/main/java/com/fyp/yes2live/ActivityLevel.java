@@ -91,7 +91,7 @@ public class ActivityLevel extends AppCompatActivity implements View.OnClickList
             switch (view.getId()) {
 
                 case R.id.PreviousButton:
-                    openBMIPage();
+                    question1();
                     break;
 
             }
@@ -125,7 +125,7 @@ public class ActivityLevel extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public void openBMIPage() {
+    public void question1() {
         Intent intent1 = new Intent(this, question1.class);
         startActivity(intent1);
     }

@@ -38,7 +38,7 @@ public class DefaultFoodList extends Fragment {
     private void makeList() {
         ArrayList<String> foodList = new ArrayList<>();
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, foodList);
-        listViewFood.setAdapter(adapter);
+        listViewFood.setAdapter(adapter);//
 
         foodList.clear();
 
@@ -88,7 +88,7 @@ public class DefaultFoodList extends Fragment {
 
         makeList();
         onListItemSelect();
-
+//search bar
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

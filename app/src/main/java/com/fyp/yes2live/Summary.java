@@ -77,7 +77,6 @@ public class Summary extends AppCompatActivity {
         randomSugarTest = findViewById(R.id.randomSugarreport);
         user_age = findViewById(R.id.age_no);
         View dietplan = findViewById(R.id.dietPlanCard);
-        View Workoutplan = findViewById(R.id.workplan);
         date = getIntent().getStringExtra("date");
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         user_id = sharedPreferenceManager.getUser().getId();
@@ -207,29 +206,6 @@ public class Summary extends AppCompatActivity {
             }
         });
 
-        Workoutplan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(sharedPreferenceManager.isUserWarning()){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Summary.this);
-                    //Set body message of Dialog
-                    builder.setMessage(sharedPreferenceManager.getUserWarning());
-                    // Is dismiss when touching outside?
-                    builder.setCancelable(true);
-                    AlertDialog dialog = builder.create();
-                    dialog.closeOptionsMenu();
-                    dialog.setTitle("Warning");
-                    dialog.show();
-                }
-                else if(sharedPreferenceManager.isSelectPrefernce()){
-                    Intent intent = new Intent(Summary.this, ExercisePlan.class);
-                    startActivity(intent);
-                }
-                else {
-                    preferenceDialog.show();
-                }
-            }
-        });
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override

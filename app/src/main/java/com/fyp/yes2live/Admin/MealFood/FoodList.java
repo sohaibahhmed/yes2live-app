@@ -154,11 +154,11 @@ public class FoodList extends AppCompatActivity {
 //        table = intent.getStringExtra("tableName");
 //
 //        setupTabView();
-//
+//      + button icon
         addYourOwnFood.setOnClickListener(v -> {
             setAddYourOwnFood();
         });
-
+        //add button
         addBtnFinal.setOnClickListener(v -> {
 
             Boolean notOkay = ETaddFoodFoodName.getText().toString().trim().equals("")

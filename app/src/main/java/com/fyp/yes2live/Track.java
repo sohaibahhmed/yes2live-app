@@ -8,8 +8,6 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,11 +30,9 @@ import com.fyp.yes2live.Notifications.LunchBroadcast;
 import com.fyp.yes2live.Notifications.MorningSnackBroadcast;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
-import com.fyp.yes2live.auth.login;
 import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.response.ExerciseDoneBaseResponse;
 import com.fyp.yes2live.response.GetExerciseListResponse;
-import com.fyp.yes2live.response.GetLogDataResponse;
 import com.fyp.yes2live.response.GetLogListResponse;
 import com.fyp.yes2live.response.GetPerDayLogDataResponse;
 import com.fyp.yes2live.response.LogListBaseResponse;
@@ -204,13 +199,14 @@ public class Track extends AppCompatActivity {
         txt_quan = findViewById(R.id.txt_quantity);
         txt_serve = findViewById(R.id.txt_serving);
 
-
+//1 step when click on plus button or lunch etc button from line 202 to 257
+        // both item adapter and exercise adapter are important classes in searchitemactivity and searchexercise.
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent i = new Intent(Track.this, SearchItemActivity.class);
-                Type = 1;
+                Type = 1;// this indicate this meal is breakfast type
                 startActivity(i);
 
             }
@@ -607,7 +603,7 @@ public class Track extends AppCompatActivity {
     }
 
     private void initDatePicker() {
-
+// when we select date on date textview the wholw track page will be updated calling 7 apis(1.user profile::get by id:: total calories eaten plus carbs proteins fats).
         DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -653,7 +649,7 @@ public class Track extends AppCompatActivity {
                         //  Toast.makeText(CalorieCounter.this, "Check you Internet Connection", Toast.LENGTH_SHORT).show();
                     }
                 });
-
+//2.getperdaydietsummary::foodintakecontroller::ratio of eaten calories from total cal
                 //getPerDayLogData
                 apiInterface = APIClient.getClient().create(APIInterface.class);
                 Call<GetPerDayLogDataResponse> call2 = apiInterface.getPerDietSummary(user_id, Date.valueOf(date));
@@ -696,7 +692,7 @@ public class Track extends AppCompatActivity {
                         // Toast.makeText(CalorieCounter.this, "Check you Internet Connection", Toast.LENGTH_SHORT).show();
                     }
                 });
-
+//3.getitemlist::foodintakecontroller::get all food items against the meal(such as breakfast etc 5}
                 //GetLunchListApi
                 apiInterface = APIClient.getClient().create(APIInterface.class);
                 Call<LogListBaseResponse> call3 = apiInterface.getItemList(sharedPreferenceManager.getUser().getId(), Date.valueOf(date),"lunch");

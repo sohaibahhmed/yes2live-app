@@ -165,6 +165,7 @@ public class FoodFeature extends AppCompatActivity {
                 Toast.makeText(FoodFeature.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
             }
 
+
         });
     }
 
@@ -208,7 +209,7 @@ public class FoodFeature extends AppCompatActivity {
         foodName = intent.getStringExtra("foodName");
         initViews();
 
-        usePojo(foodName);
+        usePojo(foodName);//function in which the whole record based on item name is obtained and is set on screen
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override

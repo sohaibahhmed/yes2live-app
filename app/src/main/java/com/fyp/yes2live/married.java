@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
+import com.fyp.yes2live.auth.login;
 import com.fyp.yes2live.model.User;
 import com.fyp.yes2live.response.BaseResponse;
 import com.fyp.yes2live.response.UserBaseResponse;
@@ -48,11 +49,14 @@ public class married extends AppCompatActivity {
                     intent.putExtra("married",isMarried);
                     startActivity(intent);
                 }
-                else {
+               else if(selectedId==R.id.nobtn){
                     isMarried=false;
                     Intent intent = new Intent(married.this, bloodrelative.class);
                     intent.putExtra("married",isMarried);
                     startActivity(intent);
+                }
+                else {
+                    Toast.makeText(married.this,"please select one option either yes or no " , Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -34,6 +34,11 @@ public class bloodrelative extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (rgBloodRelatives.getCheckedRadioButtonId() == -1) {
+                        Toast.makeText(bloodrelative.this, "Select any one", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else {
                     int selectedId = rgBloodRelatives.getCheckedRadioButtonId();
                     if(selectedId==R.id.yesbtn){
                         isdiabetic=true;
@@ -46,6 +51,6 @@ public class bloodrelative extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-            });
+            }});
     }
 }

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.fyp.yes2live.Admin.Exercise.ExerciseList;
 import com.fyp.yes2live.Admin.MealFood.FoodList;
 import com.fyp.yes2live.Admin.User.UsersList;
+import com.fyp.yes2live.MainActivity;
 import com.fyp.yes2live.R;
 import com.fyp.yes2live.auth.login;
 import com.fyp.yes2live.bmiactivity;
@@ -37,7 +38,7 @@ public class Daashboard extends AppCompatActivity {
         previousBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Daashboard.this, login.class);
+                Intent intent =new Intent(Daashboard.this, MainActivity.class);
                 startActivity(intent);
             }
         });

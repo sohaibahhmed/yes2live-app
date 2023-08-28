@@ -45,8 +45,6 @@ public class ExerciseList extends AppCompatActivity {
     private void initViews() {
 
         addExerciseCardView = findViewById(R.id.addExerciseCardView);
-
-        addYourOwnExercise = findViewById(R.id.addYourOwnExercise);
         addBtnFinal = findViewById(R.id.addBtnFinal2);
         ETaddExerciseSize = findViewById(R.id.ETaddExerciseMet);
         ETaddExerciseName = findViewById(R.id.ETaddExerciseName);
