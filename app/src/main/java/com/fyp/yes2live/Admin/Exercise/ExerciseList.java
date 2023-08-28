@@ -147,7 +147,6 @@ public class ExerciseList extends AppCompatActivity {
                 Toast.makeText(ExerciseList.this, "ERROR! empty field", Toast.LENGTH_LONG).show();
             } else {
                 addExerciseToExerciseDB();
-                Toast.makeText(ExerciseList.this, "" + ETaddExerciseName.getText().toString() + " added to the list", Toast.LENGTH_SHORT).show();
 
                 addYourOwnExercise.startAnimation(rotateClose);
                 addExerciseCardView.startAnimation(toBottom);

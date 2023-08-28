@@ -78,8 +78,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
                 intent.putExtra("proteins", searchItemResponses.get(position).getProtein());
                 intent.putExtra("fats", searchItemResponses.get(position).getFat());
                 intent.putExtra("intake",2);
-                intent.putExtra("user_log_id", searchItemResponses.get(position).getLog_food_items_id());
-                Log.d("Magic", "user_log_id: " + searchItemResponses.get(position).getLog_food_items_id());
+                intent.putExtra("mealFoodId", searchItemResponses.get(position).getId());
+                Log.d("Magic", "mealFoodId: " + searchItemResponses.get(position).getId());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.getApplicationContext().startActivity(intent);
             }

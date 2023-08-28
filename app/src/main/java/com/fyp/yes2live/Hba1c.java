@@ -80,7 +80,7 @@ public class Hba1c extends AppCompatActivity {
                         Toast.makeText(Hba1c.this, "Your Sugar level is too low. You should consult your doctor", Toast.LENGTH_SHORT).show();
                     } else if(hba1cDouble>=14) {
                         Toast.makeText(Hba1c.this, "Your Sugar level is too high. You should consult your doctor", Toast.LENGTH_SHORT).show();
-                    } else {
+                    } else if(hba1cDouble< 14 && hba1cDouble >4){
                         String pattern = "yyyy-MM-dd"; // Example: "2023-07-25"
                         String dateString = null;
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -118,6 +118,8 @@ public class Hba1c extends AppCompatActivity {
                                 Toast.makeText(Hba1c.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
                             }
                         });
+                    }else{
+                        Toast.makeText(Hba1c.this, "empty field not allowed, must add HB1AC report", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -121,7 +121,7 @@ public class FoodDescription extends AppCompatActivity {
                 Long userId = sharedPreferenceManager.getUser().getId();
                 //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 //String currentDateandTime = sdf.format(new Date());
-                int food_log_id = getIntent().getIntExtra("user_log_id", 1);
+                long food_log_id = getIntent().getLongExtra("mealFoodId", 1);
 
                 String getcalorie = getIntent().getStringExtra("calories");
                 long intake_id = getIntent().getLongExtra("intakeId", 1);

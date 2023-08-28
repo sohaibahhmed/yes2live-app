@@ -171,8 +171,6 @@ public class FoodList extends AppCompatActivity {
                 Toast.makeText(FoodList.this, "ERROR! empty field", Toast.LENGTH_LONG).show();
             } else {
                 addFoodToFoodDB();
-                Toast.makeText(FoodList.this, "" + ETaddFoodFoodName.getText().toString() + " added to the list", Toast.LENGTH_SHORT).show();
-
                 addYourOwnFood.startAnimation(rotateClose);
                 addFoodCardView.startAnimation(toBottom);
 
