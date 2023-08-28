@@ -129,7 +129,7 @@ public interface APIInterface {
     Call<DeleteExerciseItem> deleteExDone(
             @Query("user_id") long user_id,
             @Query("date") Date date,
-            @Query("exerciseTrackingId") int exerciseTrackingId
+            @Query("exerciseTrackingId") long exerciseTrackingId
     );
 
     //GetAllExerciseList

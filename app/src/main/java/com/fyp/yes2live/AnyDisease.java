@@ -294,8 +294,7 @@ public class AnyDisease extends AppCompatActivity {
 
         builder.setView(view);
         hyperdialog = builder.create();
-        hypertension.setOnClickListener(
-        new View.OnClickListener() {
+        hypertension.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view)
             {
                 if (hypertension.isChecked()) {

@@ -155,6 +155,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
                                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             dialog.cancel();
+                                            dialog.dismiss();
                                         }
                                     });
                                 AlertDialog dialog = builder.create();
