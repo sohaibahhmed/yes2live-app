@@ -55,8 +55,8 @@ public class ExerciseLogAdapter extends  RecyclerView.Adapter<ExerciseLogAdapter
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
             holder.exercise_name.setText(getExerciseListResponses.get(position).exercise_name);
-            holder.time.setText(getExerciseListResponses.get(position).time_in_mins);
-            holder.burnes_calories.setText(getExerciseListResponses.get(position).calories_burned);
+            holder.time.setText(String.valueOf(getExerciseListResponses.get(position).time_in_mins));
+            holder.burnes_calories.setText(String.valueOf(getExerciseListResponses.get(position).calories_burned));
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,7 +74,7 @@ public class ExerciseLogAdapter extends  RecyclerView.Adapter<ExerciseLogAdapter
 
         LocalDate date;
         date= LocalDate.now();
-        Integer exercise_id=getExerciseListResponses.get(position).exercise_done_id;
+        long exercise_id=getExerciseListResponses.get(position).exercise_done_id;
         SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(context.getApplicationContext());
         long userId=sharedPreferenceManager.getUser().getId();
         holder.deleteExercise.setOnClickListener(new View.OnClickListener() {
