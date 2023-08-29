@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fyp.yes2live.Admin.Daashboard;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.model.DiabeticPatient;
@@ -40,6 +42,7 @@ public class Hba1c extends AppCompatActivity {
     SharedPreferenceManager sharedPreferenceManager;
     Boolean blood_pressure, cholesterol, diabetic_family, married, other_diseases, pregnant, no_diseases;
     Integer systolic_ranges, diastolic_ranges, cholesterol_ranges;
+    ImageButton previousBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -49,6 +52,7 @@ public class Hba1c extends AppCompatActivity {
         add=(Button) findViewById(R.id.addReport);
         cancel = findViewById(R.id.cancelReport);
         hba1cEdit = (EditText) findViewById(R.id.hba1creport);
+        previousBtn= findViewById(R.id.PreviousButton);
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         long user_id = sharedPreferenceManager.getUser().getId();
         date=findViewById(R.id.datetext);
@@ -68,6 +72,15 @@ public class Hba1c extends AppCompatActivity {
             date_n = LocalDate.now();
             date.setText(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
         }
+
+        previousBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(Hba1c.this, AnyDisease.class);
+                startActivity(intent);
+            }
+        });
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

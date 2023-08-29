@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -41,6 +42,8 @@ public class homepage extends AppCompatActivity {
 
     private RelativeLayout weightlossModule;
     private RelativeLayout dietryModule;
+    private String userName;
+    private TextView txtUserName,txtUser,txtEmail;
 
     SharedPreferenceManager sharedPreferenceManager;
 
@@ -51,13 +54,22 @@ public class homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
-
+        userName = sharedPreferenceManager.getUser().getUsername();
         drawerLayout = findViewById(R.id.drawer);
+        txtUserName = findViewById(R.id.username);
+
         navigationView = findViewById(R.id.navigation_view);
+        View hView = navigationView.getHeaderView(0);
+        txtUser =  hView.findViewById(R.id.textUserName);
+        txtEmail = hView.findViewById(R.id.textemail);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         bottomNavigationView=findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setBackground(null);
         imageSlider = findViewById(R.id.imageSlider);
+        txtUserName.setText(txtUserName.getText()+userName);
+        txtUser.setText(userName);
+        txtEmail.setText(sharedPreferenceManager.getUser().getEmail());
 // top toolbar set (three icons) or sidebar
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -73,6 +85,57 @@ public class homepage extends AppCompatActivity {
                         Intent i = new Intent(homepage.this, login.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
+
+                    case R.id.nav_dietry:
+                        if (sharedPreferenceManager.isDataSaved() || sharedPreferenceManager.isUserWarning()) {
+                            Intent intent = new Intent(homepage.this, Summary.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        } else {
+                            Intent intent1 = new Intent(homepage.this, dietaryinfo.class);
+                            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent1);
+                        }
+
+                    case R.id.nav_weight:
+
+                        if(sharedPreferenceManager.isSavedTargetWeight()){
+                            if(sharedPreferenceManager.getGoalStartDate() != null){
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                    LocalDate today = LocalDate.now();
+                                    LocalDate goalStartDate = LocalDate.parse(sharedPreferenceManager.getGoalStartDate());
+                                    if(ChronoUnit.DAYS.between(goalStartDate, today) > 7){
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(homepage.this);
+                                        //Set body message of Dialog
+                                        builder.setMessage("You complete your goal time, please update check your weight and update the profile")
+                                                .setCancelable(false)
+                                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        Intent intent1 = new Intent(homepage.this, question1.class);
+                                                        startActivity(intent1);
+                                                        dialog.cancel();
+                                                    }
+                                                });
+                                        AlertDialog dialog = builder.create();
+                                        //dialog.closeOptionsMenu();
+                                        dialog.setTitle("ALert!!");
+                                        dialog.show();
+                                    }else{
+                                        Intent intent1 = new Intent(homepage.this, Track.class);
+                                        startActivity(intent1);
+                                    }
+                                }
+                            }
+                        }else{
+                            Intent targetIntent = new Intent(homepage.this, target_weight.class);
+                            targetIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(targetIntent);
+                        }
+
+                    case R.id.Setting:
+                        Intent sett = new Intent(homepage.this, Settings.class);
+                        sett.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(sett);
                 }
                 return true;
             }

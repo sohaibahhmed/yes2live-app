@@ -3,12 +3,15 @@ package com.fyp.yes2live.ui.navbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fyp.yes2live.Admin.Daashboard;
+import com.fyp.yes2live.MainActivity;
 import com.fyp.yes2live.R;
 import com.fyp.yes2live.SharedPreferenceManager;
 import com.fyp.yes2live.apiConfig.APIClient;
@@ -61,6 +64,13 @@ public class PersonalDetail extends AppCompatActivity {
         buttonGoal = (ImageButton) findViewById(R.id.buttonGoal);
         buttonTarget = (ImageButton) findViewById(R.id.buttonTargetWeight);
 
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(PersonalDetail.this, homepage.class);
+                startActivity(intent);
+            }
+        });
 
         //getUserData
         long user_id=sharedPreferenceManager.getUser().getId();

@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.fyp.yes2live.Admin.Daashboard;
+
 public class AnyDisease extends AppCompatActivity {
 //    declaration of variables
     CheckBox hypertension, cardiovascular, none;
@@ -28,6 +30,7 @@ public class AnyDisease extends AppCompatActivity {
     EditText systolic,diastolic;
     EditText cardio_range;
     Integer sys,dias, choles = 0;
+    ImageButton previousBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -39,17 +42,18 @@ public class AnyDisease extends AppCompatActivity {
         hypertension = findViewById(R.id.hypertension);
         cardiovascular = findViewById(R.id.cardiovascular);
         none = findViewById(R.id.noDisease);
+        previousBtn= findViewById(R.id.PreviousButton);
+
+        previousBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(AnyDisease.this, bloodrelative.class);
+                startActivity(intent);
+            }
+        });
 
 //      hypertension popup start
         this.openHypertensionPopup();
-//      hypertension popup end
-
-//        previousBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                goto previous screen
-//            }
-//        });
 
         this.checkNonOption();
 

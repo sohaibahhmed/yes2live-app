@@ -125,13 +125,6 @@ public class target_weight extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-//                else if(baseResponse.getStatus().equals("WARNING")){
-//                    Intent intent = new Intent(target_weight.this, TargetWeightWarnings.class);
-//                    intent.putExtra("message", baseResponse.getMessage());
-//                    intent.putExtra("targetweight", targetWeight);
-//                    startActivity(intent);
-//                    finish();
-//                }
                             else if (baseResponse.getStatus().equals("WARNING")) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(target_weight.this);
                                 //Set body message of Dialog

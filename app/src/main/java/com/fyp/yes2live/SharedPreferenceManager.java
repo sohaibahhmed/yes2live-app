@@ -27,6 +27,7 @@ public class SharedPreferenceManager {
         editor=sharedPreference.edit();
         editor.putLong("id",user.getId());
         editor.putString("name",user.getName());
+        editor.putString("username",user.getUsername());
         editor.putString("email",user.getEmail());
         editor.putString("startGoalDate", user.getStartGoalDate());
         //for loggedin status... if loggedIn return true
@@ -50,7 +51,8 @@ public class SharedPreferenceManager {
                 sharedPreference.getString("name",null),
                 sharedPreference.getString("email",null),
                 sharedPreference.getFloat("weight",0),
-                sharedPreference.getFloat("height",0)
+                sharedPreference.getFloat("height",0),
+                sharedPreference.getString("username",null)
 
         );
     }

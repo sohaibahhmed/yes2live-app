@@ -1,10 +1,12 @@
 package com.fyp.yes2live;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fyp.yes2live.Admin.Daashboard;
 import com.fyp.yes2live.apiConfig.APIClient;
 import com.fyp.yes2live.apiConfig.APIInterface;
 import com.fyp.yes2live.model.User;
@@ -33,6 +36,9 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
     SharedPreferenceManager sharedPreferenceManager;
     private APIInterface apiInterface;
 
+    ImageButton previousBtn;
+
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diabetic_info);
@@ -45,6 +51,15 @@ public class dietaryinfo extends AppCompatActivity implements View.OnClickListen
         rgGender = findViewById(R.id.gender_group);
         rbMale = findViewById(R.id.updatemale);
         rbFemale = findViewById(R.id.updatefemale);
+        previousBtn= findViewById(R.id.PreviousButton);
+
+        previousBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(dietaryinfo.this, homepage.class);
+                startActivity(intent);
+            }
+        });
 
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         user_id = sharedPreferenceManager.getUser().getId();

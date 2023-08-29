@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".dietaryinfo">
 
+    <ImageButton
+        android:id="@+id/PreviousButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
     <TextView
         android:id="@+id/targetWeight"
         android:layout_width="386dp"

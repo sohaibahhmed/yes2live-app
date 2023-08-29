@@ -115,12 +115,13 @@ public class User {
         this.activityLevel = activityLevel;
     }
 
-    public User(long id, String name, String email, double weight, double height) {
+    public User(long id, String name, String email, double weight, double height, String username) {
         this.id = id;
-        this.age = age;
-        this.gender = gender;
+        this.name = name;
+        this.email = email;
         this.weight = weight;
         this.height = height;
+        this.username = username;
     }
 
     public User(long id, double targetWeight, double peerWeekGoal) {
